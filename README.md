@@ -40,6 +40,11 @@ Run the `docker-compose` to start the Postgresql and Redis service which is requ
 docker-compose up
 ```
 
+Run migrations
+```sh
+mix ecto.migrate
+```
+
 ## Run tests
 
 (updating)
