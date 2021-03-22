@@ -16,6 +16,8 @@ defmodule Kwtool.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       alias Kwtool.Repo
@@ -24,14 +26,15 @@ defmodule Kwtool.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Kwtool.DataCase
+      import Kwtool.Factory
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Kwtool.Repo)
+    :ok = Sandbox.checkout(Kwtool.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Kwtool.Repo, {:shared, self()})
+      Sandbox.mode(Kwtool.Repo, {:shared, self()})
     end
 
     :ok

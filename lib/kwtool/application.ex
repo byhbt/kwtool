@@ -14,7 +14,8 @@ defmodule Kwtool.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Kwtool.PubSub},
       # Start the Endpoint (http/https)
-      KwtoolWeb.Endpoint
+      KwtoolWeb.Endpoint,
+      {Oban, oban_config()}
       # Start a worker by calling: Kwtool.Worker.start_link(arg)
       # {Kwtool.Worker, arg}
     ]
@@ -30,5 +31,10 @@ defmodule Kwtool.Application do
   def config_change(changed, _new, removed) do
     KwtoolWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  # Conditionally disable crontab, queues, or plugins here.
+  defp oban_config do
+    Application.get_env(:kwtool, Oban)
   end
 end

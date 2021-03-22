@@ -17,11 +17,14 @@ defmodule KwtoolWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
       import KwtoolWeb.ChannelCase
+      import Kwtool.Factory
 
       # The default endpoint for testing
       @endpoint KwtoolWeb.Endpoint
@@ -29,10 +32,10 @@ defmodule KwtoolWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Kwtool.Repo)
+    :ok = Sandbox.checkout(Kwtool.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Kwtool.Repo, {:shared, self()})
+      Sandbox.mode(Kwtool.Repo, {:shared, self()})
     end
 
     :ok
