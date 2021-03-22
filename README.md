@@ -22,7 +22,19 @@
 
 [Kanban Board](https://github.com/byhbt/kwtool/projects/1)
 
-## Install
+## Pre-requisite
+
+The requirements software for development:
+
+- Elixir 1.11.3
+- Mix 1.11.3
+- Phoenix 1.5.8
+- Docker 20.10.0
+- Docker Compose 1.27.4
+
+## Development
+
+Run the `docker-compose` to start the Postgresql and Redis service which is required for the app.
 
 ```sh
 docker-compose up
@@ -30,9 +42,7 @@ docker-compose up
 
 ## Run tests
 
-```sh
-./test run
-```
+(updating)
 
 ## Author
 
