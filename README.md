@@ -1,28 +1,20 @@
-# Git Repository Template
+# Kwtool
 
-Project repository template to set up all public projects at [Nimble](https://nimblehq.co/)
+To start your Phoenix server:
 
-## Usage
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+  * Install Node.js dependencies with `npm install` inside the `assets` directory
+  * Start Phoenix endpoint with `mix phx.server`
 
-Clone the repository
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-`git clone git@github.com:nimblehq/git-template.git`
+Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## License
+## Learn more
 
-This project is Copyright (c) 2014 and onwards. It is free software,
-and may be redistributed under the terms specified in the [LICENSE] file.
-
-[LICENSE]: /LICENSE
-
-## About
-
-![Nimble](https://assets.nimblehq.co/logo/dark/logo-dark-text-160.png)
-
-This project is maintained and funded by Nimble.
-
-We love open source and do our part in sharing our work with the community!
-See [our other projects][community] or [hire our team][hire] to help build your product.
-
-[community]: https://github.com/nimblehq
-[hire]: https://nimblehq.co/
+  * Official website: https://www.phoenixframework.org/
+  * Guides: https://hexdocs.pm/phoenix/overview.html
+  * Docs: https://hexdocs.pm/phoenix
+  * Forum: https://elixirforum.com/c/phoenix-forum
+  * Source: https://github.com/phoenixframework/phoenix
