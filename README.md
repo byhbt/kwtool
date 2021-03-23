@@ -23,9 +23,9 @@
 
 [Kanban Board](https://github.com/byhbt/kwtool/projects/1)
 
-## Pre-requisite
+## Prerequisites
 
-The requirements software for development:
+Please make sure you install the correct version of below software in order to start working or testing on this project.
 
 - Elixir 1.10
 - Mix 1.11.3
