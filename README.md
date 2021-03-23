@@ -1,7 +1,7 @@
-<h1 align="center"> KWTool  - Keywords Analytic Tool🦀 </h1>
+<h1 align="center"> KWTool - Keyword research tool 🦀 </h1>
 <p>
   <img alt="Version" src="https://github.com/byhbt/kwtool/actions/workflows/test.yml/badge.svg" />
-  
+
   <a href="https://github.com/byhbt/kwtool/wiki" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -13,8 +13,8 @@
   </a>
 </p>
 
+> Tool for keywords research using Elixir and Phoenix Framework
 
-> Implement a crawler using Elixir
 ### 🏠 [Homepage](https://kw-tool.herokuapp.com)
 
 ### ✨ [Demo](https://kw-tool.herokuapp.com)
