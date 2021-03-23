@@ -4,6 +4,6 @@ defmodule KwtoolWeb.HomePage.ViewHomePageTest do
   feature "view home page", %{session: session} do
     visit(session, Routes.page_path(KwtoolWeb.Endpoint, :index))
 
-    assert_has(session, Query.text("Welcome to Phoenix!"))
+    assert_has(session, Query.text("Keyword research tool"))
   end
 end
