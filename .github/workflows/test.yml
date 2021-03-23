@@ -30,6 +30,7 @@ jobs:
         with:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
+          experimental-otp: true
 
       - name: Cache Elixir build
         uses: actions/cache@v2
