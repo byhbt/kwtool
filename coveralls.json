@@ -1,0 +1,15 @@
+{
+  "skip_files": [
+    "lib/mix",
+    "lib/kwtool/application.ex",
+    "lib/kwtool/release_tasks.ex",
+    "lib/kwtool_web.ex",
+    "lib/kwtool_mail.ex",
+    "lib/kwtool_web/endpoint.ex",
+    "lib/kwtool_web/views/error_helpers.ex",
+    "test/support"
+  ],
+  "coverage_options": {
+    "minimum_coverage": 100
+  }
+}

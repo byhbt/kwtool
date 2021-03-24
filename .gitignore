@@ -1,36 +1,39 @@
-*.gem
-*.rbc
-/.config
-/.idea
-/coverage/
-/InstalledFiles
-/node-modules
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
+# The directory Mix will write compiled artifacts to.
+/_build/
 
-# Used by dotenv library to load environment variables.
-# .env
+# tmp
+**/tmp/
 
-## Documentation cache and generated files:
-/.yardoc/
-/_yardoc/
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
+
+# The directory Mix downloads your dependencies sources to.
+/deps/
+
+# Where 3rd-party dependencies like ExDoc output generated docs.
 /doc/
-/rdoc/
 
-## Environment normalization:
-/.bundle/
-/vendor/bundle
-/lib/bundler/man/
+# Ignore .fetch files in case you like to edit your project deps locally.
+/.fetch
 
-# for a library or gem, you might want to ignore these files since the code is
-# intended to run in multiple environments; otherwise, check them in:
-# Gemfile.lock
-# .ruby-version
-# .ruby-gemset
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
 
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# Ignore package tarball (built via "mix hex.build").
+kwtool-*.tar
+
+# If NPM crashes, it generates a log, let's ignore it too.
+npm-debug.log
+
+# The directory NPM downloads your dependencies sources to.
+/assets/node_modules/
+
+# Since we are building assets from assets/,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/priv/static/
+
+.idea

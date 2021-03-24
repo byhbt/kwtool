@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  build:
+    build:
+      context: .
+      cache_from:
+        - kwtool-build
+      target: build
+    image: kwtool-build
+
+  app:
+    build:
+      context: .
+      cache_from:
+        - kwtool-build
+        - kwtool
+      target: app
+    image: kwtool

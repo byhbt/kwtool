@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:12.3
+    container_name: kwtool_db
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=kwtool_dev
+    ports:
+      - "5432:5432"
