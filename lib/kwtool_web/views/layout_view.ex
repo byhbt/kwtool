@@ -6,7 +6,8 @@ defmodule KwtoolWeb.LayoutView do
   end
 
   defp module_class_name(conn) do
-    controller_module(conn)
+    conn
+    |> controller_module()
     |> Phoenix.Naming.resource_name("Controller")
     |> String.replace("_", "-")
   end
