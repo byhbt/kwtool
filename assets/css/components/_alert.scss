@@ -1,0 +1,5 @@
+.alert:empty {
+  @if empty {
+    display: none;
+  }
+}

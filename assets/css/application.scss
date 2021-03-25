@@ -1,4 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
+@import 'shared/functions/sizing';
+
+@import 'components/*';
+
 @import 'layouts/default';
-@import 'screens/home';
+
