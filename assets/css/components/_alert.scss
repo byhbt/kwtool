@@ -1,4 +1,4 @@
-.alert:empty {
+.alert {
   @if empty {
     display: none;
   }
