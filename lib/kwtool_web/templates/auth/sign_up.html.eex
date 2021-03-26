@@ -1,14 +1,15 @@
 <form class="form-authentication">
     <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
-    <label for="inputEmail">Email address</label>
-    <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email address" required autofocus>
-    <label for="inputName">Name</label>
-    <input type="text" id="inputName" class="form-control mb-3" placeholder="Name" required>
-    <label for="inputCompany">Company</label>
-    <input type="text" id="inputCompany" class="form-control mb-3" placeholder="Company">
-    <label for="inputPassword">Password</label>
-    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required>
-    <label for="inputConfirmPassword">Re-enter Password</label>
-    <input type="password" id="inputConfirmPassword" class="form-control mb-3" placeholder="Confirm Password" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" class="form-control mb-3" placeholder="Email Address" required autofocus>
+    <label for="name">Name</label>
+    <input type="text" id="name" class="form-control mb-3" placeholder="Name" required>
+    <label for="company">Company</label>
+    <input type="text" id="company" class="form-control mb-3" placeholder="Company">
+    <label for="password">Password</label>
+    <input type="password" id="password" class="form-control mb-3" placeholder="Password" required>
+    <label for="confirm_password">Re-enter Password</label>
+    <input type="password" id="confirm_password" class="form-control mb-3" placeholder="Confirm Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <div class="border-top card-body text-center">Have an account? <a href="">Log In</a> or back<a href="/"> Home</a></div>
 </form>
