@@ -19,10 +19,10 @@
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <%= link "Home", class: "nav-link", to: Routes.page_path(@conn, :index) %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/sign_up">Sign up</a>
+            <%= link "Sign up", class: "nav-link", to: Routes.auth_path(@conn, :sign_up) %>
           </li>
         </ul>
       </div>
