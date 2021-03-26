@@ -1,4 +1,4 @@
-defmodule KwtoolWeb.PageControllerTest do
+defmodule KwtoolWeb.AuthControllerTest do
   use KwtoolWeb.ConnCase
 
   describe "get the sign up route" do
