@@ -1,7 +1,10 @@
+@import 'shared/variables';
+
 @import "~bootstrap/scss/bootstrap";
 
 @import 'shared/functions/sizing';
 
+@import 'layouts/*';
+
 @import 'components/*';
 
-@import 'layouts/*';
