@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.AuthControllerTest do
-  use KwtoolWeb.ConnCase
+  use KwtoolWeb.ConnCase, async: true
 
   describe "get the sign up route" do
     test "returns 200 status", %{conn: conn} do
