@@ -11,5 +11,7 @@
     <label for="confirm_password">Re-enter Password</label>
     <input type="password" id="confirm_password" class="form-control mb-3" placeholder="Confirm Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    <div class="border-top card-body text-center">Have an account? <a href="">Log In</a> or back<a href="/"> Home</a></div>
+    <div class="border-top card-body text-center">
+        Have an account? <a href="">Log In</a> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
+    </div>
 </form>
