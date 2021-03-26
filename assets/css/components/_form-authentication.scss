@@ -1,0 +1,30 @@
+.form-authentication {
+  width: 100%;
+  max-width: rem(400px);
+  padding: rem(15px);
+  margin: auto;
+
+  .checkbox {
+    font-weight: $checkbox-font-weight;
+  }
+
+  .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: rem(10px);
+    font-size: rem(16px);
+  }
+
+  .form-control:focus {
+    z-index: 2;
+  }
+
+  input[type="email"] {
+    margin-bottom: rem(-1px);
+  }
+
+  input[type="password"] {
+    margin-bottom: rem(10px);
+  }
+}
