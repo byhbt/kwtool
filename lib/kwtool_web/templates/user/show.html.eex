@@ -1,0 +1,33 @@
+<h1>Show User</h1>
+
+<ul>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Full name:</strong>
+    <%= @user.full_name %>
+  </li>
+
+  <li>
+    <strong>Company:</strong>
+    <%= @user.company %>
+  </li>
+
+  <li>
+    <strong>Password:</strong>
+    <%= @user.password %>
+  </li>
+
+  <li>
+    <strong>Confirm password:</strong>
+    <%= @user.confirm_password %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
