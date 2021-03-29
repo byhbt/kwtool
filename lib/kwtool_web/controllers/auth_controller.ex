@@ -15,7 +15,7 @@ defmodule KwtoolWeb.AuthController do
     render(conn, "sign_up.html", changeset: changeset)
   end
 
-  def create_user(conn, %{"user" => user_params}) do
+  def create(conn, %{"user" => user_params}) do
     case Accounts.create_user(user_params) do
       {:ok, user} ->
         conn
@@ -23,7 +23,7 @@ defmodule KwtoolWeb.AuthController do
         |> redirect(to: Routes.user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "sign_up.html", changeset: changeset)
     end
   end
 end
