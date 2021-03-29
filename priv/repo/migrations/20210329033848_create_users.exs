@@ -7,7 +7,6 @@ defmodule Kwtool.Repo.Migrations.CreateUsers do
       add :full_name, :string
       add :company, :string
       add :password, :string, null: false
-      add :confirm_password, :string, null: false
 
       timestamps()
     end
