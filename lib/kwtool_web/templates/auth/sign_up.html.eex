@@ -1,6 +1,5 @@
 <main class="form-authentication">
     <h1>Registration</h1>
-
     <form>
         <div class="form-group">
             <label for="email">Email</label>
