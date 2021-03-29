@@ -10,4 +10,8 @@ defmodule KwtoolWeb.AuthController do
   def show(conn, _params) do
     render(conn, "sign_up.html")
   end
+
+  def create_user(conn, _params) do
+    IO.puts "Create user!"
+  end
 end
