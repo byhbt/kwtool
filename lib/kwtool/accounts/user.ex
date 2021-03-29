@@ -4,10 +4,11 @@ defmodule Kwtool.Accounts.User do
 
   schema "users" do
     field :email, :string, unique: true, null: false
-    field :full_name, :string
+    field :full_name, :string, null: false
     field :company, :string
-    field :confirm_password, :string, null: false
     field :password, :string, null: false
+    field :confirm_password, :string, null: false
+
 
     timestamps()
   end
