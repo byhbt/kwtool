@@ -4,26 +4,4 @@
     <div class="border-top card-body text-center">
         Have an account? <a href="">Log In</a> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
     </div>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" id="name" class="form-control" placeholder="Name" required>
-    </div>
-    <div class="form-group">
-      <label for="company">Company</label>
-      <input type="text" id="company" class="form-control" placeholder="Company">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" class="form-control" placeholder="Password" required>
-    </div>
-    <div class="form-group">
-      <label for="confirm_password">Re-enter Password</label>
-      <input type="password" id="confirm_password" class="form-control" placeholder="Confirm Password" required>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-  </form>
-
-  <div class="border-top card-body text-center">
-    Have an account? <a href="">Log In</a> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
-  </div>
 </main>
