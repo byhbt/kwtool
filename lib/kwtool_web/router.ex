@@ -20,6 +20,7 @@ defmodule KwtoolWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/sign_up", AuthController, :show
   end
 
   # Other scopes may use custom stacks.
