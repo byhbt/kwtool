@@ -60,7 +60,8 @@ defmodule Kwtool.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:nimble_phx_gen_template, "~> 2.2.0", only: :dev, runtime: false}
+      {:nimble_phx_gen_template, "~> 2.2.0", only: :dev, runtime: false},
+      {:argon2_elixir, "~> 2.0"}
     ]
   end
 
