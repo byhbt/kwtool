@@ -17,6 +17,7 @@ defmodule Kwtool.Accounts.User do
   def registration_changeset(user, params) do
     user
     |> cast(params, [:email, :full_name, :password])
+    |> unique_constraint(:email)
     |> validate_required([:password])
     |> validate_length(:password, min: 3, max: 100)
     |> put_pass_hash()
