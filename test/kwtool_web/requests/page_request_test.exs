@@ -1,10 +1,9 @@
 defmodule KwtoolWeb.Requests.PageRequestTest do
-  use KwtoolWeb.ConnCase
+  use KwtoolWeb.ConnCase, async: true
 
-  describe "get the home route" do
-    test "returns 200 status when access the home route", %{conn: conn} do
+  describe "get /" do
+    test "returns 200 status", %{conn: conn} do
       conn = get(conn, Routes.page_path(conn, :index))
-
       assert conn.status == 200
     end
   end

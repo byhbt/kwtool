@@ -33,6 +33,7 @@ defmodule Kwtool.MixProject do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support", "test/factories"]
+  defp elixirc_paths(:dev), do: ["lib", "test/support", "test/factories"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
@@ -44,7 +45,7 @@ defmodule Kwtool.MixProject do
       {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
       {:oban, "~> 2.5.0"},
       {:mimic, "~> 1.4.0", [only: :test]},
-      {:ex_machina, "~> 2.7.0", [only: :test]},
+      {:ex_machina, "~> 2.7.0", [only: [:dev, :test]]},
       {:excoveralls, "~> 0.14.0", [only: :test]},
       {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
       {:credo, "~> 1.5.5", [only: [:dev, :test], runtime: false]},
@@ -60,8 +61,8 @@ defmodule Kwtool.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:nimble_phx_gen_template, "~> 2.2.0", only: :dev, runtime: false},
-      {:argon2_elixir, "~> 2.0"}
+      {:argon2_elixir, "~> 2.0"},
+      {:faker_elixir_octopus, "~> 1.0.0", only: [:dev, :test]}
     ]
   end
 

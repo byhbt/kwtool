@@ -1,10 +1,11 @@
 defmodule KwtoolWeb.PageControllerTest do
-  use KwtoolWeb.ConnCase
+  use KwtoolWeb.ConnCase, async: true
 
-  describe "get the home route" do
+  describe "get index/2" do
     test "returns 200 status", %{conn: conn} do
-      conn = get(conn, "/sign_up")
-      assert html_response(conn, 200) =~ "Registration"
+      conn = get(conn, "/")
+
+      assert html_response(conn, 200) =~ "Keyword Research Tool"
     end
   end
 end

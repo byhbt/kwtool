@@ -3,4 +3,9 @@ body.auth {
   align-items: center;
   justify-content: center;
   background-color: $color-white-smoke;
+
+  // Override the Bootstrap stylesheets
+  .invalid-feedback {
+    display: block;
+  }
 }
