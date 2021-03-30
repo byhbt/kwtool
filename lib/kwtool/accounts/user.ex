@@ -1,7 +1,6 @@
 defmodule Kwtool.Accounts.User do
   use Ecto.Schema
-  use Argon2
-  
+  alias Argon2
   import Ecto.Changeset
 
   schema "users" do
@@ -10,21 +9,21 @@ defmodule Kwtool.Accounts.User do
     field :company, :string
     field :encrypted_password, :string
     field :password, :string, virtual: true
+    field :confirm_password, :string, virtual: true
 
     timestamps()
   end
 
   def registration_changeset(user, params) do
     user
-    |> cast(params, [:password])
+    |> cast(params, [:email, :full_name, :password])
     |> validate_required([:password])
-    |> validate_length(:password, min: 6, max: 100)
+    |> validate_length(:password, min: 3, max: 100)
     |> put_pass_hash()
   end
 
-  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes:
-      %{encrypted_password: password}} = changeset) do
-    change(changeset, add_hash(password))
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, Argon2.add_hash(password, hash_key: :encrypted_password))
   end
 
   defp put_pass_hash(changeset), do: changeset
