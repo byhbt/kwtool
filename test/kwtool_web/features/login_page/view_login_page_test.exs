@@ -3,7 +3,7 @@ defmodule KwtoolWeb.HomePage.ViewLoginPageTest do
 
   @path Routes.auth_path(KwtoolWeb.Endpoint, :index)
 
-  feature "view login page", %{session: session} do
+  feature "views login page", %{session: session} do
     visit(session, @path)
     assert_has(session, Query.text("Login"))
   end
