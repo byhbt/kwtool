@@ -3,7 +3,7 @@ defmodule KwtoolWeb.AuthController do
 
   plug :put_layout, "auth.html"
 
-  def index(conn, _params) do
+  def new(conn, _params) do
     render(conn, "sign_in.html")
   end
 
