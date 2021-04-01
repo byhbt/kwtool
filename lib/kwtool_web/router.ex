@@ -21,6 +21,7 @@ defmodule KwtoolWeb.Router do
 
     get "/", PageController, :index
     get "/sign_up", AuthController, :show
+    get "/sign_in", AuthController, :index
   end
 
   # Other scopes may use custom stacks.

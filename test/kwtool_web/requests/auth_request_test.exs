@@ -7,4 +7,11 @@ defmodule KwtoolWeb.Requests.AuthRequestTest do
       assert conn.status == 200
     end
   end
+
+  describe "get /sign_in" do
+    test "returns 200 status", %{conn: conn} do
+      conn = get(conn, Routes.auth_path(conn, :index))
+      assert conn.status == 200
+    end
+  end
 end
