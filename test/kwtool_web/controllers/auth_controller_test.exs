@@ -11,6 +11,7 @@ defmodule KwtoolWeb.AuthControllerTest do
   describe "sign_in/2" do
     test "returns 200 status", %{conn: conn} do
       conn = get(conn, "/sign_in")
+
       assert html_response(conn, 200) =~ "Login"
     end
   end
