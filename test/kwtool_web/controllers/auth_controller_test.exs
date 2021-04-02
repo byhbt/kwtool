@@ -23,7 +23,6 @@ defmodule KwtoolWeb.AuthControllerTest do
 
       conn = post(conn, Routes.auth_path(conn, :create), user: params_for(:user, password_inputs))
 
-      assert html_response(conn, 200) =~ "Registration"
       assert redirected_to(conn) == Routes.page_path(conn, :index)
       assert get_flash(conn, :info) == "Your account is created successfully!"
     end
