@@ -9,7 +9,7 @@ defmodule KwtoolWeb.AuthControllerTest do
     end
   end
 
-  describe "sign_in/2" do
+  describe "get sign_in/2" do
     test "returns 200 status", %{conn: conn} do
       conn = KwtoolWeb.AuthController.call(conn, :new)
 
@@ -17,7 +17,18 @@ defmodule KwtoolWeb.AuthControllerTest do
     end
   end
 
-  describe "create/2" do
+  describe "post sign_in/2" do
+    test "redirects to home page when the registration data is valid", %{conn: conn} do
+      account_params = %{email: "john@example.com", password: "123456"}
+
+      conn = post(conn, Routes.auth_path(conn, :update), user: params_for(:user, account_params))
+
+      assert redirected_to(conn) == Routes.page_path(conn, :index)
+      assert get_flash(conn, :info) == "Logged in successfully!"
+    end
+  end
+
+  describe "post create/2" do
     test "redirects to home page when the registration data is valid", %{conn: conn} do
       password_inputs = %{password: "123456", password_confirmation: "123456"}
 
