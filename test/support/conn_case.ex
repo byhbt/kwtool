@@ -41,6 +41,10 @@ defmodule KwtoolWeb.ConnCase do
       Sandbox.mode(Kwtool.Repo, {:shared, self()})
     end
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    conn =
+      Phoenix.ConnTest.build_conn()
+      |> Plug.Conn.put_private(:phoenix_endpoint, KwtoolWeb.Endpoint)
+
+    {:ok, conn: conn}
   end
 end
