@@ -12,6 +12,9 @@ defmodule KwtoolWeb.AuthController do
     render(conn, "sign_in.html", changeset: changeset)
   end
 
+  def update(conn, %{"user" => user_params}) do
+  end
+
   def show(conn, _params) do
     changeset = User.registration_changeset(%{})
 
