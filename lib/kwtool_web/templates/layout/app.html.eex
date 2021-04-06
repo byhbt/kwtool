@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%= link "Sign in", class: "nav-link", to: Routes.auth_path(@conn, :new) %>
+            <%= link "Log in", class: "nav-link", to: Routes.auth_path(@conn, :new) %>
           </li>
           <li class="nav-item">
             <%= link "Sign up", class: "nav-link", to: Routes.auth_path(@conn, :show) %>
