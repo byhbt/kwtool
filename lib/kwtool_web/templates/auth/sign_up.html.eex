@@ -2,6 +2,7 @@
     <h1>Registration</h1>
     <%= render "_form.html", Map.put(assigns, :action, Routes.auth_path(@conn, :create)) %>
     <div class="border-top card-body text-center">
-        Have an account? <a href="">Log In</a> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
+        Already have an account? <%= link "Login", to: Routes.auth_path(@conn, :new) %>
+        or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
     </div>
 </main>
