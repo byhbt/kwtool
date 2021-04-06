@@ -9,6 +9,16 @@ defmodule KwtoolWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  # Our pipeline implements "maybe" authenticated. We'll use the `:ensure_auth` below for when we need to make sure someone is logged in.
+  pipeline :auth do
+    plug Kwtool.Accounts.Pipeline
+  end
+
+  # We use ensure_auth to fail if there is no one logged in
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
   # coveralls-ignore-start
   pipeline :api do
     plug :accepts, ["json"]
@@ -17,14 +27,23 @@ defmodule KwtoolWeb.Router do
   # coveralls-ignore-stop
 
   scope "/", KwtoolWeb do
-    pipe_through :browser
+    pipe_through [:browser, :auth]
+
 
     get "/", PageController, :index
     get "/sign_up", AuthController, :show
     post "/sign_up", AuthController, :create
 
-    get "/sign_in", AuthController, :new
-    post "/sign_in", AuthController, :update
+    get "/sign_in", SessionController, :new
+    post "/sign_in", SessionController, :sign_in
+    post "/sign_out", SessionController, :sign_out
+  end
+
+  # Definitely logged in scope
+  scope "/", KwtoolWeb do
+    pipe_through [:browser, :auth, :ensure_auth]
+
+    get "/dashboard", DashboardController, :protected
   end
 
   # Other scopes may use custom stacks.
