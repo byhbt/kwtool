@@ -6,7 +6,7 @@ defmodule Kwtool.UserFactory do
           email: FakerElixir.Internet.email(),
           full_name: FakerElixir.Name.name(),
           company: FakerElixir.Name.name(),
-          encrypted_password: "123456"
+          encrypted_password: Argon2.hash_pwd_salt("123456")
         }
       end
     end

@@ -34,7 +34,8 @@ defmodule KwtoolWeb.Router do
     post "/sign_up", AuthController, :create
 
     get "/sign_in", SessionController, :new
-    post "/sign_in", SessionController, :sign_in
+    post "/sign_in", SessionController, :create
+
     get "/sign_out", SessionController, :delete
   end
 

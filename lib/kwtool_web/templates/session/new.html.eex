@@ -1,18 +1,7 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-  <div class="alert alert-danger">
-    <p>Oops, something went wrong! Please check the errors below.</p>
+<main class="form-authentication">
+  <h1>Login</h1>
+  <%= render "_form.html", Map.put(assigns, :action, Routes.session_path(@conn, :create)) %>
+  <div class="border-top card-body text-center">
+    Don't have an account? <%= link "Sign up", to: Routes.auth_path(@conn, :show) %> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
   </div>
-  <% end %>
-  <div class="form-group">
-    <%= label f, :email %>
-    <%= email_input f, :email, required: true, class: "form-control", placeholder: "Email" %>
-    <%= error_tag f, :email %>
-  </div>
-  <div class="form-group">
-    <%= label f, :password %>
-    <%= password_input f, :password, required: true, minlength: 6, maxlength: 100, class: "form-control", placeholder: "Password" %>
-    <%= error_tag f, :password %>
-  </div>
-  <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
-<% end %>
+</main>
