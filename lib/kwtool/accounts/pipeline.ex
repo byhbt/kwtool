@@ -1,6 +1,6 @@
 defmodule Kwtool.Accounts.Pipeline do
   use Guardian.Plug.Pipeline,
-      otp_app: :auth_me,
+      otp_app: :kwtool,
       error_handler: Kwtool.Accounts.ErrorHandler,
       module: Kwtool.Accounts.Guardian
 

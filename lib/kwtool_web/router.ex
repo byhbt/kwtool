@@ -43,7 +43,7 @@ defmodule KwtoolWeb.Router do
   scope "/", KwtoolWeb do
     pipe_through [:browser, :auth, :ensure_auth]
 
-    get "/dashboard", DashboardController, :protected
+    get "/dashboard", DashboardController, :index
   end
 
   # Other scopes may use custom stacks.
