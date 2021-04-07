@@ -9,14 +9,6 @@ defmodule KwtoolWeb.Requests.AuthRequestTest do
     end
   end
 
-  describe "get /sign_in" do
-    test "returns 200 status", %{conn: conn} do
-      conn = get(conn, Routes.auth_path(conn, :new))
-
-      assert conn.status == 200
-    end
-  end
-
   describe "post /sign_up" do
     test "returns 200 status if registration successfully", %{conn: conn} do
       password_inputs = %{password: "123456", password_confirmation: "123456"}

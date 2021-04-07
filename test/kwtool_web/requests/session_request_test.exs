@@ -1,9 +1,9 @@
-defmodule KwtoolWeb.Requests.PageRequestTest do
+defmodule KwtoolWeb.Requests.SessionRequestTest do
   use KwtoolWeb.ConnCase, async: true
 
-  describe "get /" do
+  describe "get /sign_in" do
     test "returns 200 status", %{conn: conn} do
-      conn = get(conn, Routes.page_path(conn, :index))
+      conn = get(conn, Routes.session_path(conn, :new))
 
       assert conn.status == 200
     end
