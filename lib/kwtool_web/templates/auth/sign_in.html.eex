@@ -1,9 +1,0 @@
-<main class="form-authentication">
-  <h1>Login</h1>
-
-  <%= render "_login-form.html", Map.put(assigns, :action, Routes.auth_path(@conn, :new)) %>
-
-  <div class="border-top card-body text-center">
-    Don't have an account? <%= link "Sign up", to: Routes.auth_path(@conn, :show) %> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
-  </div>
-</main>

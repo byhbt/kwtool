@@ -1,8 +1,8 @@
 defmodule Kwtool.Accounts.Pipeline do
   use Guardian.Plug.Pipeline,
-      otp_app: :kwtool,
-      error_handler: Kwtool.Accounts.ErrorHandler,
-      module: Kwtool.Accounts.Guardian
+    otp_app: :kwtool,
+    error_handler: Kwtool.Accounts.ErrorHandler,
+    module: Kwtool.Accounts.Guardian
 
   # If there is a session token, restrict it to an access token and validate it
   plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}

@@ -38,6 +38,7 @@ defmodule Kwtool.Accounts do
       nil ->
         Argon2.no_user_verify()
         {:error, :invalid_credentials}
+
       user ->
         if Argon2.verify_pass(plain_text_password, user.encrypted_password) do
           {:ok, user}

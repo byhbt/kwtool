@@ -1,4 +1,4 @@
-defmodule KwtoolWeb.DashboardController do
+defmodule KwtoolWeb.HomeController do
   use KwtoolWeb, :controller
 
   def index(conn, _params) do
