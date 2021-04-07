@@ -3,6 +3,8 @@ defmodule KwtoolWeb.SessionController do
 
   alias Kwtool.{Accounts, Accounts.Guardian, Accounts.Schemas.User}
 
+  plug :put_layout, "auth.html"
+
   def new(conn, _) do
     changeset = Accounts.change_user(%User{})
     maybe_user = Guardian.Plug.current_resource(conn)
@@ -10,11 +12,11 @@ defmodule KwtoolWeb.SessionController do
     if maybe_user do
       redirect(conn, to: "/home")
     else
-      render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :sign_in))
+      render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :create))
     end
   end
 
-  def sign_in(conn, %{"user" => %{"email" => email, "password" => plain_text_password}}) do
+  def create(conn, %{"user" => %{"email" => email, "password" => plain_text_password}}) do
     Accounts.authenticate_user(email, plain_text_password)
     |> login_reply(conn)
   end
