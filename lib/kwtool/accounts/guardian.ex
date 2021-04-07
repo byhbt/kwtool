@@ -1,5 +1,5 @@
 defmodule Kwtool.Accounts.Guardian do
-  use Guardian, otp_app: :auth_me
+  use Guardian, otp_app: :kwtool
 
   alias Kwtool.Accounts
 
