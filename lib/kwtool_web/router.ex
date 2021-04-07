@@ -29,7 +29,6 @@ defmodule KwtoolWeb.Router do
   scope "/", KwtoolWeb do
     pipe_through [:browser, :auth]
 
-
     get "/", PageController, :index
     get "/sign_up", AuthController, :show
     post "/sign_up", AuthController, :create
@@ -43,7 +42,7 @@ defmodule KwtoolWeb.Router do
   scope "/", KwtoolWeb do
     pipe_through [:browser, :auth, :ensure_auth]
 
-    get "/dashboard", DashboardController, :index
+    get "/home", HomeController, :index
   end
 
   # Other scopes may use custom stacks.

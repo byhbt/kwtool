@@ -20,7 +20,8 @@ config :kwtool, KwtoolWeb.Endpoint,
 
 config :kwtool, Kwtool.Accounts.Guardian,
   issuer: "kwtool",
-  secret_key: "Z/nCwVAC86RF9xWG1DX+UfcjocUoLLBkF4rgT/+jkStCmWlV/669zAWRQ5Q+fAW5" # put the result of the mix command above here
+  # put the result of the mix command above here
+  secret_key: "Z/nCwVAC86RF9xWG1DX+UfcjocUoLLBkF4rgT/+jkStCmWlV/669zAWRQ5Q+fAW5"
 
 # Configures Elixir's Logger
 config :logger, :console,
