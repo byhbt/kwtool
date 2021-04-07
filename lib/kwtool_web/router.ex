@@ -36,7 +36,7 @@ defmodule KwtoolWeb.Router do
 
     get "/sign_in", SessionController, :new
     post "/sign_in", SessionController, :sign_in
-    post "/sign_out", SessionController, :sign_out
+    get "/sign_out", SessionController, :delete
   end
 
   # Definitely logged in scope

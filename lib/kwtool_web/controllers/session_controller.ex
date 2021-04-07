@@ -14,12 +14,12 @@ defmodule KwtoolWeb.SessionController do
     end
   end
 
-  def sign_in(conn, %{"user" => %{"username" => username, "password" => password}}) do
-    Accounts.authenticate_user(username, password)
+  def sign_in(conn, %{"user" => %{"email" => email, "password" => plain_text_password}}) do
+    Accounts.authenticate_user(email, plain_text_password)
     |> login_reply(conn)
   end
 
-  def sign_out(conn, _) do
+  def delete(conn, _) do
     conn
     |> Guardian.Plug.sign_out() # This module's full name is Auth.UserManager.Guardian.Plug,
     |> redirect(to: "/sign_in") # and the arguments specified in the Guardian.Plug.sign_out()
