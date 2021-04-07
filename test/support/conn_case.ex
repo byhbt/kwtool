@@ -42,8 +42,7 @@ defmodule KwtoolWeb.ConnCase do
     end
 
     conn =
-      Phoenix.ConnTest.build_conn()
-      |> Plug.Conn.put_private(:phoenix_endpoint, KwtoolWeb.Endpoint)
+      Plug.Conn.put_private(Phoenix.ConnTest.build_conn(), :phoenix_endpoint, KwtoolWeb.Endpoint)
 
     {:ok, conn: conn}
   end

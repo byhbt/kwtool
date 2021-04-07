@@ -1,7 +1,9 @@
 defmodule KwtoolWeb.SessionController do
   use KwtoolWeb, :controller
 
-  alias Kwtool.{Accounts, Accounts.Guardian, Accounts.Schemas.User}
+  alias Kwtool.Accounts
+  alias Kwtool.Accounts.Guardian
+  alias Kwtool.Accounts.Schemas.User
 
   plug :put_layout, "auth.html"
 
@@ -17,7 +19,8 @@ defmodule KwtoolWeb.SessionController do
   end
 
   def create(conn, %{"user" => %{"email" => email, "password" => plain_text_password}}) do
-    Accounts.authenticate_user(email, plain_text_password)
+    email
+    |> Accounts.authenticate_user(plain_text_password)
     |> login_reply(conn)
   end
 
