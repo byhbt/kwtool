@@ -18,12 +18,18 @@
 
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link "Log in", class: "nav-link", to: Routes.session_path(@conn, :new) %>
-          </li>
-          <li class="nav-item">
-            <%= link "Sign up", class: "nav-link", to: Routes.auth_path(@conn, :show) %>
-          </li>
+          <%= if Guardian.Plug.authenticated?(@conn) do %>
+            <li class="nav-item">
+              <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete) %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link "Log in", class: "nav-link", to: Routes.session_path(@conn, :new) %>
+            </li>
+            <li class="nav-item">
+              <%= link "Sign up", class: "nav-link", to: Routes.auth_path(@conn, :show) %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
