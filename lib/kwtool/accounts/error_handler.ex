@@ -1,7 +1,7 @@
 defmodule Kwtool.Accounts.ErrorHandler do
-  import Plug.Conn
-
   @behaviour Guardian.Plug.ErrorHandler
+
+  import Plug.Conn
 
   @impl Guardian.Plug.ErrorHandler
 
@@ -11,6 +11,5 @@ defmodule Kwtool.Accounts.ErrorHandler do
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(401, body)
-    |> halt()
   end
 end
