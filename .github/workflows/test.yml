@@ -41,7 +41,7 @@ jobs:
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
             ${{ runner.os }}-mix-
-      
+
       - name: Cache Node npm
         uses: actions/cache@v2
         with:
@@ -49,17 +49,16 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      
+
       - name: Install Dependencies
         run: mix deps.get
 
-      
       - name: Install node module
         run: npm --prefix assets install
 
       - name: Compile assets
         run: npm run --prefix assets build:dev
-      
+
       - name: Create database
         run: mix ecto.create
         env:
@@ -80,10 +79,9 @@ jobs:
         env:
           MIX_ENV: test
           DB_HOST: localhost
-      
+
       - uses: actions/upload-artifact@v2
         if: ${{ failure() }}
         with:
           name: wallaby_screenshots
           path: tmp/wallaby_screenshots/
-      
