@@ -18,6 +18,11 @@ config :kwtool, KwtoolWeb.Endpoint,
   pubsub_server: Kwtool.PubSub,
   live_view: [signing_salt: "W+K81ela"]
 
+config :kwtool, Kwtool.Accounts.Guardian,
+  issuer: "kwtool",
+  secret_key: System.get_env("SECRET_KEY_GUARDIAN")
+#  secret_key: "Z/nCwVAC86RF9xWG1DX+UfcjocUoLLBkF4rgT/+jkStCmWlV/669zAWRQ5Q+fAW5"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
