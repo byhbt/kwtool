@@ -20,7 +20,7 @@
         <ul class="navbar-nav mr-auto">
           <%= if Guardian.Plug.authenticated?(@conn) do %>
             <li class="nav-item">
-              <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete) %>
+              <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
             </li>
           <% else %>
             <li class="nav-item">
