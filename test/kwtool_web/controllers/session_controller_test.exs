@@ -55,6 +55,7 @@ defmodule KwtoolWeb.SessionControllerTest do
       conn = delete(conn, Routes.session_path(conn, :delete))
 
       assert redirected_to(conn) == Routes.page_path(conn, :index)
+      assert get_flash(conn, :info) == "Logged out successfully!"
     end
   end
 end

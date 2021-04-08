@@ -26,6 +26,7 @@ defmodule KwtoolWeb.SessionController do
 
   def delete(conn, _) do
     conn
+    |> put_flash(:info, "Logged out successfully!")
     |> Guardian.Plug.sign_out()
     |> redirect(to: "/")
   end
