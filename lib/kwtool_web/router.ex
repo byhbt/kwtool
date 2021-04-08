@@ -32,7 +32,7 @@ defmodule KwtoolWeb.Router do
     get "/sign_in", SessionController, :new
     post "/sign_in", SessionController, :create
 
-    get "/sign_out", SessionController, :delete
+    delete "/sign_out", SessionController, :delete
   end
 
   # Authenticated scope
