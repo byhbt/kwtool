@@ -9,6 +9,18 @@ defmodule KwtoolWeb.SessionControllerTest do
 
       assert html_response(conn, 200) =~ "Login"
     end
+
+    test "redirects to the home page if already sign in", %{conn: conn} do
+      created_user = insert(:user)
+
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> Guardian.Plug.sign_in(created_user)
+        |> get("/sign_in")
+
+      assert redirected_to(conn) == Routes.home_path(conn, :index)
+    end
   end
 
   describe "post sign_in/2" do
