@@ -37,9 +37,9 @@ defmodule KwtoolWeb.SessionController do
     |> redirect(to: "/home")
   end
 
-  defp login_reply({:error, reason}, conn) do
+  defp login_reply({:error, _reason}, conn) do
     conn
-    |> put_flash(:error, to_string(reason))
+    |> put_flash(:error, "Incorrect email or password")
     |> new(%{})
   end
 end
