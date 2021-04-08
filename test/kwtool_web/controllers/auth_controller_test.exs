@@ -3,7 +3,7 @@ defmodule KwtoolWeb.AuthControllerTest do
 
   describe "get show/2" do
     test "returns 200 status", %{conn: conn} do
-      conn = KwtoolWeb.AuthController.call(conn, :show)
+      conn = get(conn, "/sign_up")
 
       assert html_response(conn, 200) =~ "Registration"
     end
