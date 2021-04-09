@@ -23,6 +23,7 @@ defmodule KwtoolWeb.SessionController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Welcome back!")
+        |> put_session(:current_user_id, user.id)
         |> Guardian.Plug.sign_in(user)
         |> redirect(to: "/home")
       {:error, _reason} ->
@@ -34,6 +35,7 @@ defmodule KwtoolWeb.SessionController do
 
   def delete(conn, _) do
     conn
+    |> clear_session
     |> put_flash(:info, "Logged out successfully!")
     |> Guardian.Plug.sign_out()
     |> redirect(to: "/")
