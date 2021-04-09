@@ -71,6 +71,7 @@ defmodule Kwtool.AccountsTest do
       created_user = insert(:user)
 
       assert {:ok, %User{} = created_user} = Accounts.update_user(created_user, @update_attrs)
+
       assert {:ok, created_user} ==
                Argon2.check_pass(created_user, "some updated password",
                  hash_key: :encrypted_password
