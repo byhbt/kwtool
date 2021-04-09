@@ -18,7 +18,7 @@
 
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
-          <%= if Guardian.Plug.authenticated?(@conn) do %>
+          <%= if @conn.assigns.user_signed_in? do %>
             <li class="nav-item">
               <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
             </li>
