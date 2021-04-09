@@ -6,6 +6,7 @@ Code.put_compiler_option(:warnings_as_errors, true)
 
 {:ok, _} = Application.ensure_all_started(:wallaby)
 
+ExUnit.configure(timeout: :infinity);
 ExUnit.start()
 Ecto.Adapters.SQL.Sandbox.mode(Kwtool.Repo, :manual)
 
