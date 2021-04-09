@@ -8,16 +8,14 @@ defmodule KwtoolWeb.Plugs.SetCurrentUser do
   def call(conn, _params) do
     current_user_id = get_session(conn, :current_user_id)
 
-    cond do
-      current_user = current_user_id && Accounts.get_user!(current_user_id) ->
-        conn
-        |> assign(:current_user, current_user)
-        |> assign(:user_signed_in?, true)
-
-      true ->
-        conn
-        |> assign(:current_user, nil)
-        |> assign(:user_signed_in?, false)
+    if current_user = current_user_id && Accounts.get_user!(current_user_id) do
+      conn
+      |> assign(:current_user, current_user)
+      |> assign(:user_signed_in?, true)
+    else
+      conn
+      |> assign(:current_user, nil)
+      |> assign(:user_signed_in?, false)
     end
   end
 end
