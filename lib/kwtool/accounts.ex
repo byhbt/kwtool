@@ -1,7 +1,6 @@
 defmodule Kwtool.Accounts do
   import Ecto.Query, warn: false
 
-  alias Argon2
   alias Kwtool.Accounts.Schemas.User
   alias Kwtool.Repo
 

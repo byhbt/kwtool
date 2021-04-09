@@ -19,9 +19,17 @@ defmodule KwtoolWeb.SessionController do
   end
 
   def create(conn, %{"user" => %{"email" => email, "password" => plain_text_password}}) do
-    email
-    |> Accounts.authenticate_user(plain_text_password)
-    |> login_reply(conn)
+    case Accounts.authenticate_user(email, plain_text_password) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "Welcome back!")
+        |> Guardian.Plug.sign_in(user)
+        |> redirect(to: "/home")
+      {:error, _reason} ->
+        conn
+        |> put_flash(:error, "Incorrect email or password")
+        |> new(%{})
+    end
   end
 
   def delete(conn, _) do
@@ -29,18 +37,5 @@ defmodule KwtoolWeb.SessionController do
     |> put_flash(:info, "Logged out successfully!")
     |> Guardian.Plug.sign_out()
     |> redirect(to: "/")
-  end
-
-  defp login_reply({:ok, user}, conn) do
-    conn
-    |> put_flash(:info, "Welcome back!")
-    |> Guardian.Plug.sign_in(user)
-    |> redirect(to: "/home")
-  end
-
-  defp login_reply({:error, _reason}, conn) do
-    conn
-    |> put_flash(:error, "Incorrect email or password")
-    |> new(%{})
   end
 end
