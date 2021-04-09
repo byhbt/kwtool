@@ -15,8 +15,7 @@ defmodule KwtoolWeb.SessionControllerTest do
 
       conn =
         conn
-        |> Plug.Test.init_test_session(%{})
-        |> Guardian.Plug.sign_in(created_user)
+        |> init_test_session(current_user_id: created_user.id)
         |> get("/sign_in")
 
       assert redirected_to(conn) == Routes.home_path(conn, :index)
