@@ -3,7 +3,7 @@ defmodule KwtoolWeb.Plugs.SetCurrentUser do
 
   alias Kwtool.Accounts
 
-  def init(params), do: params
+  def init(_options), do: nil
 
   def call(conn, _params) do
     current_user_id = get_session(conn, :current_user_id)
