@@ -26,6 +26,7 @@ defmodule KwtoolWeb.SessionController do
         |> put_session(:current_user_id, user.id)
         |> Guardian.Plug.sign_in(user)
         |> redirect(to: "/home")
+
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Incorrect email or password")
