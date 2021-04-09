@@ -8,12 +8,12 @@ defmodule KwtoolWeb.SessionController do
   plug :put_layout, "auth.html"
 
   def new(conn, _) do
-    changeset = Accounts.change_user(%User{})
     maybe_user = conn.assigns.current_user
 
     if maybe_user do
       redirect(conn, to: "/home")
     else
+      changeset = Accounts.change_user(%User{})
       render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :create))
     end
   end
