@@ -9,7 +9,7 @@ defmodule KwtoolWeb.SessionController do
 
   def new(conn, _) do
     changeset = Accounts.change_user(%User{})
-    maybe_user = Guardian.Plug.current_resource(conn)
+    maybe_user = conn.assigns.current_user
 
     if maybe_user do
       redirect(conn, to: "/home")
@@ -37,8 +37,8 @@ defmodule KwtoolWeb.SessionController do
   def delete(conn, _) do
     conn
     |> clear_session
-    |> put_flash(:info, "Logged out successfully!")
     |> Guardian.Plug.sign_out()
+    |> put_flash(:info, "Logged out successfully!")
     |> redirect(to: "/")
   end
 end

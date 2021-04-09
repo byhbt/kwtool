@@ -36,7 +36,7 @@ defmodule Kwtool.AccountsTest do
   end
 
   describe "create_user/1" do
-    test "with valid data creates a user" do
+    test "creates a user if given valid attributes" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
       assert {:ok, user} == Argon2.check_pass(user, "some password", hash_key: :encrypted_password)
       assert user.email == @valid_attrs.email
@@ -67,11 +67,10 @@ defmodule Kwtool.AccountsTest do
       assert created_user == Accounts.get_user!(created_user.id)
     end
 
-    test "with a new password" do
+    test "updates user credentials with a new password" do
       created_user = insert(:user)
 
       assert {:ok, %User{} = created_user} = Accounts.update_user(created_user, @update_attrs)
-
       assert {:ok, created_user} ==
                Argon2.check_pass(created_user, "some updated password",
                  hash_key: :encrypted_password
@@ -88,7 +87,7 @@ defmodule Kwtool.AccountsTest do
   end
 
   describe "delete_user/1" do
-    test "deletes the existing user" do
+    test "removes user from database" do
       created_user = insert(:user)
 
       assert {:ok, %User{}} = Accounts.delete_user(created_user)
