@@ -15,6 +15,7 @@ defmodule KwtoolWeb.Endpoint do
   ]
 
   socket "/socket", KwtoolWeb.UserSocket,
+    websocket: [timeout: 45_000],
     websocket: true,
     longpoll: false
 
