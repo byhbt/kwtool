@@ -11,11 +11,9 @@ defmodule KwtoolWeb.Plugs.SetCurrentUser do
     if current_user do
       conn
       |> assign(:current_user, current_user)
-      |> assign(:user_signed_in?, true)
     else
       conn
       |> assign(:current_user, nil)
-      |> assign(:user_signed_in?, false)
     end
   end
 end

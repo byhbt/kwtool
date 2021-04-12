@@ -8,7 +8,7 @@ defmodule KwtoolWeb.SessionController do
   plug :put_layout, "auth.html"
 
   def new(conn, _) do
-    maybe_user = Guardian.Plug.current_resource(conn)
+    maybe_user = conn.assigns.current_user
 
     if maybe_user do
       redirect(conn, to: Routes.home_path(conn, :index))
