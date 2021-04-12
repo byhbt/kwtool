@@ -11,6 +11,7 @@ defmodule KwtoolWeb.Router do
 
   pipeline :auth do
     plug Kwtool.Accounts.Pipeline
+    plug KwtoolWeb.Plugs.SetCurrentUser
   end
 
   pipeline :ensure_auth do
