@@ -9,11 +9,9 @@ defmodule KwtoolWeb.Plugs.SetCurrentUser do
     current_user = Plug.current_resource(conn)
 
     if current_user do
-      conn
-      |> assign(:current_user, current_user)
+      assign(conn, :current_user, current_user)
     else
-      conn
-      |> assign(:current_user, nil)
+      assign(conn, :current_user, nil)
     end
   end
 end
