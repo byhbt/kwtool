@@ -18,16 +18,16 @@
 
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
-          <%= if @conn.assigns.user_signed_in? do %>
-            <li class="nav-item">
-              <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
-            </li>
-          <% else %>
+          <%= if @conn.assigns.current_user == nil do %>
             <li class="nav-item">
               <%= link "Log in", class: "nav-link", to: Routes.session_path(@conn, :new) %>
             </li>
             <li class="nav-item">
               <%= link "Sign up", class: "nav-link", to: Routes.auth_path(@conn, :show) %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
             </li>
           <% end %>
         </ul>
