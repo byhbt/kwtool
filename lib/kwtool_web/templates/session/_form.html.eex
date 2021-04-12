@@ -15,4 +15,4 @@
     <%= error_tag f, :password %>
   </div>
   <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
-  <% end %>
+<% end %>

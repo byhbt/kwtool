@@ -11,6 +11,7 @@ defmodule Kwtool.AccountsTest do
     password: "some password",
     password_confirmation: "some password"
   }
+
   @update_attrs %{
     company: "some updated company",
     email: "updated_john@example.com",

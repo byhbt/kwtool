@@ -11,7 +11,7 @@ defmodule KwtoolWeb.SessionController do
     maybe_user = conn.assigns.current_user
 
     if maybe_user do
-      redirect(conn, to: "/home")
+      redirect(conn, to: Routes.home_path(conn, :index))
     else
       changeset = Accounts.change_user(%User{})
       render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :create))
