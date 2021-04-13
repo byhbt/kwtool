@@ -2,6 +2,7 @@ defmodule KwtoolWeb.AuthController do
   use KwtoolWeb, :controller
 
   alias Kwtool.Accounts
+  alias Kwtool.Accounts.Guardian
   alias Kwtool.Accounts.Schemas.User
 
   plug :put_layout, "auth.html"
@@ -13,11 +14,12 @@ defmodule KwtoolWeb.AuthController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params) do
+    case user = Accounts.create_user(user_params) do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Your account is created successfully!")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> Guardian.Plug.sign_in(user)
+        |> redirect(to: Routes.home_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "sign_up.html", changeset: changeset)
