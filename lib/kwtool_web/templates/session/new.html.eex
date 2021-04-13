@@ -1,7 +1,6 @@
 <main class="form-authentication">
   <h1>Login</h1>
-  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+  <%= render KwtoolWeb.SharedView, "_flash.html", conn: @conn %>
   <%= render "_form.html", Map.put(assigns, :action, Routes.session_path(@conn, :create)) %>
   <div class="border-top card-body text-center">
     Don't have an account? <%= link "Sign up", to: Routes.auth_path(@conn, :show) %> or back <%= link "Home", to: Routes.page_path(@conn, :index) %>
