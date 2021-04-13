@@ -1,0 +1,26 @@
+.sidebar {
+  border-radius: rem(10px);
+  background-color: $color-white-smoke;
+
+  @include make-col-ready();
+
+  @include media-breakpoint-up(xs) {
+    @include make-col(12);
+  }
+
+  @include media-breakpoint-up(xs) {
+    @include make-col(3);
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding: rem(10px 0);
+    margin-bottom: 0;
+  }
+
+  &__item {
+    display: block;
+    padding: rem(8px 16px);
+  }
+}
