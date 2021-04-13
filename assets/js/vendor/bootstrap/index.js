@@ -1,1 +1,1 @@
-// import Alert from 'bootstrap.native/dist/components/alert-native.esm.js'
+import BSN from "bootstrap.native"
