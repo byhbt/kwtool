@@ -27,6 +27,9 @@
             </li>
           <% else %>
             <li class="nav-item">
+              <%= link "Dashboard", class: "nav-link", to: Routes.home_path(@conn, :index) %>
+            </li>
+            <li class="nav-item">
               <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
             </li>
           <% end %>
@@ -34,18 +37,22 @@
       </div>
     </nav>
     <main role="main" class="container">
-      <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <%= get_flash(@conn, :info) %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      <%= if message = get_flash(@conn, :info) do  %>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <%= end %>
+      <%= if message = get_flash(@conn, :error) do  %>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= get_flash(@conn, :error) %>
+        <%= message %>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <%= end %>
       <%= @inner_content %>
     </main>
   </body>
