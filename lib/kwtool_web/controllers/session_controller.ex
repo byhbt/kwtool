@@ -11,7 +11,7 @@ defmodule KwtoolWeb.SessionController do
     maybe_user = conn.assigns.current_user
 
     if maybe_user do
-      redirect(conn, to: Routes.home_path(conn, :index))
+      redirect(to: Routes.home_path(conn, :index))
     else
       changeset = Accounts.change_user(%User{})
       render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :create))
@@ -24,7 +24,7 @@ defmodule KwtoolWeb.SessionController do
         conn
         |> put_flash(:info, "Welcome back!")
         |> Guardian.Plug.sign_in(user)
-        |> redirect(to: "/home")
+        |> redirect(to: Routes.home_path(conn, :index))
 
       {:error, _reason} ->
         conn
@@ -38,6 +38,6 @@ defmodule KwtoolWeb.SessionController do
     |> clear_session
     |> Guardian.Plug.sign_out()
     |> put_flash(:info, "Logged out successfully!")
-    |> redirect(to: "/")
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end
