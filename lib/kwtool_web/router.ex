@@ -41,6 +41,9 @@ defmodule KwtoolWeb.Router do
     pipe_through [:browser, :auth, :ensure_auth]
 
     get "/home", HomeController, :index
+
+    get "/upload", UploadController, :index
+    post "/upload", UploadController, :create
   end
 
   # Other scopes may use custom stacks.

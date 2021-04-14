@@ -1,0 +1,13 @@
+<h2>Upload</h2>
+<p>Upload your keyword file</p>
+
+<%= form_for @conn, Routes.upload_path(@conn, :create), [multipart: true], fn f -> %>
+  <div class="form-group">
+    <label>Photo</label>
+    <%= file_input f, :photo, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
