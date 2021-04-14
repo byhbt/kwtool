@@ -1,13 +1,23 @@
 <h2>Upload</h2>
-<p>Upload your keyword file</p>
 
-<%= form_for @conn, Routes.upload_path(@conn, :create), [multipart: true], fn f -> %>
-  <div class="form-group">
-    <label>Photo</label>
-    <%= file_input f, :photo, class: "form-control" %>
+<div class="row">
+  <div class="col-sm">
+    <%= form_for @conn, Routes.upload_path(@conn, :create), [multipart: true], fn f -> %>
+    <div class="form-group">
+      <label>Keywords file with extension csv</label>
+      <%= file_input f, :photo, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= submit "Upload", class: "btn btn-primary" %>
+    </div>
+    <% end %>
   </div>
+  <div class="col-sm">
+    <div class="alert alert-info" role="alert">
+      Pro tips! <br />
+      The list of keywords in CSV file must be on separate lines.<br />
+      You can download <a href="<%= Routes.static_path(@conn, "/sample/keywords.csv") %>"> sample CSV file</a>!
+    </div>
+  </div>
+</div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
-<% end %>

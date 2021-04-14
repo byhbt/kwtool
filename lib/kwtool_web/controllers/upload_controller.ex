@@ -5,5 +5,6 @@ defmodule KwtoolWeb.UploadController do
     render(conn, "index.html")
   end
 
-  def create() do end
+  def create do
+  end
 end
