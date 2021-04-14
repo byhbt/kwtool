@@ -1,6 +1,5 @@
 defmodule KwtoolWeb.AuthController do
   use KwtoolWeb, :controller
-
   alias Kwtool.Accounts
   alias Kwtool.Accounts.Guardian
   alias Kwtool.Accounts.Schemas.User
@@ -14,8 +13,8 @@ defmodule KwtoolWeb.AuthController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    case user = Accounts.create_user(user_params) do
-      {:ok, _} ->
+    case Accounts.create_user(user_params) do
+      {:ok, user} ->
         conn
         |> put_flash(:info, "Your account is created successfully!")
         |> Guardian.Plug.sign_in(user)
