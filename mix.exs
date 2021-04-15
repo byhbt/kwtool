@@ -41,29 +41,29 @@ defmodule Kwtool.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:wallaby, "~> 0.28.0", [only: :test, runtime: false]},
-      {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
-      {:oban, "~> 2.5.0"},
-      {:mimic, "~> 1.4.0", [only: :test]},
+      {:argon2_elixir, "~> 2.0"},
+      {:credo, "~> 1.5.5", [only: [:dev, :test], runtime: false]},
+      {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
+      {:ecto_sql, "~> 3.4"},
       {:ex_machina, "~> 2.7.0", [only: [:dev, :test]]},
       {:excoveralls, "~> 0.14.0", [only: :test]},
-      {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
-      {:credo, "~> 1.5.5", [only: [:dev, :test], runtime: false]},
+      {:faker_elixir_octopus, "~> 1.0.0", only: [:dev, :test]},
+      {:gettext, "~> 0.11"},
+      {:guardian, "~> 2.0"},
+      {:jason, "~> 1.0"},
+      {:mimic, "~> 1.4.0", [only: :test]},
+      {:oban, "~> 2.5.0"},
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.4"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:plug_cowboy, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:argon2_elixir, "~> 2.0"},
-      {:guardian, "~> 2.0"},
-      {:faker_elixir_octopus, "~> 1.0.0", only: [:dev, :test]}
+      {:wallaby, "~> 0.28.0", [only: :test, runtime: false]}
     ]
   end
 
