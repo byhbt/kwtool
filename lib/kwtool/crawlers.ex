@@ -2,7 +2,15 @@ defmodule Kwtool.Crawlers do
   import Ecto.Query, warn: false
   alias Kwtool.Repo
 
-  alias Kwtool.Crawlers.Keyword
+  alias Kwtool.Crawlers.Schemas.Keyword
+  alias NimbleCSV.RFC4180, as: CSV
+
+  def import_from_file(keyword_file) do
+    keyword_file.path
+    |> File.stream!
+    |> CSV.parse_stream(skip_headers: false)
+    |> Enum.each(&IO.puts/1)
+  end
 
   def list_keywords do
     Repo.all(Keyword)
