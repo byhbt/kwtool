@@ -2,7 +2,7 @@ defmodule KwtoolWeb.KeywordController do
   use KwtoolWeb, :controller
 
   alias Kwtool.Crawlers
-  alias Kwtool.Crawlers.Keyword
+  alias Kwtool.Crawlers.Schemas.Keyword
 
   def index(conn, _params) do
     keywords = Crawlers.list_keywords()
