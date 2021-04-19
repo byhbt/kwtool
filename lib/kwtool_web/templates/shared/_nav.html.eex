@@ -19,6 +19,9 @@
         <%= link "Dashboard", class: "nav-link", to: Routes.home_path(@conn, :index) %>
       </li>
       <li class="nav-item">
+        <%= link "Upload", class: "nav-link", to: Routes.upload_path(@conn, :index) %>
+      </li>
+      <li class="nav-item">
         <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
       </li>
       <% end %>
