@@ -10,7 +10,7 @@ import '@fortawesome/fontawesome-free/js/brands'
 
 import "./vendor/bootstrap";
 
-// webpack automatically bundles all modules in your
+// webpack automatically bunlib/kwtool_web/templates/home/index.html.eexdles all modules in your
 // entry points. Those entry points can be configured
 // in "webpack.config.js".
 //
