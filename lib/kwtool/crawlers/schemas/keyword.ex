@@ -1,5 +1,6 @@
-defmodule Kwtool.Crawlers.Keyword do
+defmodule Kwtool.Crawlers.Schemas.Keyword do
   use Ecto.Schema
+
   import Ecto.Changeset
 
   schema "keywords" do
@@ -11,7 +12,6 @@ defmodule Kwtool.Crawlers.Keyword do
     timestamps()
   end
 
-  @doc false
   def changeset(keyword, attrs) do
     keyword
     |> cast(attrs, [:phrase, :raw_result, :status])
