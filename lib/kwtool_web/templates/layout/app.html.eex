@@ -20,14 +20,7 @@
                 <%= link "Dashboard", class: "sidebar__link", to: Routes.home_path(@conn, :index) %>
               </li>
               <li class="sidebar__item">
-                <a class="sidebar__link" href="#">
-                  Upload
-                </a>
-              </li>
-              <li class="sidebar__item">
-                <a class="sidebar__link" href="#">
-                  Report
-                </a>
+                <%= link "Upload", class: "sidebar__link", to: Routes.upload_path(@conn, :index) %>
               </li>
             </ul>
           </nav>

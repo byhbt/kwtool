@@ -1,6 +1,5 @@
 .sidebar {
   border-radius: rem(10px);
-  background-color: $color-white-smoke;
 
   @include make-col-ready();
 
@@ -13,6 +12,7 @@
   }
 
   &__nav {
+    background-color: $color-white-smoke;
     display: flex;
     flex-direction: column;
     padding: rem(10px 0);
