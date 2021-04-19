@@ -38,33 +38,7 @@
     </nav>
     <main role="main" class="container">
       <%= render KwtoolWeb.SharedView, "_flash.html", conn: @conn %>
-      <div class="container">
-        <div class="row">
-          <nav class="sidebar">
-            <ul class="sidebar__nav">
-              <li class="sidebar__item">
-                <%= link "Dashboard", class: "sidebar__link", to: Routes.home_path(@conn, :index) %>
-              </li>
-              <li class="sidebar__item">
-                <a class="sidebar__link" href="#">
-                  Upload
-                </a>
-              </li>
-              <li class="sidebar__item">
-                <a class="sidebar__link" href="#">
-                  Report
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="content">
-            <%= @inner_content %>
-
-          </div>
-        </div>
-      </div>
-
-
+      <%= @inner_content %>
     </main>
   </body>
 </html>
