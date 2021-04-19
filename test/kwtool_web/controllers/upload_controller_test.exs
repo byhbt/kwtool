@@ -1,6 +1,7 @@
 defmodule KwtoolWeb.UploadControllerTest do
   use KwtoolWeb.ConnCase, async: true
-  alias Kwtool.Accounts.Guardian
+
+  import KwtoolWeb.Support.ConnHelper
 
   describe "get index/2" do
     test "returns 200 status", %{conn: conn} do
@@ -8,7 +9,7 @@ defmodule KwtoolWeb.UploadControllerTest do
 
       conn =
         conn
-        |> Guardian.Plug.sign_in(created_user)
+        |> with_signed_in_user(created_user)
         |> get("/upload")
 
       assert html_response(conn, 200) =~ "Upload"
