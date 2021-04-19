@@ -9,33 +9,7 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="<%= page_class_name(@conn) %>">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="/"><i class="fas fa-binoculars"></i> KWTool</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault"
-              aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarDefault">
-        <ul class="navbar-nav mr-auto">
-          <%= if @conn.assigns.current_user == nil do %>
-            <li class="nav-item">
-              <%= link "Log in", class: "nav-link", to: Routes.session_path(@conn, :new) %>
-            </li>
-            <li class="nav-item">
-              <%= link "Sign up", class: "nav-link", to: Routes.auth_path(@conn, :show) %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link "Dashboard", class: "nav-link", to: Routes.home_path(@conn, :index) %>
-            </li>
-            <li class="nav-item">
-              <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete), method: :delete %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+    <%= render KwtoolWeb.SharedView, "_nav.html", conn: @conn %>
     <main role="main" class="container">
       <%= render KwtoolWeb.SharedView, "_flash.html", conn: @conn %>
       <div class="container">
@@ -59,12 +33,9 @@
           </nav>
           <div class="content">
             <%= @inner_content %>
-
           </div>
         </div>
       </div>
-
-
     </main>
   </body>
 </html>
