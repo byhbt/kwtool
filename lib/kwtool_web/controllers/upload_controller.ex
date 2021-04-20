@@ -6,7 +6,8 @@ defmodule KwtoolWeb.UploadController do
   end
 
   def create(conn, %{"keyword_file" => %Plug.Upload{}=keyword_file}) do
-    list = Kwtool.Crawlers.import_from_file(keyword_file)
+    user = conn.assigns.current_user
+    list = Kwtool.Crawlers.import_from_file(keyword_file, user)
 
     conn
     |> put_flash(:info, "The keyword file is processed successfully.")
