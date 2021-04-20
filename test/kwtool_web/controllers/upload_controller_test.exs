@@ -10,7 +10,7 @@ defmodule KwtoolWeb.UploadControllerTest do
       conn =
         conn
         |> with_signed_in_user(created_user)
-        |> get("/upload")
+        |> get(Routes.upload_path(conn, :index))
 
       assert html_response(conn, 200) =~ "Upload"
     end
