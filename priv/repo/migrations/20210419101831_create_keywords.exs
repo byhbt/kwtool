@@ -3,10 +3,10 @@ defmodule Kwtool.Repo.Migrations.CreateKeywords do
 
   def change do
     create table(:keywords) do
-      add :phrase, :string
+      add :phrase, :string, null: false
       add :raw_result, :text
-      add :status, :integer
-      add :user, references(:users, on_delete: :nothing)
+      add :status, :integer, null: false
+      add :user, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
