@@ -1,15 +1,22 @@
 defmodule Kwtool.Crawlers do
   import Ecto.Query, warn: false
-  alias Kwtool.Repo
 
   alias Kwtool.Crawlers.Schemas.Keyword
+  alias Kwtool.Repo
   alias NimbleCSV.RFC4180, as: CSV
 
-  def import_from_file(keyword_file) do
+  def import_from_file(keyword_file, user) do
     keywords = keyword_file.path
     |> File.stream!
     |> CSV.parse_stream(skip_headers: false)
-    |> Enum.each(&IO.puts/1)
+    |> Enum.each(fn keyword -> add_keyword(List.first(keyword), user) end)
+  end
+
+  def add_keyword(keyword, user) do
+    case create_keyword(%{phrase: keyword, status: 0, user: user.id}) do
+      {:ok, _} -> :ok
+      {:error, _} -> "Failed to insert keyword"
+    end
   end
 
   def list_keywords do
