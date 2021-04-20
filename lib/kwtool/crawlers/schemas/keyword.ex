@@ -12,9 +12,9 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
     timestamps()
   end
 
-  def changeset(keyword, attrs) do
+  def changeset(keyword \\ %__MODULE__{}, attrs) do
     keyword
     |> cast(attrs, [:phrase, :raw_result, :status, :user])
-    |> validate_required([:phrase, :status])
+    |> validate_required([:phrase, :status, :user])
   end
 end
