@@ -42,8 +42,8 @@ defmodule KwtoolWeb.Router do
 
     get "/home", HomeController, :index
 
-    get "/upload", UploadController, :index
-    post "/upload", UploadController, :create
+    get "/uploads", UploadController, :index
+    post "/uploads", UploadController, :create
   end
 
   # Other scopes may use custom stacks.

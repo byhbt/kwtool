@@ -26,6 +26,7 @@ defmodule KwtoolWeb.ConnCase do
       import Phoenix.ConnTest
       import KwtoolWeb.ConnCase
       import Kwtool.Factory
+      import KwtoolWeb.Support.ConnHelper
 
       alias KwtoolWeb.Router.Helpers, as: Routes
 
