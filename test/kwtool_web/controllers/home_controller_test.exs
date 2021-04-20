@@ -1,8 +1,6 @@
 defmodule KwtoolWeb.HomeControllerTest do
   use KwtoolWeb.ConnCase, async: true
 
-  import KwtoolWeb.Support.ConnHelper
-
   describe "get home/2" do
     test "returns the dashboard page when user logged in", %{conn: conn} do
       created_user = insert(:user)
