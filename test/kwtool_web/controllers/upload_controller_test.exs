@@ -17,7 +17,7 @@ defmodule KwtoolWeb.UploadControllerTest do
   end
 
   describe "post create/2" do
-    test "returns 200 status", %{conn: conn} do
+    test "redirects back to the upload page when the import is success", %{conn: conn} do
       upload_file = %Plug.Upload{path: "test/fixture/keywords.csv", filename: "keywords.csv"}
       created_user = insert(:user)
       post_params = %{ :keyword_file => upload_file }
