@@ -15,7 +15,7 @@ defmodule KwtoolWeb.HomePage.ViewRegistrationPageTest do
     |> fill_in(Query.text_field("Full name"), with: "John Does")
     |> fill_in(Query.css("#user_password"), with: "123456")
     |> fill_in(Query.css("#user_password_confirmation"), with: "123456")
-    |> click(Wallaby.Query.button("Sign up"))
+    |> click(Query.button("Sign up"))
     |> assert_has(Query.text("Your account is created successfully!"))
   end
 
@@ -26,7 +26,7 @@ defmodule KwtoolWeb.HomePage.ViewRegistrationPageTest do
     |> fill_in(Query.text_field("Full name"), with: "John Does")
     |> fill_in(Query.css("#user_password"), with: "123456")
     |> fill_in(Query.css("#user_password_confirmation"), with: "654321")
-    |> click(Wallaby.Query.button("Sign up"))
+    |> click(Query.button("Sign up"))
     |> assert_has(Query.text("Oops, something went wrong! Please check the errors below."))
   end
 end
