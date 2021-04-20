@@ -7,7 +7,7 @@ defmodule Kwtool.Crawlers do
 
   def import_from_file(keyword_file, user) do
     keyword_file.path
-    |> File.stream!
+    |> File.stream!()
     |> CSV.parse_stream(skip_headers: false)
     |> Enum.each(fn keyword ->
       keyword_params = %{phrase: List.first(keyword), status: 0, user: user.id}

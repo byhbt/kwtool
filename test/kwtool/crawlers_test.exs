@@ -7,7 +7,11 @@ defmodule Kwtool.CrawlersTest do
     alias Kwtool.Crawlers.Keyword
 
     @valid_attrs %{phrase: "some phrase", raw_result: "some raw_result", status: 42}
-    @update_attrs %{phrase: "some updated phrase", raw_result: "some updated raw_result", status: 43}
+    @update_attrs %{
+      phrase: "some updated phrase",
+      raw_result: "some updated raw_result",
+      status: 43
+    }
     @invalid_attrs %{phrase: nil, raw_result: nil, status: nil}
 
     def keyword_fixture(attrs \\ %{}) do
