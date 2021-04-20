@@ -4,7 +4,7 @@ defmodule Kwtool.CrawlersTest do
   alias Kwtool.Crawlers
 
   describe "keywords" do
-    alias Kwtool.Crawlers.Keyword
+    alias Kwtool.Crawlers.Schemas.Keyword
 
     @valid_attrs %{phrase: "some phrase", raw_result: "some raw_result", status: 42}
     @update_attrs %{
