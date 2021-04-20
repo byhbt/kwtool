@@ -6,7 +6,7 @@ defmodule Kwtool.Crawlers do
   alias NimbleCSV.RFC4180, as: CSV
 
   def import_from_file(keyword_file) do
-    keyword_file.path
+    keywords = keyword_file.path
     |> File.stream!
     |> CSV.parse_stream(skip_headers: false)
     |> Enum.each(&IO.puts/1)
