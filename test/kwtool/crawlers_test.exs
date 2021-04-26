@@ -9,7 +9,8 @@ defmodule Kwtool.CrawlersTest do
       user = insert(:user)
       keyword_file = %Plug.Upload{content_type: "text/csv", path: "test/fixture/keywords.csv"}
 
-      assert {:ok, "The keyword file is processed successfully!"} = Crawlers.import_from_file(keyword_file, user)
+      assert {:ok, "The keyword file is processed successfully!"} =
+               Crawlers.import_from_file(keyword_file, user)
 
       [keyword1, keyword2, keyword3] = Repo.all(Keyword)
 
@@ -25,7 +26,8 @@ defmodule Kwtool.CrawlersTest do
       user = insert(:user)
       keyword_file = %Plug.Upload{content_type: "text/jpeg"}
 
-      assert {:error, "Cannot recognize the file extension"} = Crawlers.import_from_file(keyword_file, user)
+      assert {:error, "Cannot recognize the file extension"} =
+               Crawlers.import_from_file(keyword_file, user)
     end
   end
 
