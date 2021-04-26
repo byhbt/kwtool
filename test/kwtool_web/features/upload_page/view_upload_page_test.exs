@@ -4,9 +4,12 @@ defmodule KwtoolWeb.HomePage.ViewUploadPageTest do
   import Wallaby.Query, only: [button: 1, file_field: 1]
 
   feature "view upload page", %{session: session} do
-    visit(session, Routes.upload_path(KwtoolWeb.Endpoint, :index))
+    created_user = insert(:user)
 
-    assert_has(session, Query.text("Upload"))
+    session
+    |> login_as(created_user)
+    |> visit(Routes.upload_path(KwtoolWeb.Endpoint, :index))
+    |> assert_has(Query.button("Upload"))
   end
 
   feature "upload the csv keyword file", %{session: session} do

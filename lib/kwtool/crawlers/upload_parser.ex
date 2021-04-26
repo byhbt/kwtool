@@ -3,7 +3,7 @@ defmodule Kwtool.Crawlers.UploadParser do
 
   def load_from_file(%Plug.Upload{content_type: "text/csv"} = keyword_file) do
     keyword_file.path
-    |> File.stream!
+    |> File.stream!()
     |> CSV.parse_stream(skip_headers: false)
     |> Enum.to_list()
   end
