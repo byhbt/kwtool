@@ -25,6 +25,7 @@ defmodule Kwtool.CrawlersTest do
 
     test "list_keywords/0 returns all keywords" do
       keyword = keyword_fixture()
+
       assert Crawlers.list_keywords() == [keyword]
     end
 
@@ -46,6 +47,7 @@ defmodule Kwtool.CrawlersTest do
 
     test "update_keyword/2 with valid data updates the keyword" do
       keyword = keyword_fixture()
+
       assert {:ok, %Keyword{} = keyword} = Crawlers.update_keyword(keyword, @update_attrs)
       assert keyword.phrase == "some updated phrase"
       assert keyword.raw_result == "some updated raw_result"
@@ -54,18 +56,21 @@ defmodule Kwtool.CrawlersTest do
 
     test "update_keyword/2 with invalid data returns error changeset" do
       keyword = keyword_fixture()
+
       assert {:error, %Ecto.Changeset{}} = Crawlers.update_keyword(keyword, @invalid_attrs)
       assert keyword == Crawlers.get_keyword!(keyword.id)
     end
 
     test "delete_keyword/1 deletes the keyword" do
       keyword = keyword_fixture()
+
       assert {:ok, %Keyword{}} = Crawlers.delete_keyword(keyword)
       assert_raise Ecto.NoResultsError, fn -> Crawlers.get_keyword!(keyword.id) end
     end
 
     test "change_keyword/1 returns a keyword changeset" do
       keyword = keyword_fixture()
+
       assert %Ecto.Changeset{} = Crawlers.change_keyword(keyword)
     end
   end
