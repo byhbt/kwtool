@@ -12,6 +12,7 @@ defmodule Kwtool.Accounts.Schemas.User do
     field :password_confirmation, :string, virtual: true
 
     timestamps()
+    has_many :keywords, Kwtool.Crawlers.Schemas.Keyword
   end
 
   def registration_changeset(user \\ %__MODULE__{}, attrs) do
