@@ -5,7 +5,7 @@ defmodule Kwtool.CrawlersTest do
   alias Kwtool.Crawlers.Schemas.Keyword
 
   describe "save_keywords_list/2" do
-    test "saves the keywords in CSV to database" do
+    test "inserts the uploaded keywords to database" do
       created_user = insert(:user)
       keyword_file = %Plug.Upload{content_type: "text/csv", path: "test/fixture/keywords.csv"}
 
@@ -40,7 +40,7 @@ defmodule Kwtool.CrawlersTest do
       assert keyword.status == 1
     end
 
-    test "creates with invalid data returns error changeset" do
+    test "returns error changeset when provides invalid data" do
       invalid_attrs = %{phrase: nil, raw_result: nil, status: nil}
 
       assert {:error, %Ecto.Changeset{}} = Crawlers.create_keyword(invalid_attrs)
