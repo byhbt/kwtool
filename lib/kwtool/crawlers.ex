@@ -1,11 +1,12 @@
 defmodule Kwtool.Crawlers do
   import Ecto.Query, warn: false
 
+  alias Kwtool.Accounts.Schemas.User
   alias Kwtool.Crawlers.Schemas.Keyword
   alias Kwtool.Repo
   alias NimbleCSV.RFC4180, as: CSV
 
-  def import_from_file(%Plug.Upload{content_type: "text/csv"} = keyword_file, user) do
+  def import_from_file(%Plug.Upload{content_type: "text/csv"} = keyword_file, %User{} = user) do
     keyword_file.path
     |> File.stream!()
     |> CSV.parse_stream(skip_headers: false)
