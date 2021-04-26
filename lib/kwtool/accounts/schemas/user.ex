@@ -10,8 +10,8 @@ defmodule Kwtool.Accounts.Schemas.User do
     field :encrypted_password, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
-
     timestamps()
+
     has_many :keywords, Kwtool.Crawlers.Schemas.Keyword
   end
 
