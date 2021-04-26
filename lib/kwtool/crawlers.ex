@@ -5,16 +5,20 @@ defmodule Kwtool.Crawlers do
   alias Kwtool.Repo
   alias NimbleCSV.RFC4180, as: CSV
 
-  def import_from_file(keyword_file, user) do
+  def import_from_file(%Plug.Upload{content_type: "text/csv"} = keyword_file, user) do
     keyword_file.path
     |> File.stream!()
     |> CSV.parse_stream(skip_headers: false)
     |> Enum.each(fn keyword ->
-      keyword_params = %{phrase: List.first(keyword), status: 0, user: user.id}
+      keyword_params = %{phrase: List.first(keyword), status: 0, user_id: user.id}
       create_keyword(keyword_params)
     end)
 
     {:ok, "The keyword file is processed successfully!"}
+  end
+
+  def import_from_file(_, _) do
+    {:error, "Cannot recognize the file extension"}
   end
 
   def list_keywords do
