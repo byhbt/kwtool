@@ -8,7 +8,7 @@ defmodule KwtoolWeb.UploadController do
   end
 
   def create(conn, %{"keyword_file" => %Plug.Upload{} = keyword_file}) do
-    case Crawlers.import_from_file(keyword_file, conn.assigns.current_user) do
+    case Crawlers.save_keywords_list(keyword_file, conn.assigns.current_user) do
       {:ok, message} ->
         conn
         |> put_flash(:info, message)

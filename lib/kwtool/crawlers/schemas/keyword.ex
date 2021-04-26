@@ -14,7 +14,7 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
 
   def changeset(keyword \\ %__MODULE__{}, attrs) do
     keyword
-    |> cast(attrs, [:phrase, :status, :user_id])
+    |> cast(attrs, [:phrase, :raw_result, :status, :user_id])
     |> validate_required([:phrase, :status, :user_id])
   end
 end
