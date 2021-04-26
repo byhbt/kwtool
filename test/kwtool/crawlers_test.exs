@@ -2,6 +2,25 @@ defmodule Kwtool.CrawlersTest do
   use Kwtool.DataCase
 
   alias Kwtool.Crawlers
+  alias Kwtool.Crawlers.Schemas.Keyword
+
+  describe "import_from_file" do
+    test "store keyword in database" do
+      user = insert(:user)
+      sample_file = %{content_type: "text/csv", path: "test/fixture/keywords.csv"}
+
+      result = Crawlers.import_from_file(sample_file, user)
+      assert {:ok, _} = result
+
+      [keyword1, keyword2, keyword3] = Repo.all(Keyword)
+      assert keyword1.phrase == "badminton racket"
+      assert keyword1.user_id == user.id
+      assert keyword2.phrase == "table tennis bat"
+      assert keyword2.user_id == user.id
+      assert keyword3.phrase == "table tennis bat"
+      assert keyword3.user_id == user.id
+    end
+  end
 
   describe "keywords" do
     alias Kwtool.Crawlers.Schemas.Keyword

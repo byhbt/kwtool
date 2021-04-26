@@ -6,11 +6,11 @@ defmodule Kwtool.Repo.Migrations.CreateKeywords do
       add :phrase, :string, null: false
       add :raw_result, :text
       add :status, :integer, null: false
-      add :user, references(:users, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
 
-    create index(:keywords, [:user])
+    create index(:keywords, [:user_id])
   end
 end

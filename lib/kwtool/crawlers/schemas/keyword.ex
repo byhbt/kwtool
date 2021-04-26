@@ -10,6 +10,7 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
     field :user, :id
 
     timestamps()
+    belongs_to :user, Kwtool.Accounts.Schemas.User
   end
 
   def changeset(keyword \\ %__MODULE__{}, attrs) do
