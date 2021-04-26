@@ -4,7 +4,7 @@ defmodule KwtoolWeb.UploadControllerTest do
   import KwtoolWeb.Support.ConnHelper
 
   describe "get index/2" do
-    test "returns 200 status", %{conn: conn} do
+    test "returns 200 status after the upload succeeded", %{conn: conn} do
       created_user = insert(:user)
 
       conn =
@@ -17,7 +17,7 @@ defmodule KwtoolWeb.UploadControllerTest do
   end
 
   describe "post create/2" do
-    test "redirects back to the upload page when the import is success", %{conn: conn} do
+    test "redirects to the upload page when the import succeeded", %{conn: conn} do
       example_file = %Plug.Upload{content_type: "text/csv", path: "test/fixture/keywords.csv"}
       created_user = insert(:user)
       post_params = %{:keyword_file => example_file}
