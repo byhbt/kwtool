@@ -9,16 +9,23 @@ defmodule Kwtool.CrawlersTest do
       user = insert(:user)
       keyword_file = %Plug.Upload{content_type: "text/csv", path: "test/fixture/keywords.csv"}
 
-      result = Crawlers.import_from_file(keyword_file, user)
-      assert {:ok, _} = result
+      assert {:ok, _} = Crawlers.import_from_file(keyword_file, user)
 
       [keyword1, keyword2, keyword3] = Repo.all(Keyword)
+
       assert keyword1.phrase == "badminton racket"
       assert keyword1.user_id == user.id
       assert keyword2.phrase == "table tennis bat"
       assert keyword2.user_id == user.id
       assert keyword3.phrase == "golf club"
       assert keyword3.user_id == user.id
+    end
+
+    test "upload with invalid file extension returns error" do
+      user = insert(:user)
+      keyword_file = %Plug.Upload{content_type: "text/jpeg"}
+
+      assert {:error, _} = Crawlers.import_from_file(keyword_file, user)
     end
   end
 
