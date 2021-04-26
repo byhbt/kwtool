@@ -3,7 +3,7 @@ defmodule Kwtool.UserFactory do
     quote do
       def user_factory do
         %Kwtool.Accounts.Schemas.User{
-          email: FakerElixir.Internet.email(),
+          email: sequence(:email, fn(n) -> "email-#{n}@example.com" end),
           full_name: FakerElixir.Name.name(),
           company: FakerElixir.Name.name(),
           encrypted_password: Argon2.hash_pwd_salt("123456")
