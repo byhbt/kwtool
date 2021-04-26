@@ -24,9 +24,15 @@ defmodule Kwtool.CrawlersTest do
   end
 
   describe "create_keyword/1" do
-    test "create with valid data creates a keyword" do
+    test "creates a new keyword with valid data" do
       created_user = insert(:user)
-      valid_attrs = %{phrase: "some phrase", raw_result: "some raw_result", status: 1, user_id: created_user.id}
+
+      valid_attrs = %{
+        phrase: "some phrase",
+        raw_result: "some raw_result",
+        status: 1,
+        user_id: created_user.id
+      }
 
       assert {:ok, %Keyword{} = keyword} = Crawlers.create_keyword(valid_attrs)
       assert keyword.phrase == "some phrase"
@@ -34,7 +40,7 @@ defmodule Kwtool.CrawlersTest do
       assert keyword.status == 1
     end
 
-    test "create with invalid data returns error changeset" do
+    test "creates with invalid data returns error changeset" do
       invalid_attrs = %{phrase: nil, raw_result: nil, status: nil}
 
       assert {:error, %Ecto.Changeset{}} = Crawlers.create_keyword(invalid_attrs)
