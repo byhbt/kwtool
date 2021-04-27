@@ -14,7 +14,7 @@ defmodule UploadParserTest do
     test "returns an error given a valid CSV file" do
       keyword_file = %Plug.Upload{content_type: "text/csv", path: "test/fixture/empty-keywords.csv"}
 
-      assert {:error, :file_is_empty} = UploadParser.load_from_file(keyword_file)
+      assert {:error, :file_is_empty} == UploadParser.load_from_file(keyword_file)
     end
 
     test "returns an error given a invalid CSV file" do
