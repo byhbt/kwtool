@@ -7,20 +7,23 @@ defmodule Kwtool.Crawlers do
   alias Kwtool.Repo
 
   def save_keywords_list(keyword_file, %User{} = user) do
-    keyword_file
-    |> UploadParser.load_from_file()
-    |> Enum.each(fn keyword ->
-      create_keyword(%{
-        phrase: List.first(keyword),
-        status: 0,
-        user_id: user.id
-      })
-    end)
+    case UploadParser.load_from_file(keyword_file) do
+      {:ok, keyword_list} ->
+        Enum.each(keyword_list, fn keyword ->
+          create_keyword(%{
+            phrase: List.first(keyword),
+            user_id: user.id
+          })
+        end)
 
-    {:ok, "The keyword file is processed successfully!"}
+        {:ok, :file_is_proccessed}
+
+      {:error, :file_is_empty} ->
+        {:error, :file_is_empty}
+    end
   end
 
-  def create_keyword(attrs \\ %{}) do
+  def create_keyword(attrs) do
     %Keyword{}
     |> Keyword.changeset(attrs)
     |> Repo.insert()

@@ -5,7 +5,7 @@ defmodule Kwtool.Repo.Migrations.CreateKeywords do
     create table(:keywords) do
       add :phrase, :string, null: false
       add :raw_result, :text
-      add :status, :integer, null: false
+      add :status, :string, null: false, default: "imported"
       add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
