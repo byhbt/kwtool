@@ -12,7 +12,7 @@ defmodule Kwtool.KeywordFactory do
             ]),
           raw_result:
             "<!DOCTYPE html><html><head><title>KWTool</title></head><body><h1>KWTool</h1><p>Crawled</p></body></html>",
-          status: FakerElixir.Helper.pick([1, 0]),
+          status: FakerElixir.Helper.pick(['imported', 'crawled']),
           user: build(:user)
         }
       end
