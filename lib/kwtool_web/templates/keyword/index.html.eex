@@ -1,0 +1,25 @@
+<h1>Listing Keywords</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Phrase</th>
+      <th>Raw result</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for keyword <- @keywords do %>
+        <tr>
+          <td><%= keyword.phrase %></td>
+          <td><%= keyword.raw_result %></td>
+          <td><%= keyword.status %></td>
+
+          <td>
+            <span><%= link "View", to: Routes.keyword_path(@conn, :show, keyword) %></span>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

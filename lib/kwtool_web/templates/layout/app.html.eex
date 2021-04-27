@@ -22,6 +22,9 @@
               <li class="sidebar__item">
                 <%= link "Upload", class: "sidebar__link", to: Routes.upload_path(@conn, :index) %>
               </li>
+              <li class="sidebar__item">
+                <%= link "Keywords", class: "sidebar__link", to: Routes.keyword_path(@conn, :index) %>
+              </li>
             </ul>
           </nav>
           <div class="content">
