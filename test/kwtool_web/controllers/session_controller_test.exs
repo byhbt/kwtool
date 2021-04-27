@@ -47,7 +47,7 @@ defmodule KwtoolWeb.SessionControllerTest do
   end
 
   describe "get sign_out/2" do
-    test "redirects to the home page when after click logout", %{conn: conn} do
+    test "redirects to the home page when the user clicks the logout button", %{conn: conn} do
       created_user = insert(:user)
 
       conn =
