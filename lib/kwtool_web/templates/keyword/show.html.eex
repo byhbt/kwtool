@@ -1,0 +1,18 @@
+<h1>Keyword Details</h1>
+
+<ul>
+  <li>
+    <strong>Phrase:</strong>
+    <%= @keyword.phrase %>
+  </li>
+  <li>
+    <strong>Raw result:</strong>
+    <%= @keyword.raw_result %>
+  </li>
+  <li>
+    <strong>Status:</strong>
+    <%= @keyword.status %>
+  </li>
+</ul>
+
+<span><%= link "Back", to: Routes.keyword_path(@conn, :index) %></span>
