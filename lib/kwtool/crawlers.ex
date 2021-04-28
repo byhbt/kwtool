@@ -6,7 +6,7 @@ defmodule Kwtool.Crawlers do
   alias Kwtool.Crawlers.UploadParser
   alias Kwtool.Repo
 
-  def save_keywords_list(keyword_file, %User{} = user) do
+  def save_keywords_list(%Plug.Upload{content_type: "text/csv"} = keyword_file, %User{} = user) do
     case UploadParser.parse(keyword_file) do
       {:ok, keyword_list} ->
         Enum.each(keyword_list, fn keyword ->
@@ -26,9 +26,13 @@ defmodule Kwtool.Crawlers do
     end
   end
 
+  def save_keywords_list(_, _) do
+    {:error, :file_is_invalid}
+  end
+
   defp create_keyword(attrs) do
     %Keyword{}
-    |> Keyword.changeset(attrs)
+    |> Keyword.create_changeset(attrs)
     |> Repo.insert()
   end
 end
