@@ -23,7 +23,7 @@ defmodule Kwtool.Crawlers do
     end
   end
 
-  def create_keyword(attrs) do
+  defp create_keyword(attrs) do
     %Keyword{}
     |> Keyword.changeset(attrs)
     |> Repo.insert()
