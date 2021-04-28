@@ -7,7 +7,7 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
     added: "added",
     in_process: "in_process",
     finished: "finished",
-    done: "done"
+    failed: "failed"
   }
 
   schema "keywords" do
