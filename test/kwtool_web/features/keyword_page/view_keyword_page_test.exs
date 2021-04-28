@@ -7,6 +7,6 @@ defmodule KwtoolWeb.HomePage.ViewKeywordPageTest do
     session
     |> login_as(created_user)
     |> visit(Routes.keyword_path(KwtoolWeb.Endpoint, :index))
-    |> assert_has(text("Listing Keywords"))
+    |> assert_has(Query.text("Listing Keywords"))
   end
 end
