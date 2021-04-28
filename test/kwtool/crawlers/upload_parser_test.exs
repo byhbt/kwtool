@@ -20,7 +20,7 @@ defmodule UploadParserTest do
     test "returns an error when given an invalid CSV file" do
       keyword_file = %Plug.Upload{content_type: "text/jpeg"}
 
-      assert {:error, :file_is_invalid} == UploadParser.parse(keyword_file)
+      assert UploadParser.parse(keyword_file) == {:error, :file_is_invalid}
     end
   end
 end
