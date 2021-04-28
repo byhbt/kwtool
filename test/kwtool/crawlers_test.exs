@@ -23,28 +23,4 @@ defmodule Kwtool.CrawlersTest do
       assert keyword3.status == "added"
     end
   end
-
-  describe "create_keyword/1" do
-    test "creates a new keyword when given a valid params" do
-      created_user = insert(:user)
-
-      valid_attrs = %{
-        phrase: "some phrase",
-        raw_result: "some raw_result",
-        status: "added",
-        user_id: created_user.id
-      }
-
-      assert {:ok, %Keyword{} = keyword} = Crawlers.create_keyword(valid_attrs)
-      assert keyword.phrase == "some phrase"
-      assert keyword.raw_result == "some raw_result"
-      assert keyword.status == "added"
-    end
-
-    test "returns an error changeset when provides an invalid params" do
-      invalid_attrs = %{phrase: nil, raw_result: nil, status: nil}
-
-      assert {:error, %Ecto.Changeset{}} = Crawlers.create_keyword(invalid_attrs)
-    end
-  end
 end
