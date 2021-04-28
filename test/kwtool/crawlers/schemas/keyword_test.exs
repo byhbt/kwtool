@@ -24,6 +24,16 @@ defmodule Kwtool.Crawlers.Schemas.UserTest do
       assert changeset.changes.user_id == 1
     end
 
+    test "returns the updated status name when given the status" do
+      keyword_params = %{phrase: "elixir", user_id: 1, status: "in_process"}
+      changeset = Keyword.changeset(%Kwtool.Crawlers.Schemas.Keyword{}, keyword_params)
+
+      assert changeset.valid?
+      assert changeset.changes.phrase == "elixir"
+      assert changeset.changes.status == "in_process"
+      assert changeset.changes.user_id == 1
+    end
+
     test "returns invalid when given invalid attributes" do
       changeset = Keyword.changeset(%{})
 
