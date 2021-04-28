@@ -29,6 +29,10 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
     |> assoc_constraint(:user)
   end
 
+  defp set_status(%Ecto.Changeset{changes: %Kwtool.Crawlers.Schemas.Keyword{status: _}} = changeset) do
+    changeset
+  end
+
   defp set_status(%Ecto.Changeset{data: %Kwtool.Crawlers.Schemas.Keyword{status: nil}} = changeset) do
     put_change(changeset, :status, "added")
   end
