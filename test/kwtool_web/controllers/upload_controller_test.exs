@@ -44,5 +44,19 @@ defmodule KwtoolWeb.UploadControllerTest do
       assert redirected_to(conn) == Routes.upload_path(conn, :index)
       assert get_flash(conn, :error) == "The keyword file is empty!"
     end
+
+    test "redirects to the upload page given an invalid file", %{conn: conn} do
+      example_file = %Plug.Upload{content_type: "text/png", path: "test/fixture/invalid-file.png"}
+      created_user = insert(:user)
+      post_params = %{keyword_file: example_file}
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> post(Routes.upload_path(conn, :create), post_params)
+
+      assert redirected_to(conn) == Routes.upload_path(conn, :index)
+      assert get_flash(conn, :error) == "The keyword file is invalid!"
+    end
   end
 end

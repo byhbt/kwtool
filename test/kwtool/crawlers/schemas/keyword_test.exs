@@ -3,10 +3,10 @@ defmodule Kwtool.Crawlers.Schemas.UserTest do
 
   alias Kwtool.Crawlers.Schemas.Keyword
 
-  describe "changeset/2" do
-    test "returns valid keyword changeset when given valid attributes" do
+  describe "create_changeset/2" do
+    test "returns valid keyword when given valid attributes" do
       keyword_params = %{phrase: "elixir", status: "added", user_id: 1}
-      changeset = Keyword.changeset(keyword_params)
+      changeset = Keyword.create_changeset(%Keyword{}, keyword_params)
 
       assert changeset.valid?
       assert changeset.changes.phrase == "elixir"
@@ -16,21 +16,11 @@ defmodule Kwtool.Crawlers.Schemas.UserTest do
 
     test "sets default status added when given no status attribute in advance" do
       keyword_params = %{phrase: "elixir", user_id: 1}
-      changeset = Keyword.changeset(keyword_params)
+      changeset = Keyword.create_changeset(keyword_params)
 
       assert changeset.valid?
       assert changeset.changes.phrase == "elixir"
       assert changeset.changes.status == "added"
-      assert changeset.changes.user_id == 1
-    end
-
-    test "returns the updated status name when given the status" do
-      keyword_params = %{phrase: "elixir", user_id: 1, status: "in_process"}
-      changeset = Keyword.changeset(%Kwtool.Crawlers.Schemas.Keyword{}, keyword_params)
-
-      assert changeset.valid?
-      assert changeset.changes.phrase == "elixir"
-      assert changeset.changes.status == "in_process"
       assert changeset.changes.user_id == 1
     end
 
@@ -39,15 +29,16 @@ defmodule Kwtool.Crawlers.Schemas.UserTest do
 
       {:error, changeset} =
         %Keyword{}
-        |> Keyword.changeset(keyword_params)
+        |> Keyword.create_changeset(keyword_params)
         |> Repo.insert()
 
       refute changeset.valid?
+
       assert errors_on(changeset) == %{user: ["does not exist"]}
     end
 
     test "returns changeset errors when given invalid attributes" do
-      changeset = Keyword.changeset(%{})
+      changeset = Keyword.create_changeset(%{})
 
       refute changeset.valid?
 
