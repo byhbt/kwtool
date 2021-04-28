@@ -1,0 +1,22 @@
+.status {
+  &--added {
+    color: $color-white-smoke;
+    @extend .badge;
+    @extend .bg-secondary;
+  }
+
+  &--in_process {
+    @extend .badge;
+    @extend .bg-warning;
+  }
+
+  &--finished {
+    @extend .badge;
+    @extend .bg-success;
+  }
+
+  &--failed {
+    @extend .badge;
+    @extend .bg-danger;
+  }
+}
