@@ -7,7 +7,7 @@ defmodule Kwtool.Crawlers do
   alias Kwtool.Repo
 
   def save_keywords_list(keyword_file, %User{} = user) do
-    case UploadParser.load_from_file(keyword_file) do
+    case UploadParser.parse(keyword_file) do
       {:ok, keyword_list} ->
         Enum.each(keyword_list, fn keyword ->
           create_keyword(%{
