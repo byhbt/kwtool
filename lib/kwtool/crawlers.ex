@@ -15,11 +15,11 @@ defmodule Kwtool.Crawlers do
             user_id: user.id
           })
         end)
-
         {:ok, :file_is_proccessed}
-
       {:error, :file_is_empty} ->
         {:error, :file_is_empty}
+      {:error, :file_is_invalid} ->
+        {:error, :file_is_invalid}
     end
   end
 
