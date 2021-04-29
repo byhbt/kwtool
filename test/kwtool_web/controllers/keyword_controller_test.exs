@@ -17,14 +17,14 @@ defmodule KwtoolWeb.KeywordControllerTest do
   describe "get show/2" do
     test "returns the details of a keyword page when given a logged-in user", %{conn: conn} do
       created_user = insert(:user)
-      keyword = insert(:keyword)
+      keyword = insert(:keyword, user: created_user)
 
       conn =
         conn
         |> with_signed_in_user(created_user)
         |> get(Routes.keyword_path(conn, :show, keyword.id))
 
-      assert html_response(conn, 200) =~ "Keyword Details"
+      assert html_response(conn, 200) =~ "Result for"
     end
   end
 end
