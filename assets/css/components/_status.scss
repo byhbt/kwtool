@@ -1,6 +1,7 @@
 .status {
   &--added {
     color: $color-white-smoke;
+
     @extend .badge;
     @extend .bg-secondary;
   }
