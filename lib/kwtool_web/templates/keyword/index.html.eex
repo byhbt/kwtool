@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-       <%= for keyword <- @keywords do %>
+      <%= for keyword <- @keywords do %>
         <tr>
           <td><%= keyword.phrase %></td>
           <td><%= keyword.inserted_at %></td>
@@ -20,7 +20,7 @@
             <span><%= link "View", class: "button-detail", to: Routes.keyword_path(@conn, :show, keyword) %></span>
           </td>
         </tr>
-        <% end %>
+      <% end %>
     </tbody>
   </table>
 
