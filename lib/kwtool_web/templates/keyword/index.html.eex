@@ -15,7 +15,7 @@
         <tr>
           <td><%= keyword.phrase %></td>
           <td><%= keyword.inserted_at %></td>
-          <td><span class="status--added"><%= keyword.status %></span></td>
+          <td><span class="status-badge--added"><%= keyword.status %></span></td>
           <td>
             <span><%= link "View", class: "button-detail", to: Routes.keyword_path(@conn, :show, keyword) %></span>
           </td>
