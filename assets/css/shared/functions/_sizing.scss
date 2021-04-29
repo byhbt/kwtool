@@ -4,7 +4,9 @@
   @each $value in $values {
     @if ($value == 0 or $value == auto) {
       $list: append($list, $value);
-    } @else {
+    }
+
+    @else {
       $rem-value: ($value / $base-font-size) + rem;
       $list: append($list, $rem-value);
     }

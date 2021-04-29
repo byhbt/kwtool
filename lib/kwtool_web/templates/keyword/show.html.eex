@@ -1,7 +1,7 @@
 <h1>Result for "<%= @keyword.phrase %>"  <span class="badge status--added"><%= @keyword.status %></span></h1>
 
-<div class="keyword-details">
-  <ul class="keyword-details__list">
+<div class="keyword-detail">
+  <ul class="keyword-detail__list">
     <li>
       <div class="row">
         <div class="col-7">
