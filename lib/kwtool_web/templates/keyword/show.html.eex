@@ -1,18 +1,85 @@
-<h1>Keyword Details</h1>
+<h1>Result for "<%= @keyword.phrase %>"  <span class="badge status--added"><%= @keyword.status %></span></h1>
 
-<ul>
-  <li>
-    <strong>Phrase:</strong>
-    <%= @keyword.phrase %>
-  </li>
-  <li>
-    <strong>Raw result:</strong>
-    <%= @keyword.raw_result %>
-  </li>
-  <li>
-    <strong>Status:</strong>
-    <%= @keyword.status %>
-  </li>
-</ul>
+<div class="keyword-details">
+  <ul class="keyword-details__list">
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">Number of AdWords advertisers in the top position</strong>
+        </div>
+        <div class="col-5">
+          <p>12</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">The total number of AdWords advertisers on the page</strong>
+        </div>
+        <div class="col-5">
+          <p>1</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">URLs of the AdWords advertisers in the top position</strong>
+        </div>
+        <div class="col-5">
+          <p>7</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">Number of the non-AdWords results on the page</strong>
+        </div>
+        <div class="col-5">
+          <p>6</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">URLs of the non-AdWords results on the page</strong>
+        </div>
+        <div class="col-5">
+          <p>4</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">Total number of links (all of them) on the page</strong>
+        </div>
+        <div class="col-5">
+          <p>2</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col-7">
+          <i class="far fa-gem"></i>
+          <strong class="keyword-details__title">HTML code of the page/cache of the page</strong>
+        </div>
+        <div class="col-5">
+          <p>3</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
 
-<span><%= link "Back", to: Routes.keyword_path(@conn, :index) %></span>
+<span><%= link "Back", class: 'btn btn-primary', to: Routes.keyword_path(@conn, :index) %></span>
