@@ -1,13 +1,18 @@
 {
+  "plugins": [
+    "stylelint-scss"
+  ],
   "extends": [
     "stylelint-config-standard"
   ],
   "rules": {
+    "scss/at-rule-no-unknown": true,
     "at-rule-no-unknown": [
       true,
       {
         "ignoreAtRules": [
-          "extends",
+          "extend",
+          "include",
           "apply",
           "tailwind",
           "layer",
