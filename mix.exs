@@ -82,9 +82,10 @@ defmodule Kwtool.MixProject do
         "deps.unlock --check-unused",
         "format --check-formatted",
         "credo --strict",
-        "sobelow --config"
+        "sobelow --config",
+        "cmd ./assets/node_modules/.bin/stylelint --color ./assets/css"
       ],
-      "lint.fix": [
+      "codebase.fix": [
         "format",
         "cmd ./assets/node_modules/.bin/stylelint --color --fix ./assets/css"
       ],
