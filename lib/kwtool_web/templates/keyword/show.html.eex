@@ -5,8 +5,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">Number of AdWords advertisers in the top position</strong>
+          <span class="keyword-detail__title">Number of AdWords advertisers in the top position</span>
         </div>
         <div class="col-5">
           <p>12</p>
@@ -16,8 +15,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">The total number of AdWords advertisers on the page</strong>
+          <span class="keyword-detail__title">The total number of AdWords advertisers on the page</span>
         </div>
         <div class="col-5">
           <p>1</p>
@@ -27,8 +25,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">URLs of the AdWords advertisers in the top position</strong>
+          <span class="keyword-detail__title">URLs of the AdWords advertisers in the top position</span>
         </div>
         <div class="col-5">
           <p>7</p>
@@ -38,8 +35,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">Number of the non-AdWords results on the page</strong>
+          <span class="keyword-detail__title">Number of the non-AdWords results on the page</span>
         </div>
         <div class="col-5">
           <p>6</p>
@@ -49,8 +45,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">URLs of the non-AdWords results on the page</strong>
+          <strong class="keyword-detail__title">URLs of the non-AdWords results on the page</strong>
         </div>
         <div class="col-5">
           <p>4</p>
@@ -60,8 +55,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">Total number of links (all of them) on the page</strong>
+          <span class="keyword-detail__title">Total number of links (all of them) on the page</span>
         </div>
         <div class="col-5">
           <p>2</p>
@@ -71,8 +65,7 @@
     <li>
       <div class="row">
         <div class="col-7">
-          <i class="far fa-gem"></i>
-          <strong class="keyword-details__title">HTML code of the page/cache of the page</strong>
+          <span class="keyword-detail__title">HTML code of the page/cache of the page</span>
         </div>
         <div class="col-5">
           <p>3</p>
