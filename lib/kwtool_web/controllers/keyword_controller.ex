@@ -10,7 +10,7 @@ defmodule KwtoolWeb.KeywordController do
   end
 
   def show(conn, %{"id" => id}) do
-    keyword = Crawlers.get_keyword!(id)
+    keyword = Crawlers.get_keyword!(conn.assigns.current_user, id)
 
     render(conn, "show.html", keyword: keyword)
   end
