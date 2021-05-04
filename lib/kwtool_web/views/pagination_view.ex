@@ -1,4 +1,4 @@
-defmodule KwtoolWeb.KeywordView do
+defmodule KwtoolWeb.PaginationView do
   use KwtoolWeb, :view
 
   import Phoenix.Pagination.HTML
