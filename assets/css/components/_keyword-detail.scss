@@ -5,11 +5,16 @@
     padding: 0;
     margin: 0;
     list-style: none;
+
+    @include make-col-ready();
+
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
   }
 
   &__title {
     font-weight: $xbold-weight;
-    margin-left: rem($default-margin);
 
     &::before {
       content: fa-content($fa-var-gem);
@@ -17,6 +22,20 @@
       font-family: $icons-font-family;
       padding-right: rem($default-padding);
       vertical-align: middle;
+    }
+
+    @include make-col-ready();
+
+    @include media-breakpoint-up(xs) {
+      @include make-col(8);
+    }
+  }
+
+  &__count {
+    @include make-col-ready();
+
+    @include media-breakpoint-up(xs) {
+      @include make-col(4);
     }
   }
 }
