@@ -3,10 +3,10 @@ defmodule KwtoolWeb.KeywordController do
 
   alias Kwtool.Crawlers
 
-  def index(conn, _params) do
-    keywords = Crawlers.get_user_keywords(conn.assigns.current_user)
+  def index(conn, params) do
+    {keywords, pagination} = Crawlers.get_user_keywords(conn.assigns.current_user, params)
 
-    render(conn, "index.html", keywords: keywords)
+    render(conn, "index.html", keywords: keywords, pagination: pagination)
   end
 
   def show(conn, %{"id" => id}) do

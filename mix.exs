@@ -59,6 +59,7 @@ defmodule Kwtool.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_dashboard, "~> 0.4"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_pagination, "~> 0.7.0"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
