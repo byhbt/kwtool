@@ -8,6 +8,15 @@
   }
 
   &__title {
-    margin-left: rem(10px);
+    font-weight: $xbold-weight;
+    margin-left: rem($default-margin);
+
+    &::before {
+      content: fa-content($fa-var-gem);
+      display: inline-block;
+      font-family: $icons-font-family;
+      padding-right: rem($default-padding);
+      vertical-align: middle;
+    }
   }
 }
