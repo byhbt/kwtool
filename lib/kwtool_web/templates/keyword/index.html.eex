@@ -26,15 +26,8 @@
 
   <hr />
 
-  <nav aria-label="Keyword navigation">
-    <ul class="kw-pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-  </nav>
+  <%= render KwtoolWeb.PaginationView, "pagination.html", conn: @conn, pagination: @pagination %>
+
 <% else %>
   <p>No keyword is imported yet! Please <a href="<%= Routes.upload_path(@conn, :index) %>"> upload here.</a></p>
 <% end %>
