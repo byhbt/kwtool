@@ -11,9 +11,14 @@
       true,
       {
         "ignoreAtRules": [
-          "extend",
-          "include",
           "apply",
+          "each",
+          "else",
+          "extend",
+          "function",
+          "if",
+          "include",
+          "return",
           "tailwind",
           "layer",
           "screen"
