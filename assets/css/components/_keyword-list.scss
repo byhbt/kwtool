@@ -1,0 +1,7 @@
+.keyword-list {
+  @extend .table;
+
+  &__action-column {
+    text-align: right;
+  }
+}

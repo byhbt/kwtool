@@ -1,4 +1,4 @@
-<h1>Result for "<%= @keyword.phrase %>"  <span class="status-badge--added"><%= @keyword.status %></span></h1>
+<h1 class="page-title">Result for "<%= @keyword.phrase %>"  <span class="status-badge--added"><%= @keyword.status %></span></h1>
 
 <div class="keyword-detail">
   <ul class="keyword-detail__list">

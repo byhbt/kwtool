@@ -1,7 +1,16 @@
-<h1>Listing Keywords</h1>
+<h1 class="page-title">Listing Keywords</h1>
 
 <%= if Enum.any?(@keywords) do %>
-  <table class="table">
+  <div class="search-box">
+    <input type="text" class="form-control" placeholder="Keywords">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button">
+        Search
+      </button>
+    </div>
+  </div>
+
+  <table class="table keyword-list">
     <thead>
       <tr>
         <th>Phrase</th>
@@ -16,8 +25,8 @@
           <td><%= keyword.phrase %></td>
           <td><%= keyword.inserted_at %></td>
           <td><span class="status-badge--added"><%= keyword.status %></span></td>
-          <td>
-            <span><%= link "View", class: "button-detail", to: Routes.keyword_path(@conn, :show, keyword) %></span>
+          <td class="keyword-list__action-column">
+            <span><%= link "View", class: "btn btn-sm btn-primary", to: Routes.keyword_path(@conn, :show, keyword) %></span>
           </td>
         </tr>
       <% end %>
@@ -27,7 +36,6 @@
   <hr />
 
   <%= render KwtoolWeb.PaginationView, "pagination.html", conn: @conn, pagination: @pagination %>
-
 <% else %>
   <p>No keyword is imported yet! Please <a href="<%= Routes.upload_path(@conn, :index) %>"> upload here.</a></p>
 <% end %>
