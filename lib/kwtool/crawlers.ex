@@ -36,8 +36,11 @@ defmodule Kwtool.Crawlers do
     |> Repo.paginate(params)
   end
 
-  def get_keyword!(user, id) do
-    Repo.get!(Keyword, id)
+  def get_keyword(user, id) do
+    Keyword
+    |> where([k], k.user_id == ^user.id)
+    |> where([k], k.id == ^id)
+    |> Repo.one()
   end
 
   def create_keyword(attrs \\ %{}) do
