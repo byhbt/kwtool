@@ -30,16 +30,14 @@ defmodule Kwtool.Crawlers do
     Repo.all(Keyword)
   end
 
-  def get_user_keywords_list(user, params \\ %{}) do
-    Keyword
-    |> where([k], k.user_id == ^user.id)
+  def get_user_keywords_list(%User{} = user, params \\ %{}) do
+    query_keyword_by_user(user)
     |> Repo.paginate(params)
   end
 
-  def get_user_keyword(user, id) do
-    Keyword
-    |> where([k], k.user_id == ^user.id)
-    |> where([k], k.id == ^id)
+  def get_user_keyword(%User{} = user, keyword_id) do
+    query_keyword_by_user(user)
+    |> where([k], k.id == ^keyword_id)
     |> Repo.one()
   end
 
@@ -47,5 +45,10 @@ defmodule Kwtool.Crawlers do
     %Keyword{}
     |> Keyword.create_changeset(attrs)
     |> Repo.insert()
+  end
+
+  defp query_keyword_by_user(%User{} = user) do
+    Keyword
+    |> where([k], k.user_id == ^user.id)
   end
 end
