@@ -4,13 +4,13 @@ defmodule KwtoolWeb.KeywordController do
   alias Kwtool.Crawlers
 
   def index(conn, params) do
-    {keywords, pagination} = Crawlers.get_user_keywords(conn.assigns.current_user, params)
+    {keywords, pagination} = Crawlers.get_user_keywords_list(conn.assigns.current_user, params)
 
     render(conn, "index.html", keywords: keywords, pagination: pagination)
   end
 
   def show(conn, %{"id" => id}) do
-    case Crawlers.get_keyword(conn.assigns.current_user, id) do
+    case Crawlers.get_user_keyword(conn.assigns.current_user, id) do
       nil ->
         conn
         |> put_flash(:error, "Keyword not found.")
