@@ -24,12 +24,12 @@ defmodule Kwtool.CrawlersTest do
     end
   end
 
-  describe "get_user_keywords_list/2" do
+  describe "get_all_user_keywords/2" do
     test "returns a list of keywords when given a user" do
       created_user = insert(:user)
       insert(:keyword, user: created_user)
 
-      {keywords, pagination} = Crawlers.get_user_keywords_list(created_user, %{page: 1})
+      {keywords, pagination} = Crawlers.get_all_user_keywords(created_user, %{page: 1})
 
       assert length(keywords) == 1
 

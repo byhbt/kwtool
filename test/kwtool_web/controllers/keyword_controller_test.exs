@@ -29,16 +29,17 @@ defmodule KwtoolWeb.KeywordControllerTest do
       assert html_response(conn, 200) =~ "Result for \"#{keyword.phrase}\""
     end
 
-    test "returns to the list page when given a keyword not belong to the owner", %{conn: conn} do
+    test "redirects to the keywords listing page when given a keyword which does not belong to the existing user",
+         %{conn: conn} do
       created_user_1 = insert(:user)
 
       created_user_2 = insert(:user)
-      user_2_keyword = insert(:keyword, user: created_user_2)
+      keyword_of_user_2 = insert(:keyword, user: created_user_2)
 
       conn =
         conn
         |> with_signed_in_user(created_user_1)
-        |> get(Routes.keyword_path(conn, :show, user_2_keyword.id))
+        |> get(Routes.keyword_path(conn, :show, keyword_of_user_2.id))
 
       assert redirected_to(conn) == Routes.keyword_path(conn, :index)
     end
