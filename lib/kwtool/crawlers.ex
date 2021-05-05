@@ -26,7 +26,7 @@ defmodule Kwtool.Crawlers do
     end
   end
 
-  def get_user_keywords_list(%User{} = user, params \\ %{}) do
+  def get_all_user_keywords(%User{} = user, params \\ %{}) do
     user
     |> query_keyword_by_user()
     |> Repo.paginate(params)
