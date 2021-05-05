@@ -33,14 +33,14 @@ defmodule KwtoolWeb.KeywordControllerTest do
       created_user_1 = insert(:user)
 
       created_user_2 = insert(:user)
-      keyword_2 = insert(:keyword, user: created_user_2)
+      user_2_keyword = insert(:keyword, user: created_user_2)
 
       conn =
         conn
         |> with_signed_in_user(created_user_1)
-        |> get(Routes.keyword_path(conn, :show, keyword_2.id))
+        |> get(Routes.keyword_path(conn, :show, user_2_keyword.id))
 
-      refute html_response(conn, 200) =~ "Result for \"#{keyword_2.phrase}\""
+      assert redirected_to(conn) == Routes.keyword_path(conn, :index)
     end
   end
 end

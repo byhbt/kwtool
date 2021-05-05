@@ -10,8 +10,14 @@ defmodule KwtoolWeb.KeywordController do
   end
 
   def show(conn, %{"id" => id}) do
-    keyword = Crawlers.get_keyword!(conn.assigns.current_user, id)
+    case Crawlers.get_keyword(conn.assigns.current_user, id) do
+      nil ->
+        conn
+        |> put_flash(:error, "Keyword not found.")
+        |> redirect(to: Routes.keyword_path(conn, :index))
 
-    render(conn, "show.html", keyword: keyword)
+      keyword ->
+        render(conn, "show.html", keyword: keyword)
+    end
   end
 end

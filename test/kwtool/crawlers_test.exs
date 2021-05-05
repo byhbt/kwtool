@@ -42,4 +42,23 @@ defmodule Kwtool.CrawlersTest do
              } = pagination
     end
   end
+
+  describe "get_keyword/2" do
+    test "returns a keyword for a given user" do
+      created_user = insert(:user)
+      user_keyword = insert(:keyword, user: created_user)
+      keyword = Crawlers.get_keyword(created_user, user_keyword.id)
+
+      assert keyword.id == user_keyword.id
+      assert keyword.phrase == user_keyword.phrase
+    end
+
+    test "returns nil when querying keyword of a different user" do
+      created_user_1 = insert(:user)
+      user_1_keyword = insert(:keyword, user: created_user_1)
+      created_user_2 = insert(:user)
+
+      assert Crawlers.get_keyword(created_user_2, user_1_keyword.id) == nil
+    end
+  end
 end
