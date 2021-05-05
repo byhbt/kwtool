@@ -29,7 +29,7 @@ defmodule Kwtool.CrawlersTest do
       created_user = insert(:user)
       insert(:keyword, user: created_user)
 
-      {keywords, pagination} = Crawlers.get_user_keywords_list(created_user)
+      {keywords, pagination} = Crawlers.get_user_keywords_list(created_user, %{page: 1})
 
       assert length(keywords) == 1
 
