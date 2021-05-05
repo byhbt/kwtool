@@ -6,7 +6,8 @@ defmodule KwtoolWeb.HomePage.ViewKeywordPageTest do
     keyword_of_user_1 = insert(:keyword, user: created_user_1)
 
     created_user_2 = insert(:user)
-    keyword_of_user_2 = insert(:keyword, user: created_user_2)
+    custom_keyword_attrs = %{phrase: "test listing per user phrase", user: created_user_2}
+    keyword_of_user_2 = insert(:keyword, custom_keyword_attrs)
 
     session
     |> login_as(created_user_1)
