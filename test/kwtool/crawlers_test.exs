@@ -33,13 +33,15 @@ defmodule Kwtool.CrawlersTest do
 
       assert length(keywords) == 1
 
-      assert %{
+      assert %Phoenix.Pagination{
                items: [],
                page: 1,
-               params: %{},
+               params: %{page: 1},
                total_count: 1,
-               total_pages: 1
-             } = pagination
+               total_pages: 1,
+               max_page: 1000,
+               per_page: 15
+             } == pagination
     end
   end
 
