@@ -4,8 +4,9 @@ defmodule KwtoolWeb.HomePage.ViewRegistrationPageTest do
   @path Routes.auth_path(KwtoolWeb.Endpoint, :show)
 
   feature "views registration page", %{session: session} do
-    visit(session, @path)
-    assert_has(session, Query.text("Registration"))
+    session
+    |> visit(@path)
+    |> assert_has(Query.text("Registration"))
   end
 
   feature "signs up a new user with valid information", %{session: session} do
