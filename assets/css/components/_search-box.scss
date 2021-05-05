@@ -1,0 +1,5 @@
+.search-box {
+  @extend .input-group;
+
+  margin-bottom: rem(30px);
+}
