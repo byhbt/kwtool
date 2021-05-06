@@ -17,7 +17,8 @@ defmodule KwtoolWeb.KeywordControllerTest do
   end
 
   describe "get show/2" do
-    test "returns the details of a keyword page when given a logged-in user", %{conn: conn} do
+    test "returns the details of a keyword page when given a keyword belongs to the logged-in user",
+         %{conn: conn} do
       created_user = insert(:user)
       keyword = insert(:keyword, user: created_user)
 
@@ -29,7 +30,7 @@ defmodule KwtoolWeb.KeywordControllerTest do
       assert html_response(conn, 200) =~ "Result for \"#{keyword.phrase}\""
     end
 
-    test "redirects to the keywords listing page when given a keyword which does not belong to the existing user",
+    test "redirects to the keywords listing page when given a keyword does NOT belong to the logged-in user",
          %{conn: conn} do
       created_user_1 = insert(:user)
 
