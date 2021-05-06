@@ -1,16 +1,7 @@
 <h1 class="page-title">Listing Keywords</h1>
 
 <%= if Enum.any?(@keywords) do %>
-  <%= form_for @conn, Routes.keyword_path(@conn, :index), [class: ''], fn f -> %>
-    <div class="search-box">
-        <%= text_input f, :query, class: "form-control", placeholder: "Keywords" %>
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            Search
-          </button>
-        </div>
-    </div>
-  <% end %>
+  <%= render "_search-form.html", Map.put(assigns, :action, Routes.keyword_path(@conn, :index)) %>
 
   <table class="table keyword-list">
     <thead>
