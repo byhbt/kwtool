@@ -1,14 +1,16 @@
 <h1 class="page-title">Listing Keywords</h1>
 
 <%= if Enum.any?(@keywords) do %>
-  <div class="search-box">
-    <input type="text" class="form-control" placeholder="Keywords">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="button">
-        Search
-      </button>
+  <%= form_for @conn, Routes.keyword_path(@conn, :index), [class: ''], fn f -> %>
+    <div class="search-box">
+        <%= text_input f, :query, class: "form-control", placeholder: "Keywords" %>
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            Search
+          </button>
+        </div>
     </div>
-  </div>
+  <% end %>
 
   <table class="table keyword-list">
     <thead>
@@ -26,7 +28,7 @@
           <td><%= keyword.inserted_at %></td>
           <td><span class="status-badge--added"><%= keyword.status %></span></td>
           <td class="keyword-list__action-column">
-            <span><%= link "View", class: "btn btn-sm btn-primary", to: Routes.keyword_path(@conn, :show, keyword) %></span>
+            <span><%= link "View", class: "btn btn-sm btn-secondary", to: Routes.keyword_path(@conn, :show, keyword) %></span>
           </td>
         </tr>
       <% end %>
