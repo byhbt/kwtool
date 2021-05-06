@@ -43,6 +43,30 @@ defmodule Kwtool.CrawlersTest do
                per_page: 15
              } == pagination
     end
+
+    test "returns a list of keywords which does NOT contain other user keyword" do
+      created_user = insert(:user)
+      insert(:keyword, user: created_user)
+
+      created_user_2 = insert(:user)
+      custom_keyword_attrs = %{phrase: "test listing per user phrase", user: created_user_2}
+      keyword_of_user_2 = insert(:keyword, custom_keyword_attrs)
+
+      {keywords, pagination} = Crawlers.get_all_user_keywords(created_user, %{page: 1})
+
+      assert length(keywords) == 1
+      refute Enum.at(keywords, 0).phrase == keyword_of_user_2.phrase
+
+      assert %Phoenix.Pagination{
+               items: [],
+               page: 1,
+               params: %{page: 1},
+               total_count: 1,
+               total_pages: 1,
+               max_page: 1000,
+               per_page: 15
+             } == pagination
+    end
   end
 
   describe "get_user_keyword/2" do
