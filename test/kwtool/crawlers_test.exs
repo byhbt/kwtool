@@ -24,12 +24,12 @@ defmodule Kwtool.CrawlersTest do
     end
   end
 
-  describe "get_all_user_keywords/2" do
+  describe "get_keywords_by_user/2" do
     test "returns a list of keywords when given a user" do
       created_user = insert(:user)
       insert(:keyword, user: created_user)
 
-      {keywords, pagination} = Crawlers.get_all_user_keywords(created_user, %{page: 1})
+      {keywords, pagination} = Crawlers.get_keywords_by_user(created_user, %{page: 1})
 
       assert length(keywords) == 1
 
@@ -52,7 +52,7 @@ defmodule Kwtool.CrawlersTest do
       custom_keyword_attrs = %{phrase: "test listing per user phrase", user: created_user_2}
       keyword_of_user_2 = insert(:keyword, custom_keyword_attrs)
 
-      {keywords, pagination} = Crawlers.get_all_user_keywords(created_user, %{page: 1})
+      {keywords, pagination} = Crawlers.get_keywords_by_user(created_user, %{page: 1})
 
       assert length(keywords) == 1
       refute Enum.at(keywords, 0).phrase == keyword_of_user_2.phrase
@@ -69,11 +69,11 @@ defmodule Kwtool.CrawlersTest do
     end
   end
 
-  describe "get_user_keyword/2" do
+  describe "get_keyword_by_user/2" do
     test "returns a keyword for a given user" do
       created_user = insert(:user)
       user_keyword = insert(:keyword, user: created_user)
-      keyword = Crawlers.get_user_keyword(created_user, user_keyword.id)
+      keyword = Crawlers.get_keyword_by_user(created_user, user_keyword.id)
 
       assert keyword.id == user_keyword.id
       assert keyword.phrase == user_keyword.phrase
@@ -84,7 +84,7 @@ defmodule Kwtool.CrawlersTest do
       user_1_keyword = insert(:keyword, user: created_user_1)
       created_user_2 = insert(:user)
 
-      assert Crawlers.get_user_keyword(created_user_2, user_1_keyword.id) == nil
+      assert Crawlers.get_keyword_by_user(created_user_2, user_1_keyword.id) == nil
     end
   end
 end
