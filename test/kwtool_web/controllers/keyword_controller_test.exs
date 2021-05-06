@@ -42,6 +42,7 @@ defmodule KwtoolWeb.KeywordControllerTest do
         |> with_signed_in_user(created_user_1)
         |> get(Routes.keyword_path(conn, :show, keyword_of_user_2.id))
 
+      assert get_flash(conn, :error) == "Keyword not found."
       assert redirected_to(conn) == Routes.keyword_path(conn, :index)
     end
   end
