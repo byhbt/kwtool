@@ -58,7 +58,7 @@ defmodule KwtoolWeb.HomePage.ViewKeywordPageTest do
     |> assert_has(Query.text("Result for"))
   end
 
-  feature "redirects to the listing keywords page when given a keyword of other user", %{
+  feature "redirects to the listing keywords page when given a keyword of another user", %{
     session: session
   } do
     created_user_1 = insert(:user)

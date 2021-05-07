@@ -1,7 +1,7 @@
 <h1 class="page-title">Listing Keywords</h1>
 
 <%= if Enum.any?(@keywords) do %>
-  <%= render "_search-form.html", Map.put(assigns, :action, Routes.keyword_path(@conn, :index)) %>
+  <%= render "_search_form.html", Map.put(assigns, :action, Routes.keyword_path(@conn, :index)) %>
 
   <table class="table keyword-list">
     <thead>
