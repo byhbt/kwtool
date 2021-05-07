@@ -14,6 +14,23 @@ defmodule KwtoolWeb.KeywordControllerTest do
       assert html_response(conn, 200) =~ "Listing Keywords"
       assert html_response(conn, 200) =~ keyword.phrase
     end
+
+    test "returns the searching keywords when given a query param", %{conn: conn} do
+      created_user = insert(:user)
+      keyword1 = insert(:keyword, user: created_user)
+
+      search_params = %{
+        query: keyword1.phrase
+      }
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> get(Routes.keyword_path(conn, :index, search_params))
+
+      assert html_response(conn, 200) =~ "Listing Keywords"
+      assert html_response(conn, 200) =~ keyword1.phrase
+    end
   end
 
   describe "get show/2" do

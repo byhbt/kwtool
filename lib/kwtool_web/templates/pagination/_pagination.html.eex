@@ -3,7 +3,7 @@
     <ul class="kw-pagination">
       <li class="page-item"><%= pagination_link p, :first, label: gettext("First"), class: "page-link" %></li>
       <%= for {pagenum, _, active} <- p.page_items do  %>
-      <li class="page-item"><%= pagination_link p, pagenum, class: "page-link", current: active %></li>
+        <li class="page-item"><%= pagination_link p, pagenum, class: "page-link", current: active %></li>
       <% end %>
       <li class="page-item"><%= pagination_link p, :last, label: gettext("Last"), class: "page-link" %></li>
     </ul>
