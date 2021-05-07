@@ -1,2 +1,2 @@
-<h1 class="h2">Dashboard</h1>
+<h1 class="page-title">Dashboard</h1>
 <p>You're logged in as <%= @conn.assigns.current_user.full_name %></p>
