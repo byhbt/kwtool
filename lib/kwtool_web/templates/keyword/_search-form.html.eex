@@ -1,6 +1,6 @@
 <%= form_for @conn, @action, [method: :get], fn f -> %>
   <div class="search-box">
-    <%= text_input f, :query, class: "form-control", placeholder: "Keywords" %>
+    <%= text_input f, :query, class: "form-control", placeholder: "Search the imported keywords..." %>
     <div class="input-group-append">
       <button class="btn btn-primary" type="submit">Search</button>
     </div>

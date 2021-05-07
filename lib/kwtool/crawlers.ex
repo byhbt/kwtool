@@ -27,15 +27,18 @@ defmodule Kwtool.Crawlers do
   end
 
   def paginate_user_keywords(%User{} = user, params \\ %{}) do
-    user
-    |> query_keyword_by_user()
-    |> query_search_term(search_term)
+    search_phrase = get_in(params, ["query"])
+    wildcard_search = "%#{search_phrase}%"
+
+    Keyword
+    |> where([k], k.user_id == ^user.id)
+    |> where([k], ilike(k.phrase, ^wildcard_search))
     |> Repo.paginate(params)
   end
 
   def get_keyword_by_user(%User{} = user, keyword_id) do
-    user
-    |> query_keyword_by_user()
+    Keyword
+    |> where([k], k.user_id == ^user.id)
     |> where([k], k.id == ^keyword_id)
     |> Repo.one()
   end
@@ -44,15 +47,5 @@ defmodule Kwtool.Crawlers do
     %Keyword{}
     |> Keyword.create_changeset(attrs)
     |> Repo.insert()
-  end
-
-  defp query_keyword_by_user(%User{} = user) do
-    where(Keyword, [k], k.user_id == ^user.id)
-  end
-
-  defp query_search_term(query, search_phrase) do
-    wildcard_search = "%#{search_phrase}%"
-
-    from k in query, where: ilike(k.phrase, ^wildcard_search)
   end
 end
