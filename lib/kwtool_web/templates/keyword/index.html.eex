@@ -30,5 +30,5 @@
 
   <%= render KwtoolWeb.PaginationView, "_pagination.html", conn: @conn, pagination: @pagination %>
 <% else %>
-  <p>No keyword is imported yet! Please <a href="<%= Routes.upload_path(@conn, :index) %>"> upload here.</a></p>
+  <p>No keywords found.</p>
 <% end %>
