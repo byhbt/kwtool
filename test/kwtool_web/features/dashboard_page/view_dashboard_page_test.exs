@@ -8,6 +8,6 @@ defmodule KwtoolWeb.HomePage.ViewDashboardPageTest do
 
     session
     |> login_as(created_user)
-    |> assert_has(css(".h2", text: "Dashboard"))
+    |> assert_has(css(".page-title", text: "Dashboard"))
   end
 end
