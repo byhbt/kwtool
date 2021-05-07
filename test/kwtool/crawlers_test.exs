@@ -68,7 +68,7 @@ defmodule Kwtool.CrawlersTest do
              } == pagination
     end
 
-    test "returns a list of matched keywords when given a query params" do
+    test "returns a list of matched keywords when given a matched query param" do
       created_user = insert(:user)
       custom_keyword_attrs = %{phrase: "test search param", user: created_user}
 
@@ -82,7 +82,7 @@ defmodule Kwtool.CrawlersTest do
       assert Enum.at(keywords, 0).phrase == custom_keyword_attrs.phrase
     end
 
-    test "returns a empty list when given a not matched query params" do
+    test "returns an empty list when given a NOT matched query param" do
       created_user = insert(:user)
       insert(:keyword, user: created_user)
 
