@@ -53,7 +53,7 @@ defmodule Kwtool.MixProject do
       {:jason, "~> 1.0"},
       {:mimic, "~> 1.4.0", [only: :test]},
       {:nimble_csv, "~> 1.1.0"},
-      {:oban, "~> 2.5.0"},
+      {:oban, "~> 2.6.1"},
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
       {:phoenix_html, "~> 2.11"},
