@@ -51,6 +51,7 @@ defmodule Kwtool.MixProject do
       {:gettext, "~> 0.11"},
       {:guardian, "~> 2.0"},
       {:jason, "~> 1.0"},
+      {:machinery, "~> 1.0.0"},
       {:mimic, "~> 1.4.0", [only: :test]},
       {:nimble_csv, "~> 1.1.0"},
       {:oban, "~> 2.6.1"},
