@@ -20,7 +20,7 @@ config :kwtool, KwtoolWeb.Endpoint,
 
 config :kwtool, Kwtool.Accounts.Guardian,
   issuer: "kwtool",
-  secret_key: System.get_env("SECRET_KEY_GUARDIAN")
+  secret_key: "y00rP0vBWqQBbXREQWmFJfyKFBj19ibd2EeYEuv52InoxFsfc44bOOnwzQGIMQJL"
 
 # Configures Elixir's Logger
 config :logger, :console,
