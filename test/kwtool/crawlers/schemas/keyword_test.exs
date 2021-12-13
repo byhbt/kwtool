@@ -6,7 +6,7 @@ defmodule Kwtool.Crawlers.Schemas.UserTest do
   describe "create_changeset/2" do
     test "returns valid keyword when given valid attributes" do
       keyword_params = %{phrase: "elixir", status: "added", user_id: 1}
-      changeset = Keyword.create_changeset(%Keyword{}, keyword_params)
+      changeset = Keyword.create_changeset(keyword_params)
 
       assert changeset.valid?
       assert changeset.changes.phrase == "elixir"
