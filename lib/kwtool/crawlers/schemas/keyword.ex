@@ -12,7 +12,6 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
 
   schema "keywords" do
     field :phrase, :string
-    field :raw_result, :string
     field :status, :string
 
     timestamps()
@@ -22,7 +21,7 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
 
   def create_changeset(keyword \\ %__MODULE__{}, attrs) do
     keyword
-    |> cast(attrs, [:phrase, :raw_result, :status, :user_id])
+    |> cast(attrs, [:phrase, :status, :user_id])
     |> put_change(:status, "added")
     |> validate_required([:phrase, :status, :user_id])
     |> validate_inclusion(:status, Map.values(@statuses))
