@@ -31,4 +31,8 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base,
     server: true
+
+  config :kwtool, Kwtool.Accounts.Guardian,
+    issuer: "kwtool",
+    secret_key: System.get_env("SECRET_KEY_GUARDIAN")
 end
