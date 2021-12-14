@@ -163,7 +163,7 @@
          ]},
         {Credo.Check.Consistency.MultiAliasImportRequireUse, []},
         {Credo.Check.Consistency.UnusedVariableNames, false},
-        {Credo.Check.Design.DuplicatedCode, []},
+        {Credo.Check.Design.DuplicatedCode, files: %{excluded: ["**/*_test.exs"]}},
         {Credo.Check.Readability.AliasAs, false},
         {Credo.Check.Readability.MultiAlias, false},
         {Credo.Check.Readability.Specs, false},
