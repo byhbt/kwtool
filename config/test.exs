@@ -20,7 +20,7 @@ config :kwtool, KwtoolWeb.Endpoint,
 
 config :kwtool, Kwtool.Accounts.Guardian,
   issuer: "kwtool",
-  secret_key: "y00rP0vBWqQBbXREQWmFJ"
+  secret_key: "yu5R4X14ktpI36DcYve/svrSW7ZGK2ZIfmKSLlRp6QG4njnIgYNz6s5yxzB+HAHU"
 
 config :kwtool, :sql_sandbox, true
 

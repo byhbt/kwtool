@@ -3,6 +3,8 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
 
   import Ecto.Changeset
 
+  alias Kwtool.Accounts.Schemas.User
+
   @statuses %{
     added: "added",
     in_process: "in_process",
@@ -14,9 +16,9 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
     field :phrase, :string
     field :status, :string
 
-    timestamps()
+    belongs_to :user, User
 
-    belongs_to :user, Kwtool.Accounts.Schemas.User
+    timestamps()
   end
 
   def create_changeset(keyword \\ %__MODULE__{}, attrs) do
