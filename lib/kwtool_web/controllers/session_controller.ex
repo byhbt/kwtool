@@ -1,9 +1,9 @@
 defmodule KwtoolWeb.SessionController do
   use KwtoolWeb, :controller
 
-  alias Kwtool.Accounts
-  alias Kwtool.Accounts.Guardian
-  alias Kwtool.Accounts.Schemas.User
+  alias Kwtool.Account.Users
+  alias Kwtool.Account.Guardian
+  alias Kwtool.Account.Schemas.User
 
   plug :put_layout, "auth.html"
 
@@ -13,13 +13,13 @@ defmodule KwtoolWeb.SessionController do
     if maybe_user do
       redirect(conn, to: Routes.home_path(conn, :index))
     else
-      changeset = Accounts.change_user(%User{})
+      changeset = Users.change_user(%User{})
       render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :create))
     end
   end
 
   def create(conn, %{"user" => %{"email" => email, "password" => plain_text_password}}) do
-    case Accounts.authenticate_user(email, plain_text_password) do
+    case Users.authenticate_user(email, plain_text_password) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Welcome back!")
