@@ -18,7 +18,7 @@ config :kwtool, KwtoolWeb.Endpoint,
   http: [port: 4002],
   server: true
 
-config :kwtool, Kwtool.Accounts.Guardian,
+config :kwtool, Kwtool.Account.Guardian,
   issuer: "kwtool",
   secret_key: "yu5R4X14ktpI36DcYve/svrSW7ZGK2ZIfmKSLlRp6QG4njnIgYNz6s5yxzB+HAHU"
 

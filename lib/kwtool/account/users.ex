@@ -1,7 +1,7 @@
-defmodule Kwtool.Accounts do
+defmodule Kwtool.Account.Users do
   import Ecto.Query, warn: false
 
-  alias Kwtool.Accounts.Schemas.User
+  alias Kwtool.Account.Schemas.User
   alias Kwtool.Repo
 
   def list_users do

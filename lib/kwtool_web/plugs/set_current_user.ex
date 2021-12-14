@@ -1,7 +1,7 @@
 defmodule KwtoolWeb.Plugs.SetCurrentUser do
   import Plug.Conn
 
-  alias Kwtool.Accounts.Guardian.Plug
+  alias Kwtool.Account.Guardian.Plug
 
   def init(_options), do: nil
 

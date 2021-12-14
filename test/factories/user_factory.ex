@@ -2,7 +2,7 @@ defmodule Kwtool.UserFactory do
   defmacro __using__(_opts) do
     quote do
       def user_factory do
-        %Kwtool.Accounts.Schemas.User{
+        %Kwtool.Account.Schemas.User{
           email: sequence(:email, fn n -> "email-#{n}@example.com" end),
           full_name: FakerElixir.Name.name(),
           company: FakerElixir.Name.name(),

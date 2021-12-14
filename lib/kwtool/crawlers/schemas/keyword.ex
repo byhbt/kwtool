@@ -3,7 +3,7 @@ defmodule Kwtool.Crawlers.Schemas.Keyword do
 
   import Ecto.Changeset
 
-  alias Kwtool.Accounts.Schemas.User
+  alias Kwtool.Account.Schemas.User
 
   @statuses %{
     added: "added",
