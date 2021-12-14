@@ -10,7 +10,7 @@ defmodule KwtoolWeb.Router do
   end
 
   pipeline :auth do
-    plug Kwtool.Accounts.Pipeline
+    plug Kwtool.Account.Pipeline
     plug KwtoolWeb.Plugs.SetCurrentUser
   end
 

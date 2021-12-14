@@ -1,4 +1,4 @@
-defmodule Kwtool.Accounts.Schemas.User do
+defmodule Kwtool.Account.Schemas.User do
   use Ecto.Schema
 
   import Ecto.Changeset

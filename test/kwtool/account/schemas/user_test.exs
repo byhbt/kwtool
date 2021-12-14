@@ -1,7 +1,7 @@
-defmodule Kwtool.Accounts.Schemas.UserTest do
+defmodule Kwtool.Account.Schemas.UserTest do
   use Kwtool.DataCase, async: true
 
-  alias Kwtool.Accounts.Schemas.User
+  alias Kwtool.Account.Schemas.User
 
   describe "registration_changeset/2" do
     test "returns valid registration changeset when given valid attributes" do
