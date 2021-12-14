@@ -18,6 +18,10 @@ config :kwtool, KwtoolWeb.Endpoint,
   http: [port: 4002],
   server: true
 
+config :kwtool, Kwtool.Accounts.Guardian,
+  issuer: "kwtool",
+  secret_key: "y00rP0vBWqQBbXREQWmFJ"
+
 config :kwtool, :sql_sandbox, true
 
 config :wallaby,
