@@ -4,6 +4,7 @@ on: pull_request
 env:
   OTP_VERSION: "23.0.2"
   ELIXIR_VERSION: "1.10.4"
+  NODE_VERSION: "14"
 
 jobs:
   test:
@@ -32,6 +33,11 @@ jobs:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           experimental-otp: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Cache Elixir build
         uses: actions/cache@v2
         with:
@@ -50,10 +56,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install Dependencies
+      - name: Install Phoenix Dependencies
         run: mix deps.get
 
-      - name: Install node module
+      - name: Install Node modules
         run: npm --prefix assets install
 
       - name: Compile assets
