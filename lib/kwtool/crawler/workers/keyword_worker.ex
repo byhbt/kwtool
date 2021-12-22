@@ -1,5 +1,7 @@
-# defmodule KwtoolWorker.GoogleCrawler do
+# defmodule Kwtool.Crawler.Workers.KeywordWorker do
 #   use Oban.Worker, queue: :events
+
+#   alias Kwtool.Crawler.Providers.Google
 
 #   @impl Oban.Worker
 

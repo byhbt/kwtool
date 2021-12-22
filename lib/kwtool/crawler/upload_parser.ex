@@ -1,4 +1,4 @@
-defmodule Kwtool.Crawlers.UploadParser do
+defmodule Kwtool.Crawler.UploadParser do
   alias NimbleCSV.RFC4180, as: CSV
 
   def parse(%Plug.Upload{content_type: "text/csv"} = keyword_file) do

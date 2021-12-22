@@ -10,6 +10,8 @@ defmodule KwtoolWeb.FeatureCase do
 
       alias KwtoolWeb.Router.Helpers, as: Routes
 
+      @moduletag :feature_test
+
       def login_as(session, user) do
         session
         |> visit(Routes.session_path(KwtoolWeb.Endpoint, :new))

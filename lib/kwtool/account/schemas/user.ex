@@ -13,7 +13,7 @@ defmodule Kwtool.Account.Schemas.User do
 
     timestamps()
 
-    has_many :keywords, Kwtool.Crawlers.Schemas.Keyword
+    has_many :keywords, Kwtool.Crawler.Schemas.Keyword
   end
 
   def registration_changeset(user \\ %__MODULE__{}, attrs) do
