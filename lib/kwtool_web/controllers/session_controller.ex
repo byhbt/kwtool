@@ -1,9 +1,8 @@
 defmodule KwtoolWeb.SessionController do
   use KwtoolWeb, :controller
 
-  alias Kwtool.Account.Guardian
   alias Kwtool.Account.Schemas.User
-  alias Kwtool.Account.Users
+  alias Kwtool.Account.{Guardian, Users}
 
   plug :put_layout, "auth.html"
 
