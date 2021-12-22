@@ -1,7 +1,7 @@
-defmodule Kwtool.Crawlers.Schemas.UserTest do
+defmodule Kwtool.Crawler.Schemas.KeywordTest do
   use Kwtool.DataCase, async: true
 
-  alias Kwtool.Crawlers.Schemas.Keyword
+  alias Kwtool.Crawler.Schemas.Keyword
 
   describe "create_changeset/2" do
     test "returns valid keyword when given valid attributes" do

@@ -1,7 +1,7 @@
 defmodule UploadParserTest do
   use Kwtool.DataCase, async: true
 
-  alias Kwtool.Crawlers.UploadParser
+  alias Kwtool.Crawler.UploadParser
 
   describe "parse/1" do
     test "returns a list of keyword when given a valid CSV file" do

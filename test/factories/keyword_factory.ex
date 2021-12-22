@@ -2,7 +2,7 @@ defmodule Kwtool.KeywordFactory do
   defmacro __using__(_opts) do
     quote do
       def keyword_factory do
-        %Kwtool.Crawlers.Schemas.Keyword{
+        %Kwtool.Crawler.Schemas.Keyword{
           phrase:
             FakerElixir.Helper.pick([
               "desk lamp",

@@ -2,8 +2,8 @@ defmodule Kwtool.Crawlers do
   import Ecto.Query, warn: false
 
   alias Kwtool.Account.Schemas.User
-  alias Kwtool.Crawlers.Schemas.Keyword
-  alias Kwtool.Crawlers.UploadParser
+  alias Kwtool.Crawler.Schemas.Keyword
+  alias Kwtool.Crawler.UploadParser
   alias Kwtool.Repo
 
   def save_keywords_list(keyword_file, %User{} = user) do
