@@ -1,19 +1,22 @@
-defmodule Kwtool.Crawlers.Schemas.KeywordResult do
+defmodule Kwtool.Crawler.Schemas.KeywordResult do
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  alias Kwtool.Crawlers.Schemas.Keyword
+  alias Kwtool.Crawler.Schemas.Keyword
 
-  schema "keywords" do
+  schema "keyword_results" do
     field :top_ads_count, :integer
     field :top_ads_urls, {:array, :string}
     field :all_ads_count, :integer
     field :organic_result_count, :integer
     field :organic_result_urls, {:array, :string}
     field :all_links_count, :integer
+    field :html, :string
 
     belongs_to :keyword, Keyword
+
+    timestamps()
   end
 
   def create_changeset(keyword \\ %__MODULE__{}, attrs) do
@@ -25,7 +28,8 @@ defmodule Kwtool.Crawlers.Schemas.KeywordResult do
       :all_ads_count,
       :organic_result_count,
       :organic_result_urls,
-      :all_links_count
+      :all_links_count,
+      :html
     ])
     |> validate_required([
       :keyword_id,

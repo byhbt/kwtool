@@ -1,8 +1,8 @@
 defmodule Kwtool.CrawlersTest do
   use Kwtool.DataCase, async: true
 
+  alias Kwtool.Crawler.Schemas.Keyword
   alias Kwtool.Crawlers
-  alias Kwtool.Crawlers.Schemas.Keyword
 
   describe "save_keywords_list/2" do
     test "inserts the uploaded keywords to the database when given a valid CSV file" do

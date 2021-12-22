@@ -1,4 +1,4 @@
-defmodule Kwtool.Crawlers.Schemas.Keyword do
+defmodule Kwtool.Crawler.Schemas.Keyword do
   use Ecto.Schema
 
   import Ecto.Changeset

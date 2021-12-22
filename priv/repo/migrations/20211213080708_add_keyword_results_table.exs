@@ -12,7 +12,7 @@ defmodule Kwtool.Repo.Migrations.AddKeywordResultsTable do
       add :organic_result_urls, {:array, :string}
       add :all_links_count, :integer, null: false, default: 0
 
-      add :html, :text, null: false
+      add :html, :text
 
       timestamps()
     end
