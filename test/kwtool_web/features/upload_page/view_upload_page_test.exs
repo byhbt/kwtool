@@ -18,7 +18,7 @@ defmodule KwtoolWeb.HomePage.ViewUploadPageTest do
     session
     |> login_as(created_user)
     |> visit(Routes.upload_path(KwtoolWeb.Endpoint, :index))
-    |> attach_file(file_field("keyword_file"), path: "test/support/fixture/keywords.csv")
+    |> attach_file(file_field("keyword_file"), path: "test/support/fixtures/keywords.csv")
     |> click(button("Upload"))
     |> assert_has(Query.text("The keyword file is processed successfully!"))
   end

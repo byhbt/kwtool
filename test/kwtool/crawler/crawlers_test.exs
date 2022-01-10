@@ -10,7 +10,7 @@ defmodule Kwtool.CrawlersTest do
 
       keyword_file = %Plug.Upload{
         content_type: "text/csv",
-        path: "test/support/fixture/keywords.csv"
+        path: "test/support/fixtures/keywords.csv"
       }
 
       assert {:ok, :file_is_proccessed} = Crawlers.save_keywords_list(keyword_file, created_user)
