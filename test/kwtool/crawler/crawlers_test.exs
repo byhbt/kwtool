@@ -7,7 +7,11 @@ defmodule Kwtool.CrawlersTest do
   describe "save_keywords_list/2" do
     test "inserts the uploaded keywords to the database when given a valid CSV file" do
       created_user = insert(:user)
-      keyword_file = %Plug.Upload{content_type: "text/csv", path: "test/fixture/keywords.csv"}
+
+      keyword_file = %Plug.Upload{
+        content_type: "text/csv",
+        path: "test/support/fixture/keywords.csv"
+      }
 
       assert {:ok, :file_is_proccessed} = Crawlers.save_keywords_list(keyword_file, created_user)
       assert [keyword1, keyword2, keyword3] = Repo.all(Keyword)
