@@ -45,9 +45,10 @@ defmodule Kwtool.Crawlers do
   end
 
   defp create_keyword(attrs) do
-    {:ok, %Keyword{id: keyword_id}} = %Keyword{}
-    |> Keyword.create_changeset(attrs)
-    |> Repo.insert()
+    {:ok, %Keyword{id: keyword_id}} =
+      %Keyword{}
+      |> Keyword.create_changeset(attrs)
+      |> Repo.insert()
 
     %{"keyword_id" => keyword_id}
     |> GoogleKeywordCrawler.new()

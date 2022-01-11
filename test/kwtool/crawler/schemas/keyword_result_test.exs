@@ -45,7 +45,8 @@ defmodule Kwtool.Crawler.Schemas.KeywordResultTest do
                organic_result_count: ["can't be blank"],
                organic_result_urls: ["can't be blank"],
                top_ads_count: ["can't be blank"],
-               top_ads_urls: ["can't be blank"]
+               top_ads_urls: ["can't be blank"],
+               html: ["can't be blank"]
              }
     end
   end
