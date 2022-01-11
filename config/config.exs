@@ -29,7 +29,12 @@ config :phoenix, :json_library, Jason
 config :kwtool, Oban,
   repo: Kwtool.Repo,
   plugins: [Oban.Plugins.Pruner],
-  queues: [default: 10]
+  queues: [
+    default: 10,
+    keyword_crawler: 4
+  ]
+
+config :tesla, adapter: Tesla.Adapter.Hackney
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -48,8 +48,10 @@ defmodule Kwtool.MixProject do
       {:ex_machina, "~> 2.7.0", [only: [:dev, :test]]},
       {:excoveralls, "~> 0.14.0", [only: :test]},
       {:faker_elixir_octopus, "~> 1.0.0", only: [:dev, :test]},
-      {:gettext, "~> 0.11"},
+      {:floki, "~> 0.32.0"},
+      {:gettext, "~> 0.19.0"},
       {:guardian, "~> 2.0"},
+      {:hackney, "~> 1.17"},
       {:jason, "~> 1.0"},
       {:mimic, "~> 1.4.0", [only: :test]},
       {:nimble_csv, "~> 1.1.0"},
@@ -65,7 +67,8 @@ defmodule Kwtool.MixProject do
       {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:wallaby, "~> 0.28.0", [only: :test, runtime: false]}
+      {:tesla, "~> 1.4"},
+      {:wallaby, "~> 0.29.0", [only: :test, runtime: false]}
     ]
   end
 

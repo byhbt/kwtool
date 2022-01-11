@@ -13,7 +13,7 @@ defmodule Kwtool.KeywordsTest do
         path: "test/support/fixtures/keywords.csv"
       }
 
-      assert {:ok, :file_is_proccessed} = Keywords.save_keywords_list(keyword_file, created_user)
+      assert {:ok, :file_is_processed} = Keywords.save_keywords_list(keyword_file, created_user)
       assert [keyword1, keyword2, keyword3] = Repo.all(Keyword)
 
       assert keyword1.phrase == "badminton racket"

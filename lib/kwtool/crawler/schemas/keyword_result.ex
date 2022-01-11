@@ -19,8 +19,8 @@ defmodule Kwtool.Crawler.Schemas.KeywordResult do
     timestamps()
   end
 
-  def create_changeset(keyword \\ %__MODULE__{}, attrs) do
-    keyword
+  def create_changeset(keyword_result \\ %__MODULE__{}, attrs) do
+    keyword_result
     |> cast(attrs, [
       :keyword_id,
       :top_ads_count,
@@ -38,7 +38,8 @@ defmodule Kwtool.Crawler.Schemas.KeywordResult do
       :all_ads_count,
       :organic_result_count,
       :organic_result_urls,
-      :all_links_count
+      :all_links_count,
+      :html
     ])
     |> assoc_constraint(:keyword)
   end
