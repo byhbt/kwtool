@@ -13,10 +13,10 @@ defmodule Kwtool.Providers.Google.Parser do
 
     attributes = %{
       top_ads_count: top_ads_count(document),
-      top_ads_urls: [],
+      top_ads_urls: top_ads_urls(document),
       all_ads_count: total_ads_count(document),
-      organic_result_count: 0,
-      organic_result_urls: [],
+      organic_result_count: organic_result_count(document),
+      organic_result_urls: organic_result_urls(document),
       all_links_count: all_links_count(document),
       html: html
     }
@@ -36,23 +36,23 @@ defmodule Kwtool.Providers.Google.Parser do
     |> Enum.count()
   end
 
-  # defp result_count(document) do
-  #   document
-  #   |> Floki.find(@selectors.organic_result_count)
-  #   |> Enum.count()
-  # end
+  defp organic_result_count(document) do
+    document
+    |> Floki.find(@selectors.organic_result_count)
+    |> Enum.count()
+  end
 
-  # defp organic_result_urls(document) do
-  #   document
-  #   |> Floki.find(@selectors.organic_result_urls)
-  #   |> Floki.attribute("href")
-  # end
+  defp organic_result_urls(document) do
+    document
+    |> Floki.find(@selectors.organic_result_urls)
+    |> Floki.attribute("href")
+  end
 
-  # defp top_ads_urls(document) do
-  #   document
-  #   |> Floki.find(@selectors.top_ads_urls)
-  #   |> Floki.attribute("href")
-  # end
+  defp top_ads_urls(document) do
+    document
+    |> Floki.find(@selectors.top_ads_urls)
+    |> Floki.attribute("href")
+  end
 
   defp total_ads_count(document) do
     document
