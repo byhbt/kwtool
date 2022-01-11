@@ -1,10 +1,11 @@
-defmodule Kwtool.Crawler.Keywords do
+defmodule Kwtool.Crawlers do
   import Ecto.Query, warn: false
 
   alias Kwtool.Account.Schemas.User
-  alias Kwtool.Crawler.Schemas.{Keyword, KeywordResult}
+  alias Kwtool.Crawler.Schemas.Keyword
   alias Kwtool.Crawler.UploadParser
   alias Kwtool.Repo
+  alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   def save_keywords_list(keyword_file, %User{} = user) do
     case UploadParser.parse(keyword_file) do
@@ -44,21 +45,12 @@ defmodule Kwtool.Crawler.Keywords do
   end
 
   defp create_keyword(attrs) do
-    %Keyword{}
+    {:ok, %Keyword{id: keyword_id}} = %Keyword{}
     |> Keyword.create_changeset(attrs)
     |> Repo.insert()
-  end
 
-  def find_by_id!(keyword_id) do
-    Keyword
-    |> where(id: ^keyword_id)
-    |> Repo.one!()
-  end
-
-  def add_crawl_result(keyword, crawler_result_attrs) do
-    crawler_result_attrs
-    |> Map.put(:keyword_id, keyword.id)
-    |> KeywordResult.create_changeset()
-    |> Repo.insert()
+    %{"keyword_id" => keyword_id}
+    |> GoogleKeywordCrawler.new()
+    |> Oban.insert()
   end
 end
