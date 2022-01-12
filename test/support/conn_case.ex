@@ -22,13 +22,18 @@ defmodule KwtoolWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      import Plug.Conn
-      import Phoenix.ConnTest
-      import KwtoolWeb.ConnCase
       import Kwtool.Factory
+      import KwtoolWeb.ConnCase
       import KwtoolWeb.Support.ConnHelper
+      import Phoenix.ConnTest
+      import Plug.Conn
 
       alias KwtoolWeb.Router.Helpers, as: Routes
+
+      use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+      use Mimic
+
+      ExVCR.Config.cassette_library_dir("support/fixtures/vcr_cassettes")
 
       # The default endpoint for testing
       @endpoint KwtoolWeb.Endpoint

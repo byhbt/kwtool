@@ -5,6 +5,10 @@ defmodule Kwtool.Providers.Google.Crawler do
   plug Tesla.Middleware.Headers, headers()
   plug Tesla.Middleware.Logger
 
+  def crawl_keyword(keyword) do
+    get("search", query: [q: keyword])
+  end
+
   defp headers do
     [
       {"User-Agent",
