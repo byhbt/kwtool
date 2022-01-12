@@ -51,7 +51,7 @@ defmodule Kwtool.Providers.Google.Parser do
   defp top_ads_urls(document) do
     document
     |> Floki.find(@selectors.top_ads_urls)
-    |> Floki.attribute("href")
+    |> Floki.text()
   end
 
   defp total_ads_count(document) do
