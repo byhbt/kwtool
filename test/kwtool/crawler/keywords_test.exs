@@ -3,7 +3,7 @@ defmodule Kwtool.KeywordsTest do
   use Oban.Testing, repo: Kwtool.Repo
 
   alias Kwtool.Crawler.Keywords
-  alias Kwtool.Crawler.Schemas.Keyword
+  alias Kwtool.Crawler.Schemas.{Keyword, KeywordResult}
   alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   describe "save_keywords_list/2" do
@@ -121,6 +121,35 @@ defmodule Kwtool.KeywordsTest do
       created_user_2 = insert(:user)
 
       assert Keywords.get_keyword_by_user(created_user_2, user_1_keyword.id) == nil
+    end
+  end
+
+  describe "find_by_id!/1" do
+    test "given an existing keyword ID, returns the keyword" do
+      %{id: keyword_id} = insert(:keyword)
+
+      assert %Keyword{id: ^keyword_id} = Keywords.find_by_id!(keyword_id)
+    end
+
+    test "raises an Ecto.NoResultsError exception given non existing keyword ID" do
+      assert_raise Ecto.NoResultsError, fn ->
+        Keywords.find_by_id!(10_000)
+      end
+    end
+  end
+
+  describe "add_crawl_result/1" do
+    test "given a keyword search result, save the result with the existing keyword" do
+      keyword = insert(:keyword)
+      parsed_keyword_result = params_for(:keyword_result)
+
+      assert {:ok, %KeywordResult{id: keyword_result_id}} =
+               Keywords.add_crawl_result(keyword, parsed_keyword_result)
+
+      keyword_result_in_db = Repo.get(KeywordResult, keyword_result_id)
+
+      assert _parsed_keyword_result = keyword_result_in_db
+      assert keyword_result_in_db.keyword_id == keyword.id
     end
   end
 end

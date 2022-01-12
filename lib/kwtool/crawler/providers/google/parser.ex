@@ -1,8 +1,8 @@
 defmodule Kwtool.Providers.Google.Parser do
   @selectors %{
     top_ads_count: "#tads .uEierd",
-    top_ads_urls: ".x2VHCd .OSrXXb .qzEoUe",
-    all_ads_count: ".x2VHCd .OSrXXb .qzEoUe",
+    top_ads_urls: ".x2VHCd.OSrXXb.nMdasd.qzEoUe",
+    all_ads_count: ".x2VHCd.OSrXXb.qzEoUe",
     organic_result_urls: ".yuRUbf > a",
     organic_result_count: ".yuRUbf",
     all_links_count: "a[href]"
@@ -51,12 +51,12 @@ defmodule Kwtool.Providers.Google.Parser do
   defp top_ads_urls(document) do
     document
     |> Floki.find(@selectors.top_ads_urls)
-    |> Floki.text()
+    |> Enum.map(fn item -> Floki.text(item) end)
   end
 
   defp total_ads_count(document) do
     document
-    |> Floki.find(@selectors.top_ads_urls)
+    |> Floki.find(@selectors.all_ads_count)
     |> Enum.count()
   end
 end

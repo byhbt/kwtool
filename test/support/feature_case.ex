@@ -4,6 +4,7 @@ defmodule KwtoolWeb.FeatureCase do
   using do
     quote do
       use Wallaby.Feature
+      use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, clear_mock: true
 
       import Kwtool.Factory
       import Wallaby.Query, only: [button: 1, css: 1, text_field: 1]
