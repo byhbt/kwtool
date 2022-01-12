@@ -1,10 +1,7 @@
 defmodule KwtoolWeb.UploadControllerTest do
   use KwtoolWeb.ConnCase, async: true
-  use Oban.Testing, repo: Kwtool.Repo
 
   import KwtoolWeb.Support.ConnHelper
-
-  alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   describe "get index/2" do
     test "returns 200 status when accessing with a logged-in user", %{conn: conn} do
@@ -36,12 +33,6 @@ defmodule KwtoolWeb.UploadControllerTest do
 
       assert redirected_to(conn) == Routes.upload_path(conn, :index)
       assert get_flash(conn, :info) == "The keyword file is processed successfully!"
-
-      assert [
-               %{args: %{"keyword_id" => _}},
-               %{args: %{"keyword_id" => _}},
-               %{args: %{"keyword_id" => _}}
-             ] = all_enqueued(worker: GoogleKeywordCrawler)
     end
 
     test "redirects to the upload page given an empty file", %{conn: conn} do
@@ -60,8 +51,6 @@ defmodule KwtoolWeb.UploadControllerTest do
 
       assert redirected_to(conn) == Routes.upload_path(conn, :index)
       assert get_flash(conn, :error) == "The keyword file is empty!"
-
-      refute_enqueued(queue: "keyword_crawler")
     end
 
     test "redirects to the upload page given an invalid file", %{conn: conn} do
@@ -80,8 +69,6 @@ defmodule KwtoolWeb.UploadControllerTest do
 
       assert redirected_to(conn) == Routes.upload_path(conn, :index)
       assert get_flash(conn, :error) == "The keyword file is invalid!"
-
-      refute_enqueued(queue: "keyword_crawler")
     end
   end
 end
