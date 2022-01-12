@@ -32,12 +32,7 @@ config :wallaby,
 
 config :exvcr,
   vcr_cassette_library_dir: "test/support/fixtures/vcr_cassettes",
-  filter_sensitive_data: [
-    [pattern: "<PASSWORD>.+</PASSWORD>", placeholder: "PASSWORD_PLACEHOLDER"]
-  ],
-  filter_url_params: false,
-  filter_request_headers: [],
-  response_headers_blacklist: []
+  ignore_localhost: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
