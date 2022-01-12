@@ -20,13 +20,15 @@ defmodule Kwtool.DataCase do
 
   using do
     quote do
-      alias Kwtool.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import Kwtool.DataCase
       import Kwtool.Factory
+
+      use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+
+      alias Kwtool.Repo
     end
   end
 
