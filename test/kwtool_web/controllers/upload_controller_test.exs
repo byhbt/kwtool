@@ -23,7 +23,7 @@ defmodule KwtoolWeb.UploadControllerTest do
     test "redirects to the upload page when the import processed successfully", %{conn: conn} do
       example_file = %Plug.Upload{
         content_type: "text/csv",
-        path: "test/support/fixtures/keywords.csv"
+        path: "test/support/fixtures/3-keywords.csv"
       }
 
       created_user = insert(:user)
