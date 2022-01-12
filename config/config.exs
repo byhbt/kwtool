@@ -36,15 +36,6 @@ config :kwtool, Oban,
 
 config :tesla, adapter: Tesla.Adapter.Hackney
 
-config :exvcr,
-  vcr_cassette_library_dir: "test/support/fixtures/vcr_cassettes",
-  filter_sensitive_data: [
-    [pattern: "<PASSWORD>.+</PASSWORD>", placeholder: "PASSWORD_PLACEHOLDER"]
-  ],
-  filter_url_params: false,
-  filter_request_headers: [],
-  response_headers_blacklist: []
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
