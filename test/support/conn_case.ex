@@ -28,12 +28,10 @@ defmodule KwtoolWeb.ConnCase do
       import Phoenix.ConnTest
       import Plug.Conn
 
-      alias KwtoolWeb.Router.Helpers, as: Routes
-
       use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
       use Mimic
 
-      ExVCR.Config.cassette_library_dir("support/fixtures/vcr_cassettes")
+      alias KwtoolWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
       @endpoint KwtoolWeb.Endpoint
