@@ -5,7 +5,7 @@ defmodule Kwtool.Crawler.Providers.GoogleTest do
 
   describe "crawl_keyword/1" do
     test "given valid keyword, returns 200 status code" do
-      use_cassette "google/search_success" do
+      use_cassette "google/crawl_success" do
         {:ok, response} = Crawler.crawl_keyword("oven fryer")
 
         assert response.status == 200
