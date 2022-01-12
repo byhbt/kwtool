@@ -1,8 +1,10 @@
 defmodule Kwtool.KeywordsTest do
   use Kwtool.DataCase, async: true
+  use Oban.Testing, repo: Kwtool.Repo
 
   alias Kwtool.Crawler.Keywords
   alias Kwtool.Crawler.Schemas.Keyword
+  alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   describe "save_keywords_list/2" do
     test "inserts the uploaded keywords to the database when given a valid CSV file" do
@@ -25,6 +27,12 @@ defmodule Kwtool.KeywordsTest do
       assert keyword3.phrase == "golf club"
       assert keyword3.user_id == created_user.id
       assert keyword3.status == "added"
+
+      assert [
+               %{args: %{"keyword_id" => _}},
+               %{args: %{"keyword_id" => _}},
+               %{args: %{"keyword_id" => _}}
+             ] = all_enqueued(worker: GoogleKeywordCrawler)
     end
   end
 
