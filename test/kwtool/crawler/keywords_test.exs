@@ -10,7 +10,7 @@ defmodule Kwtool.KeywordsTest do
 
       keyword_file = %Plug.Upload{
         content_type: "text/csv",
-        path: "test/support/fixtures/keywords.csv"
+        path: "test/support/fixtures/3-keywords.csv"
       }
 
       assert {:ok, :file_is_processed} = Keywords.save_keywords_list(keyword_file, created_user)
