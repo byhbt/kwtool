@@ -8,8 +8,8 @@ defmodule Kwtool.Providers.Google.Parser do
     all_links_count: "a[href]"
   }
 
-  def parse(html) do
-    {_, document} = Floki.parse_document(html)
+  def parse(raw_html) do
+    {_, document} = Floki.parse_document(raw_html)
 
     attributes = %{
       top_ads_count: top_ads_count(document),
@@ -18,7 +18,7 @@ defmodule Kwtool.Providers.Google.Parser do
       organic_result_count: organic_result_count(document),
       organic_result_urls: organic_result_urls(document),
       all_links_count: all_links_count(document),
-      html: html
+      html: raw_html
     }
 
     {:ok, attributes}
