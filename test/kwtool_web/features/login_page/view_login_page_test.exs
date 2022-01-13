@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.HomePage.ViewLoginPageTest do
-  use KwtoolWeb.FeatureCase, async: true
+  use KwtoolWeb.FeatureCase, async: false
 
   @path Routes.session_path(KwtoolWeb.Endpoint, :new)
 

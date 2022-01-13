@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.HomePage.ViewDashboardPageTest do
-  use KwtoolWeb.FeatureCase, async: true
+  use KwtoolWeb.FeatureCase, async: false
 
   import Wallaby.Query, only: [css: 2]
 
