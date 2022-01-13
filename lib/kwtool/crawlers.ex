@@ -50,6 +50,10 @@ defmodule Kwtool.Crawlers do
       |> Keyword.create_changeset(attrs)
       |> Repo.insert()
 
+    add_to_crawler_queue(keyword_id)
+  end
+
+  defp add_to_crawler_queue(keyword_id) do
     %{"keyword_id" => keyword_id}
     |> GoogleKeywordCrawler.new()
     |> Oban.insert()

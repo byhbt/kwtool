@@ -125,13 +125,13 @@ defmodule Kwtool.KeywordsTest do
   end
 
   describe "find_by_id!/1" do
-    test "given an existing keyword ID, returns the keyword" do
+    test "given the existing keyword Id, returns the keyword" do
       %{id: keyword_id} = insert(:keyword)
 
       assert %Keyword{id: ^keyword_id} = Keywords.find_by_id!(keyword_id)
     end
 
-    test "raises an Ecto.NoResultsError exception given non existing keyword ID" do
+    test "given a non-existing keyword Id, raises Ecto.NoResultsError exception" do
       assert_raise Ecto.NoResultsError, fn ->
         Keywords.find_by_id!(10_000)
       end
@@ -139,7 +139,7 @@ defmodule Kwtool.KeywordsTest do
   end
 
   describe "add_crawl_result/2" do
-    test "given a keyword search result, store the search result=" do
+    test "given a keyword search result, store the search result" do
       keyword = insert(:keyword)
       parsed_keyword_result = params_for(:keyword_result)
 

@@ -29,7 +29,7 @@ defmodule Kwtool.Account.AccountsTest do
   end
 
   describe "get_user/1" do
-    test "returns the user with given id" do
+    test "returns the user with given Id" do
       created_user = insert(:user)
 
       assert Users.get_user!(created_user.id) == created_user
