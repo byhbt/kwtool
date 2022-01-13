@@ -1,4 +1,4 @@
-defmodule Kwtool.CrawlersTest do
+defmodule Kwtool.KeywordsTest do
   use Kwtool.DataCase, async: true
 
   alias Kwtool.Crawler.Keywords
