@@ -4,7 +4,7 @@ defmodule Kwtool.Crawler.Providers.GoogleTest do
   alias Kwtool.Providers.Google.Crawler
 
   describe "crawl_keyword/1" do
-    test "given valid keyword, returns 200 status code" do
+    test "given a valid keyword, returns 200 status code" do
       use_cassette "google/crawl_success" do
         {:ok, response} = Crawler.crawl_keyword("oven fryer")
 
