@@ -31,7 +31,7 @@ config :kwtool, Oban,
   plugins: [Oban.Plugins.Pruner],
   queues: [
     default: 10,
-    keyword_crawler: 4
+    keyword_crawler: 10
   ]
 
 config :tesla, adapter: Tesla.Adapter.Hackney
