@@ -5,6 +5,7 @@ defmodule Kwtool.Crawler.Keywords do
   alias Kwtool.Crawler.Schemas.{Keyword, KeywordResult}
   alias Kwtool.Crawler.UploadParser
   alias Kwtool.Repo
+  alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   def save_keywords_list(keyword_file, %User{} = user) do
     case UploadParser.parse(keyword_file) do
@@ -43,12 +44,6 @@ defmodule Kwtool.Crawler.Keywords do
     |> Repo.one()
   end
 
-  defp create_keyword(attrs) do
-    %Keyword{}
-    |> Keyword.create_changeset(attrs)
-    |> Repo.insert()
-  end
-
   def find_by_id!(keyword_id) do
     Keyword
     |> where(id: ^keyword_id)
@@ -60,5 +55,20 @@ defmodule Kwtool.Crawler.Keywords do
     |> Map.put(:keyword_id, keyword_id)
     |> KeywordResult.create_changeset()
     |> Repo.insert()
+  end
+
+  defp create_keyword(attrs) do
+    {:ok, %Keyword{id: keyword_id}} =
+      %Keyword{}
+      |> Keyword.create_changeset(attrs)
+      |> Repo.insert()
+
+    add_to_crawler_queue(keyword_id)
+  end
+
+  defp add_to_crawler_queue(keyword_id) do
+    %{"keyword_id" => keyword_id}
+    |> GoogleKeywordCrawler.new()
+    |> Oban.insert()
   end
 end
