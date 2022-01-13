@@ -3,7 +3,7 @@ defmodule Kwtool.Repo.Migrations.RemoveRawResultFieldOnKeywordsTable do
 
   def change do
     alter table("keywords") do
-      remove :raw_result
+      remove :raw_result, :text
     end
   end
 end
