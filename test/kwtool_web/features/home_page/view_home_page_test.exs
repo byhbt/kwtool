@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.HomePage.ViewHomePageTest do
-  use KwtoolWeb.FeatureCase, async: true
+  use KwtoolWeb.FeatureCase, async: false
 
   feature "view home page", %{session: session} do
     session

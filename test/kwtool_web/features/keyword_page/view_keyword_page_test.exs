@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.HomePage.ViewKeywordPageTest do
-  use KwtoolWeb.FeatureCase, async: true
+  use KwtoolWeb.FeatureCase, async: false
 
   feature "views the keyword listing page", %{session: session} do
     created_user_1 = insert(:user)

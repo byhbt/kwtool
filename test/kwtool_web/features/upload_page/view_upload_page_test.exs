@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.HomePage.ViewUploadPageTest do
-  use KwtoolWeb.FeatureCase, async: true
+  use KwtoolWeb.FeatureCase, async: false
 
   import Wallaby.Query, only: [button: 1, file_field: 1]
 

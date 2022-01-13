@@ -1,5 +1,5 @@
 defmodule KwtoolWeb.HomePage.ViewRegistrationPageTest do
-  use KwtoolWeb.FeatureCase, async: true
+  use KwtoolWeb.FeatureCase, async: false
 
   @path Routes.auth_path(KwtoolWeb.Endpoint, :show)
 
