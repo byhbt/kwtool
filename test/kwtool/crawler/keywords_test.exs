@@ -2,7 +2,7 @@ defmodule Kwtool.CrawlersTest do
   use Kwtool.DataCase, async: true
 
   alias Kwtool.Crawler.Schemas.Keyword
-  alias Kwtool.Crawlers
+  alias Kwtool.Crawler.Keywords
 
   describe "save_keywords_list/2" do
     test "inserts the uploaded keywords to the database when given a valid CSV file" do
@@ -13,7 +13,7 @@ defmodule Kwtool.CrawlersTest do
         path: "test/support/fixtures/keywords.csv"
       }
 
-      assert {:ok, :file_is_proccessed} = Crawlers.save_keywords_list(keyword_file, created_user)
+      assert {:ok, :file_is_proccessed} = Keywords.save_keywords_list(keyword_file, created_user)
       assert [keyword1, keyword2, keyword3] = Repo.all(Keyword)
 
       assert keyword1.phrase == "badminton racket"
@@ -33,7 +33,7 @@ defmodule Kwtool.CrawlersTest do
       created_user = insert(:user)
       insert(:keyword, user: created_user)
 
-      {keywords, pagination} = Crawlers.paginate_user_keywords(created_user, %{page: 1})
+      {keywords, pagination} = Keywords.paginate_user_keywords(created_user, %{page: 1})
 
       assert length(keywords) == 1
 
@@ -56,7 +56,7 @@ defmodule Kwtool.CrawlersTest do
       custom_keyword_attrs = %{phrase: "test listing per user phrase", user: created_user_2}
       keyword_of_user_2 = insert(:keyword, custom_keyword_attrs)
 
-      {keywords, pagination} = Crawlers.paginate_user_keywords(created_user, %{page: 1})
+      {keywords, pagination} = Keywords.paginate_user_keywords(created_user, %{page: 1})
 
       assert length(keywords) == 1
       refute Enum.at(keywords, 0).phrase == keyword_of_user_2.phrase
@@ -80,7 +80,7 @@ defmodule Kwtool.CrawlersTest do
       insert(:keyword, custom_keyword_attrs)
 
       search_query = %{"query" => "test search param"}
-      {keywords, _pagination} = Crawlers.paginate_user_keywords(created_user, search_query)
+      {keywords, _pagination} = Keywords.paginate_user_keywords(created_user, search_query)
 
       assert length(keywords) == 1
       assert Enum.at(keywords, 0).phrase == custom_keyword_attrs.phrase
@@ -91,7 +91,7 @@ defmodule Kwtool.CrawlersTest do
       insert(:keyword, user: created_user)
 
       search_query = %{"query" => "not exist search phrase"}
-      {keywords, _pagination} = Crawlers.paginate_user_keywords(created_user, search_query)
+      {keywords, _pagination} = Keywords.paginate_user_keywords(created_user, search_query)
 
       assert keywords == []
     end
@@ -101,7 +101,7 @@ defmodule Kwtool.CrawlersTest do
     test "returns a keyword for a given user" do
       created_user = insert(:user)
       user_keyword = insert(:keyword, user: created_user)
-      keyword = Crawlers.get_keyword_by_user(created_user, user_keyword.id)
+      keyword = Keywords.get_keyword_by_user(created_user, user_keyword.id)
 
       assert keyword.id == user_keyword.id
       assert keyword.phrase == user_keyword.phrase
@@ -112,7 +112,7 @@ defmodule Kwtool.CrawlersTest do
       user_1_keyword = insert(:keyword, user: created_user_1)
       created_user_2 = insert(:user)
 
-      assert Crawlers.get_keyword_by_user(created_user_2, user_1_keyword.id) == nil
+      assert Keywords.get_keyword_by_user(created_user_2, user_1_keyword.id) == nil
     end
   end
 end
