@@ -17,7 +17,8 @@ defmodule KwtoolWeb.KeywordController do
         |> redirect(to: Routes.keyword_path(conn, :index))
 
       keyword ->
-        render(conn, "show.html", keyword: keyword)
+        keyword_results = keyword.keyword_results
+        render(conn, "show.html", keyword: keyword, keyword_results: keyword_results)
     end
   end
 end
