@@ -34,7 +34,6 @@ defmodule Kwtool.Crawler.Schemas.Keyword do
   end
 
   def finished_changeset(%__MODULE__{} = keyword) do
-    keyword
-    |> change(status: "finished")
+    change(keyword, status: "finished")
   end
 end
