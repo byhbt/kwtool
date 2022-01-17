@@ -10,7 +10,7 @@ defmodule KwtoolWeb.KeywordController do
   end
 
   def show(conn, %{"id" => keyword_id}) do
-    case Keywords.get_keyword_by_user(conn.assigns.current_user, keyword_id) do
+    case Keywords.find_keyword_by_user(conn.assigns.current_user, keyword_id) do
       nil ->
         conn
         |> put_flash(:error, "Keyword not found.")
