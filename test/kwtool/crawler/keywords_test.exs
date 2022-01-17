@@ -108,23 +108,24 @@ defmodule Kwtool.KeywordsTest do
   describe "find_keyword_by_user/2" do
     test "given the user and the keyword Id, returns a keyword with result" do
       user = insert(:user)
-      keyword = insert(:keyword, user: user)
+      keyword = insert(:keyword, user: user, phrase: "Macbook Pro M1")
 
       insert(:keyword_result, keyword: keyword)
 
-      keyword = Keywords.find_keyword_by_user(user, keyword.id)
+      keyword_in_db = Keywords.find_keyword_by_user(user, keyword.id)
 
-      assert keyword.id == keyword.id
-      assert keyword.phrase == keyword.phrase
-      assert length(keyword.keyword_results) == 1
+      assert keyword_in_db.id == keyword.id
+      assert keyword_in_db.phrase == keyword.phrase
+      assert length(keyword_in_db.keyword_results) == 1
     end
 
-    test "returns nil when querying keyword of a different user" do
-      created_user_1 = insert(:user)
-      user_1_keyword = insert(:keyword, user: created_user_1)
-      created_user_2 = insert(:user)
+    test "given the keyword does not belong to the user, returns nil" do
+      user_1 = insert(:user)
 
-      assert Keywords.find_keyword_by_user(created_user_2, user_1_keyword.id) == nil
+      user_2 = insert(:user)
+      user_2_keyword = insert(:keyword, user: user_2)
+
+      assert Keywords.find_keyword_by_user(user_1, user_2_keyword.id) == nil
     end
   end
 
@@ -143,7 +144,7 @@ defmodule Kwtool.KeywordsTest do
   end
 
   describe "add_crawl_result/2" do
-    test "given a keyword search result, store it to the database" do
+    test "given a keyword search result, stores it to the database" do
       keyword = insert(:keyword)
       parsed_keyword_result = params_for(:keyword_result)
 
