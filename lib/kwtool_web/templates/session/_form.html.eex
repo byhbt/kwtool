@@ -4,15 +4,15 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-  <div class="form-group">
-    <%= label f, :email %>
+  <div class="mb-3">
+    <%= label f, :email, class: "form-label" %>
     <%= email_input f, :email, required: true, class: "form-control", placeholder: "Email" %>
     <%= error_tag f, :email %>
   </div>
-  <div class="form-group">
-    <%= label f, :password %>
+  <div class="mb-3">
+    <%= label f, :password, class: "form-label" %>
     <%= password_input f, :password, required: true, minlength: 6, maxlength: 100, class: "form-control", placeholder: "Password" %>
     <%= error_tag f, :password %>
   </div>
-  <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+  <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block mb-3" %>
 <% end %>
