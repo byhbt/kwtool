@@ -37,7 +37,7 @@ defmodule Kwtool.Crawler.Keywords do
     |> Repo.paginate(params)
   end
 
-  def get_keyword_by_user(%User{} = user, keyword_id) do
+  def find_keyword_by_user(%User{} = user, keyword_id) do
     Keyword
     |> where([k], k.user_id == ^user.id)
     |> where([k], k.id == ^keyword_id)

@@ -105,14 +105,18 @@ defmodule Kwtool.KeywordsTest do
     end
   end
 
-  describe "get_keyword_by_user/2" do
-    test "returns a keyword for a given user" do
-      created_user = insert(:user)
-      user_keyword = insert(:keyword, user: created_user)
-      keyword = Keywords.get_keyword_by_user(created_user, user_keyword.id)
+  describe "find_keyword_by_user/2" do
+    test "given the user and the keyword Id, returns a keyword with result" do
+      user = insert(:user)
+      keyword = insert(:keyword, user: user)
 
-      assert keyword.id == user_keyword.id
-      assert keyword.phrase == user_keyword.phrase
+      insert(:keyword_result, keyword: keyword)
+
+      keyword = Keywords.find_keyword_by_user(user, keyword.id)
+
+      assert keyword.id == keyword.id
+      assert keyword.phrase == keyword.phrase
+      assert length(keyword.keyword_results) == 1
     end
 
     test "returns nil when querying keyword of a different user" do
@@ -120,7 +124,7 @@ defmodule Kwtool.KeywordsTest do
       user_1_keyword = insert(:keyword, user: created_user_1)
       created_user_2 = insert(:user)
 
-      assert Keywords.get_keyword_by_user(created_user_2, user_1_keyword.id) == nil
+      assert Keywords.find_keyword_by_user(created_user_2, user_1_keyword.id) == nil
     end
   end
 
