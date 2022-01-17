@@ -32,4 +32,9 @@ defmodule Kwtool.Crawler.Schemas.Keyword do
     |> validate_inclusion(:status, Map.values(@statuses))
     |> assoc_constraint(:user)
   end
+
+  def finished_changeset(%__MODULE__{} = keyword) do
+    keyword
+    |> change(status: "finished")
+  end
 end

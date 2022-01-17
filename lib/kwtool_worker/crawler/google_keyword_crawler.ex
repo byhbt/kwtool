@@ -12,8 +12,9 @@ defmodule KwtoolWorker.Crawler.GoogleKeywordCrawler do
     keyword = Keywords.find_by_id!(keyword_id)
 
     with {:ok, response} <- Crawler.crawl_keyword(keyword.phrase),
-         {:ok, parsed_values} <- Parser.parse(response.body) do
-      Keywords.add_crawl_result(keyword, parsed_values)
+         {:ok, parsed_values} <- Parser.parse(response.body),
+         {:ok, keyword_result} <- Keywords.add_crawl_result(keyword, parsed_values) do
+      Keywords.mark_as_finished(keyword)
     end
 
     :ok
