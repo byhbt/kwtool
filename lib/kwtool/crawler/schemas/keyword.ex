@@ -4,6 +4,7 @@ defmodule Kwtool.Crawler.Schemas.Keyword do
   import Ecto.Changeset
 
   alias Kwtool.Account.Schemas.User
+  alias Kwtool.Crawler.Schemas.KeywordResult
 
   @statuses %{
     added: "added",
@@ -17,6 +18,8 @@ defmodule Kwtool.Crawler.Schemas.Keyword do
     field :status, :string
 
     belongs_to :user, User
+
+    has_many :keyword_results, KeywordResult
 
     timestamps()
   end

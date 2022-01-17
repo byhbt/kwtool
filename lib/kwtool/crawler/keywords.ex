@@ -41,6 +41,7 @@ defmodule Kwtool.Crawler.Keywords do
     Keyword
     |> where([k], k.user_id == ^user.id)
     |> where([k], k.id == ^keyword_id)
+    |> preload(:keyword_results)
     |> Repo.one()
   end
 
