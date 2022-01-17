@@ -16,10 +16,26 @@
     <%= for keyword_result <- @keyword_results do %>
       <tr>
         <td><%= keyword_result.top_ads_count %></td>
-        <td><%= keyword_result.top_ads_urls %></td>
+        <td>
+          <%= if length(keyword_result.top_ads_urls) > 0 do %>
+            <ul>
+              <%= for url <- keyword_result.top_ads_urls do %>
+                <li><a href="<%= url %>" target="_blank"><%= url %></a></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
         <td><%= keyword_result.all_ads_count %></td>
         <td><%= keyword_result.organic_result_count %></td>
-        <td><%= keyword_result.organic_result_urls %></td>
+        <td>
+          <%= if length(keyword_result.organic_result_urls) > 0 do %>
+            <ul>
+              <%= for url <- keyword_result.organic_result_urls do %>
+                <li><a href="<%= url %>" target="_blank"><%= url %></a></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
         <td><%= keyword_result.all_links_count %></td>
         <td><%= keyword_result.inserted_at %></td>
       </tr>
