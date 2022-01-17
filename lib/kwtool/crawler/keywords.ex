@@ -7,16 +7,10 @@ defmodule Kwtool.Crawler.Keywords do
   alias Kwtool.Repo
   alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
-  def save_keywords_list(keyword_file, %User{} = user) do
+  def save_keywords_list(keyword_file, %User{id: user_id}) do
     case UploadParser.parse(keyword_file) do
       {:ok, keyword_list} ->
-        Enum.each(keyword_list, fn keyword ->
-          create_keyword(%{
-            phrase: List.first(keyword),
-            user_id: user.id
-          })
-        end)
-
+        process_keyword_list(keyword_list, user_id)
         {:ok, :file_is_processed}
 
       {:error, :file_is_empty} ->
@@ -64,13 +58,22 @@ defmodule Kwtool.Crawler.Keywords do
     |> Repo.update()
   end
 
-  defp create_keyword(attrs) do
-    {:ok, %Keyword{id: keyword_id}} =
-      %Keyword{}
-      |> Keyword.create_changeset(attrs)
-      |> Repo.insert()
+  defp process_keyword_list(keyword_list, user_id) do
+    Enum.each(keyword_list, fn keyword ->
+      {:ok, %Keyword{id: keyword_id}} =
+        create_keyword(%{
+          phrase: List.first(keyword),
+          user_id: user_id
+        })
 
-    add_to_crawler_queue(keyword_id)
+      add_to_crawler_queue(keyword_id)
+    end)
+  end
+
+  defp create_keyword(attrs) do
+    %Keyword{}
+    |> Keyword.create_changeset(attrs)
+    |> Repo.insert()
   end
 
   defp add_to_crawler_queue(keyword_id) do
