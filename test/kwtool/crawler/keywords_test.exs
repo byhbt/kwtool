@@ -139,7 +139,7 @@ defmodule Kwtool.KeywordsTest do
   end
 
   describe "add_crawl_result/2" do
-    test "given a keyword search result, store the search result" do
+    test "given a keyword search result, store it to the database" do
       keyword = insert(:keyword)
       parsed_keyword_result = params_for(:keyword_result)
 
@@ -152,7 +152,7 @@ defmodule Kwtool.KeywordsTest do
       assert keyword_result_in_db.keyword_id == keyword.id
     end
 
-    test "given a non-existing keyword, returns error" do
+    test "given a non-existing keyword, returns Keyword does not exist error" do
       keyword_result = params_for(:keyword_result)
 
       assert {:error, changeset} = Keywords.add_crawl_result(%Keyword{id: 9999}, keyword_result)
