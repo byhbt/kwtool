@@ -48,4 +48,15 @@ defmodule Kwtool.Crawler.Schemas.KeywordTest do
              }
     end
   end
+
+  describe "finished_changeset/2" do
+    test "given the keyword with status `added`, returns it with the status is updated to `finished`" do
+      keyword = insert(:keyword, status: "added")
+
+      changeset = Keyword.finished_changeset(keyword)
+
+      assert changeset.valid?
+      assert changeset.changes.status == "finished"
+    end
+  end
 end
