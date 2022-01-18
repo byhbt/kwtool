@@ -8,8 +8,7 @@ defmodule KwtoolWeb.Api.V1.SessionView do
         email: email,
         jwt: jwt
       },
-      message:
-        "You are successfully logged in! Add this token to authorization header to make authorized requests."
+      message: "You are successfully logged in!"
     }
   end
 end
