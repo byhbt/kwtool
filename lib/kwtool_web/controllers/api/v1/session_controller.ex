@@ -2,7 +2,7 @@ defmodule KwtoolWeb.Api.V1.SessionController do
   use KwtoolWeb, :controller
 
   alias Kwtool.Account.{Guardian, Users}
-  alias Kwtool.Account.Schemas.User
+  alias KwtoolWeb.Api.V1.ErrorView
 
   def create(conn, %{"email" => email, "password" => password}) do
     case Users.authenticate_user(email, password) do
@@ -15,6 +15,7 @@ defmodule KwtoolWeb.Api.V1.SessionController do
       {:error, :invalid_credentials} ->
         conn
         |> put_status(401)
+        |> put_view(ErrorView)
         |> render("error.json", message: "User could not be authenticated")
     end
   end
