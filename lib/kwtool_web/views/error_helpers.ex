@@ -44,4 +44,14 @@ defmodule KwtoolWeb.ErrorHelpers do
       Gettext.dgettext(KwtoolWeb.Gettext, "errors", msg, opts)
     end
   end
+
+  def status_code_from_template(template) do
+    template
+    |> String.split(".")
+    |> hd()
+    |> String.to_integer()
+    |> Status.reason_atom()
+  rescue
+    _ -> :internal_server_error
+  end
 end

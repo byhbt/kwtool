@@ -23,6 +23,19 @@ defmodule KwtoolWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api/v1/", KwtoolWeb.Api.V1 do
+    pipe_through [
+      :api,
+      KwtoolWeb.CheckEmptyBodyParamsPlug
+    ]
+  end
+
+  scope "/api/v1", KwtoolWeb.Api.V1 do
+    pipe_through :api
+
+    post "/sign_in", SessionController, :create
+  end
+
   scope "/", KwtoolWeb do
     pipe_through [:browser, :auth]
 
