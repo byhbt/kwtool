@@ -13,14 +13,14 @@ config :kwtool,
 # Configures the endpoint
 config :kwtool, KwtoolWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "HuHBcv0u6+f2oJalUQycD8aYnoMq4+EFiIL5a4s/jkKJELdET+i+v/APP0HLwVtF",
+  secret_key_base: System.fetch_env!("SECRET_KEY_BASE"),
   render_errors: [view: KwtoolWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Kwtool.PubSub,
   live_view: [signing_salt: "W+K81ela"]
 
 config :kwtool, Kwtool.Account.Guardian,
   issuer: "kwtool",
-  secret_key: "y00rP0vBWqQ"
+  secret_key: System.fetch_env!("SECRET_KEY_GUARDIAN")
 
 # Configures Elixir's Logger
 config :logger, :console,

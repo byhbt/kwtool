@@ -1,16 +1,23 @@
-defmodule Kwtool.Account.Guardian do
-  use Guardian, otp_app: :kwtool
+defmodule Kwtool.Account.ErrorHandler do
+  # import Plug.Conn
 
-  alias Kwtool.Account.Users
+  # @behaviour Guardian.Plug.ErrorHandler
 
-  def subject_for_token(user, _claims) do
-    {:ok, to_string(user.id)}
-  end
+  # @impl Guardian.Plug.ErrorHandler
+  # def auth_error(conn, {type, _reason}, _opts) do
+  #   body = Jason.encode!(%{message: to_string(type)})
+  #   send_resp(conn, 401, body)
+  # end
 
-  def resource_from_claims(%{"sub" => id}) do
-    user = Users.get_user!(id)
-    {:ok, user}
-  rescue
-    Ecto.NoResultsError -> {:error, :resource_not_found}
+
+  use KwtoolWeb, :controller
+
+  @behaviour Guardian.Plug.ErrorHandler
+
+  @impl Guardian.Plug.ErrorHandler
+  def auth_error(conn, {type, _reason}, _opts) do
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(401, to_string(type))
   end
 end
