@@ -3,14 +3,11 @@ defmodule KwtoolWeb.Api.V1.ErrorView do
 
   alias Ecto.Changeset
 
-  # By default, Phoenix returns the status message from
-  # the template name. For example, "404.json" becomes
-  # "Not Found".
-  def template_not_found(template, _assigns) do
+  def template_not_found(template, assigns) do
     build_error_response(
       code: status_code_from_template(template),
       detail: %{},
-      message: Phoenix.Controller.status_message_from_template(template)
+      message: assigns[:message] || Phoenix.Controller.status_message_from_template(template)
     )
   end
 
@@ -21,9 +18,6 @@ defmodule KwtoolWeb.Api.V1.ErrorView do
       message: build_changeset_error_message(changeset)
     )
   end
-
-  def render("error.json", %{code: code, message: message}),
-    do: build_error_response(code: code, detail: %{}, message: message)
 
   defp build_changeset_error_message(%Changeset{} = changeset) do
     changeset
