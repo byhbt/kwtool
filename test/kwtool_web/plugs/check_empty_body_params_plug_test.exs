@@ -10,7 +10,9 @@ defmodule KwtoolWeb.CheckEmptyBodyParamsPlugTest do
   end
 
   describe "call/2" do
-    test "halts the conn and returns 400 status if body params are empty", %{conn: conn} do
+    test "given the request body param is empty, halts the conn and returns 400 status", %{
+      conn: conn
+    } do
       conn =
         conn
         |> Map.put(:body_params, %{})
@@ -29,7 +31,7 @@ defmodule KwtoolWeb.CheckEmptyBodyParamsPlugTest do
              }
     end
 
-    test "returns conn if body params are NOT empty", %{conn: conn} do
+    test "given the request body params are NOT empty, return the conn", %{conn: conn} do
       conn =
         conn
         |> Map.put(:body_params, %{name: "John Doe"})
