@@ -9,8 +9,7 @@ defmodule KwtoolWeb.Api.V1.SessionController do
       {:ok, user} ->
         {:ok, jwt, _full_claims} = Guardian.encode_and_sign(user, %{})
 
-        conn
-        |> render("create.json", jwt: jwt, email: user.email)
+        render(conn, "create.json", jwt: jwt, email: user.email)
 
       {:error, :invalid_credentials} ->
         conn

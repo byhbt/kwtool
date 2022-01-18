@@ -30,7 +30,7 @@ defmodule KwtoolWeb.Router do
     ]
   end
 
-  scope "/api/v1", KwtoolWeb.Api.V1 do
+  scope "/api/v1", KwtoolWeb.Api.V1, as: :api do
     pipe_through :api
 
     post "/sign_in", SessionController, :create
