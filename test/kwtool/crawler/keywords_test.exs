@@ -15,7 +15,7 @@ defmodule Kwtool.KeywordsTest do
         path: "test/support/fixtures/3-keywords.csv"
       }
 
-      assert {:ok, :file_is_processed} = Keywords.save_keywords_list(keyword_file, created_user)
+      assert Keywords.save_keywords_list(keyword_file, created_user) == {:ok, :file_is_processed}
       assert [keyword1, keyword2, keyword3] = Repo.all(Keyword)
 
       assert keyword1.phrase == "badminton racket"
@@ -106,7 +106,7 @@ defmodule Kwtool.KeywordsTest do
   end
 
   describe "find_keyword_by_user/2" do
-    test "given the user and the keyword Id, returns a keyword with result" do
+    test "given the user and the keyword Id, returns a keyword with results" do
       user = insert(:user)
       keyword = insert(:keyword, user: user, phrase: "Macbook Pro M1")
 
@@ -160,7 +160,8 @@ defmodule Kwtool.KeywordsTest do
     test "given a non-existing keyword, returns Keyword does not exist error" do
       keyword_result = params_for(:keyword_result)
 
-      assert {:error, changeset} = Keywords.create_keyword_result(%Keyword{id: 9999}, keyword_result)
+      assert {:error, changeset} =
+               Keywords.create_keyword_result(%Keyword{id: 9999}, keyword_result)
 
       assert errors_on(changeset) == %{keyword: ["does not exist"]}
     end
