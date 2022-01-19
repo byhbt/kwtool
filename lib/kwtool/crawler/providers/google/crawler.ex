@@ -1,4 +1,4 @@
-defmodule Kwtool.Providers.Google.Crawler do
+defmodule Kwtool.Crawler.Providers.Google.Crawler do
   use Tesla, only: [:get]
 
   plug Tesla.Middleware.BaseUrl, "https://www.google.com/"
