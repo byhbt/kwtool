@@ -5,7 +5,7 @@ defmodule KwtoolWorker.Crawler.GoogleKeywordCrawler do
     unique: [period: 60, states: Oban.Job.states()]
 
   alias Kwtool.Crawler.Keywords
-  alias Kwtool.Providers.Google.{Crawler, Parser}
+  alias Kwtool.Crawler.Providers.Google.{Crawler, Parser}
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"keyword_id" => keyword_id}}) do

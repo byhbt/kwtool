@@ -1,7 +1,7 @@
 defmodule Kwtool.Crawler.Providers.ParserTest do
   use KwtoolWeb.ConnCase, async: true
 
-  alias Kwtool.Providers.Google.{Crawler, Parser}
+  alias Kwtool.Crawler.Providers.Google.{Crawler, Parser}
 
   describe "parse/1" do
     test "given HTML response contains ads, returns metrics" do
