@@ -1,4 +1,4 @@
-defmodule Kwtool.Account.ErrorHandler do
+defmodule KwtoolWeb.Api.V1.ErrorHandler do
   @behaviour Guardian.Plug.ErrorHandler
 
   use KwtoolWeb, :controller

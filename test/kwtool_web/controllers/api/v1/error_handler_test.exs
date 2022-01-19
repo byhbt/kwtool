@@ -1,7 +1,7 @@
-defmodule Kwtool.Account.ErrorHandlerTest do
+defmodule KwtoolWeb.Api.V1.ErrorHandlerTest do
   use KwtoolWeb.ConnCase, async: true
 
-  alias Kwtool.Account.ErrorHandler
+  alias KwtoolWeb.Api.V1.ErrorHandler
 
   describe "auth_error/2" do
     test "renders 401 error page", %{conn: conn} do
