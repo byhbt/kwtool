@@ -54,6 +54,7 @@ defmodule Kwtool.MixProject do
       {:guardian, "~> 2.0"},
       {:hackney, "~> 1.17"},
       {:jason, "~> 1.0"},
+      {:jsonapi, "~> 1.3"},
       {:mimic, "~> 1.4.0", [only: :test]},
       {:nimble_csv, "~> 1.1.0"},
       {:oban, "~> 2.6.1"},
