@@ -37,7 +37,7 @@ defmodule KwtoolWeb.Api.V1.SessionControllerTest do
       assert %{
                "errors" => [
                  %{
-                   "code" => "internal_server_error",
+                   "code" => "unauthorized",
                    "detail" => %{},
                    "message" => "User could not be authenticated"
                  }

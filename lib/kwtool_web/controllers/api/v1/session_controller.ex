@@ -13,9 +13,9 @@ defmodule KwtoolWeb.Api.V1.SessionController do
 
       {:error, :invalid_credentials} ->
         conn
-        |> put_status(401)
+        |> put_status(:unauthorized)
         |> put_view(ErrorView)
-        |> render("error.json", message: "User could not be authenticated")
+        |> render("401.json", message: "User could not be authenticated")
     end
   end
 end
