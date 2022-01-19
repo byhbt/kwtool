@@ -1,4 +1,4 @@
-defmodule Kwtool.Providers.Google.Parser do
+defmodule Kwtool.Crawler.Providers.Google.Parser do
   @selectors %{
     top_ads_count: "#tads .uEierd",
     top_ads_urls: ".x2VHCd.OSrXXb.nMdasd.qzEoUe",

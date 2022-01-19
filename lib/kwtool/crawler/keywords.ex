@@ -45,7 +45,7 @@ defmodule Kwtool.Crawler.Keywords do
     |> Repo.one!()
   end
 
-  def add_crawl_result(%Keyword{id: keyword_id}, crawler_result_attrs) do
+  def create_keyword_result(%Keyword{id: keyword_id}, crawler_result_attrs) do
     crawler_result_attrs
     |> Map.put(:keyword_id, keyword_id)
     |> KeywordResult.create_changeset()

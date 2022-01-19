@@ -1,7 +1,7 @@
 defmodule Kwtool.Crawler.Providers.GoogleTest do
   use KwtoolWeb.ConnCase, async: true
 
-  alias Kwtool.Providers.Google.Crawler
+  alias Kwtool.Crawler.Providers.Google.Crawler
 
   describe "crawl_keyword/1" do
     test "given a valid keyword, returns 200 status code" do
