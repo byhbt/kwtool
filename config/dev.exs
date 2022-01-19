@@ -65,6 +65,10 @@ config :kwtool, KwtoolWeb.Endpoint,
     ]
   ]
 
+config :kwtool, Kwtool.Account.Guardian,
+  issuer: "kwtool",
+  secret_key: "X2Re3kWnI4XvfM6xvnz97MWvvk3FcNTFvi9sGCHa0hNE/EfqwKgPjh0QCDDMAJoJ"
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
