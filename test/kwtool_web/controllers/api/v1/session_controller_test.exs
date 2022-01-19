@@ -12,12 +12,16 @@ defmodule KwtoolWeb.Api.V1.SessionControllerTest do
         })
 
       assert %{
-               "code" => "ok",
                "data" => %{
-                 "email" => "test@gmail.com",
-                 "jwt" => _
+                 "attributes" => %{
+                   "email" => "test@gmail.com",
+                   "jwt" => _
+                 },
+                 "id" => _,
+                 "relationships" => %{},
+                 "type" => "logins"
                },
-               "message" => "You are successfully logged in!"
+               "included" => []
              } = json_response(conn, 200)
     end
 
