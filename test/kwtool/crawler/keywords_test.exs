@@ -7,7 +7,7 @@ defmodule Kwtool.KeywordsTest do
   alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   describe "save_keywords_list/2" do
-    test "inserts the uploaded keywords to the database when given a valid CSV file" do
+    test "given a valid CSV file, inserts the uploaded keywords to the database" do
       created_user = insert(:user)
 
       keyword_file = %Plug.Upload{
@@ -15,7 +15,7 @@ defmodule Kwtool.KeywordsTest do
         path: "test/support/fixtures/3-keywords.csv"
       }
 
-      assert Keywords.save_keywords_list(keyword_file, created_user) == {:ok, :file_is_processed}
+      assert {:ok, :file_is_processed} = Keywords.save_keywords_list(keyword_file, created_user)
       assert [keyword1, keyword2, keyword3] = Repo.all(Keyword)
 
       assert keyword1.phrase == "badminton racket"
@@ -33,6 +33,17 @@ defmodule Kwtool.KeywordsTest do
                %{args: %{"keyword_id" => _}},
                %{args: %{"keyword_id" => _}}
              ] = all_enqueued(worker: GoogleKeywordCrawler)
+    end
+
+    test "given a valid empty CSV file, returns file is empty error" do
+      created_user = insert(:user)
+
+      keyword_file = %Plug.Upload{
+        content_type: "text/csv",
+        path: "test/support/fixtures/empty-keywords.csv"
+      }
+
+      assert {:error, :file_is_empty} = Keywords.save_keywords_list(keyword_file, created_user)
     end
   end
 
