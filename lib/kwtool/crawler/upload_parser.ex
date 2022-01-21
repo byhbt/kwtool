@@ -8,7 +8,7 @@ defmodule Kwtool.Crawler.UploadParser do
       |> CSV.parse_stream(skip_headers: false)
       |> Enum.to_list()
 
-    if length(keyword_list) > 0 do
+    if Enum.any?(keyword_list) do
       {:ok, keyword_list}
     else
       {:error, :file_is_empty}
