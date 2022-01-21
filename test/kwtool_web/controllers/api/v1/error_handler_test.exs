@@ -4,7 +4,7 @@ defmodule KwtoolWeb.Api.V1.ErrorHandlerTest do
   alias KwtoolWeb.Api.V1.ErrorHandler
 
   describe "auth_error/2" do
-    test "renders 401 error page", %{conn: conn} do
+    test "renders 401 error response", %{conn: conn} do
       conn = ErrorHandler.auth_error(conn, {401, ""}, "")
 
       assert %{
