@@ -1,6 +1,6 @@
 <h1 class="page-title">Result for "<%= @keyword.phrase %>"  <span class="status-badge--added"><%= @keyword.status %></span></h1>
 
-<%= if length(@keyword_results) > 0 do %>
+<%= if Enum.any?(@keyword_results) do %>
   <%= render "_keyword-result.html", keyword_results: @keyword_results, conn: @conn %>
 <% end %>
 
