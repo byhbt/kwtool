@@ -1,8 +1,5 @@
 defmodule KwtoolWeb.Api.V1.ErrorViewTest do
-  use KwtoolWeb.ConnCase, async: true
-
-  # Bring render/3 and render_to_string/3 for testing custom views
-  import Phoenix.View
+  use KwtoolWeb.ViewCase, async: true
 
   alias KwtoolWeb.Api.V1.ErrorView
 
