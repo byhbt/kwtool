@@ -18,6 +18,17 @@ defmodule KwtoolWeb.Router do
     plug Guardian.Plug.EnsureAuthenticated
   end
 
+  pipeline :jwt_authenticated do
+    plug Guardian.Plug.Pipeline,
+      module: Kwtool.Account.Guardian,
+      error_handler: KwtoolWeb.Api.V1.ErrorHandler
+
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.EnsureAuthenticated
+    plug Guardian.Plug.LoadResource
+  end
+
+
   # coveralls-ignore-start
   pipeline :api do
     plug :accepts, ["json"]
@@ -31,6 +42,17 @@ defmodule KwtoolWeb.Router do
 
     post "/sign_in", SessionController, :create
   end
+
+  scope "/api/v1", KwtoolWeb.Api.V1, as: :api do
+    pipe_through [
+      :api,
+      :jwt_authenticated,
+      KwtoolWeb.CheckEmptyBodyParamsPlug
+    ]
+
+    post "/upload", UploadController, :create
+  end
+
 
   scope "/", KwtoolWeb do
     pipe_through [:browser, :auth]
