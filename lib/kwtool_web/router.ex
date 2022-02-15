@@ -23,11 +23,10 @@ defmodule KwtoolWeb.Router do
       module: Kwtool.Account.Guardian,
       error_handler: KwtoolWeb.Api.V1.ErrorHandler
 
-    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.VerifyHeader, scheme: "Bearer"
     plug Guardian.Plug.EnsureAuthenticated
     plug Guardian.Plug.LoadResource
   end
-
 
   # coveralls-ignore-start
   pipeline :api do
@@ -52,7 +51,6 @@ defmodule KwtoolWeb.Router do
 
     post "/upload", UploadController, :create
   end
-
 
   scope "/", KwtoolWeb do
     pipe_through [:browser, :auth]
