@@ -3,7 +3,7 @@ defmodule KwtoolWeb.Api.V1.UploadView do
 
   def fields do
     [
-      :message,
+      :message
     ]
   end
 end
