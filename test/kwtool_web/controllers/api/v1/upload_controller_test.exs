@@ -45,8 +45,17 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
         |> with_signed_in_user(created_user)
         |> post(Routes.api_upload_path(conn, :create), post_params)
 
-      assert redirected_to(conn) == Routes.api_upload_path(conn, :index)
-      assert get_flash(conn, :error) == "The keyword file is empty!"
+      assert %{
+               "data" => %{
+                 "attributes" => %{
+                   "message" => "The keyword file is empty!"
+                 },
+                 "id" => _,
+                 "relationships" => %{},
+                 "type" => "keywords"
+               },
+               "included" => []
+             } = json_response(conn, 200)
     end
 
     test "redirects to the upload page given an invalid file", %{conn: conn} do
@@ -63,8 +72,17 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
         |> with_signed_in_user(created_user)
         |> post(Routes.api_upload_path(conn, :create), post_params)
 
-      assert redirected_to(conn) == Routes.api_upload_path(conn, :index)
-      assert get_flash(conn, :error) == "The keyword file is invalid!"
+      assert %{
+               "data" => %{
+                 "attributes" => %{
+                   "message" => "The keyword file is invalid!"
+                 },
+                 "id" => _,
+                 "relationships" => %{},
+                 "type" => "keywords"
+               },
+               "included" => []
+             } = json_response(conn, 200)
     end
   end
 end
