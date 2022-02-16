@@ -21,10 +21,8 @@ defmodule Kwtool.DataCase do
   using do
     quote do
       import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-      import Kwtool.DataCase
-      import Kwtool.Factory
+      import Ecto.{Changeset, Query}
+      import Kwtool.{DataCase, Factory, FixtureHelper}
 
       use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
