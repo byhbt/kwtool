@@ -23,7 +23,17 @@ defmodule KwtoolWeb do
 
       import Plug.Conn
       import KwtoolWeb.Gettext
+
+      alias KwtoolWeb.ParamsValidator
       alias KwtoolWeb.Router.Helpers, as: Routes
+    end
+  end
+
+  def api_controller do
+    quote do
+      unquote(controller())
+
+      action_fallback KwtoolWeb.Api.V1.FallbackController
     end
   end
 
