@@ -27,6 +27,7 @@ defmodule KwtoolWeb.ConnCase do
       import KwtoolWeb.Support.ConnHelper
       import Phoenix.ConnTest
       import Plug.Conn
+      import Kwtool.FixtureHelper
 
       use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
       use Mimic

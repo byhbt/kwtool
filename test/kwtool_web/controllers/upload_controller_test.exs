@@ -36,10 +36,7 @@ defmodule KwtoolWeb.UploadControllerTest do
     end
 
     test "redirects to the upload page given an empty file", %{conn: conn} do
-      example_file = %Plug.Upload{
-        content_type: "text/csv",
-        path: "test/support/fixtures/empty-keywords.csv"
-      }
+      example_file = fixture_file_upload("empty-keywords.csv")
 
       created_user = insert(:user)
       post_params = %{:keyword_file => example_file}
