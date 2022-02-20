@@ -9,9 +9,10 @@ defmodule KwtoolWeb.UploadController do
   end
 
   def create(conn, params) do
-    with {:ok, validated_params} <- ParamsValidator.validate(params, for: UploadParams),
+    with {:ok, %{keyword_file: %Plug.Upload{} = keyword_file}} <-
+           ParamsValidator.validate(params, for: UploadParams),
          {:ok, :file_is_processed} <-
-           Keywords.save_keywords_list(validated_params, conn.assigns.current_user) do
+           Keywords.save_keywords_list(keyword_file, conn.assigns.current_user) do
       conn
       |> put_flash(:info, "The keyword file is processed successfully!")
       |> redirect(to: Routes.upload_path(conn, :index))
