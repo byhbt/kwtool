@@ -35,7 +35,7 @@ defmodule Kwtool.KeywordsTest do
     test "given a valid empty CSV file, returns file is empty error" do
       created_user = insert(:user)
 
-      keyword_file = fixture_file_upload("empty-keywords.csv")
+      keyword_file = fixture_file_upload("empty-file.csv")
 
       assert {:error, :file_is_empty} = Keywords.save_keywords_list(keyword_file, created_user)
     end

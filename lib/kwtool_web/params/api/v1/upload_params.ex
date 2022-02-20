@@ -1,7 +1,8 @@
 defmodule KwtoolWeb.Api.V1.UploadParams do
   use KwtoolWeb.Params
 
-  import Kwtool.FileValidator, only: [validate_file_mime_type: 3, validate_file_size: 3]
+  import Kwtool.FileValidator,
+    only: [validate_file_mime_type: 3, validate_file_size: 3, validate_file_size_zero: 2]
 
   alias Kwtool.Crawler.UploadParser
 
@@ -20,5 +21,6 @@ defmodule KwtoolWeb.Api.V1.UploadParams do
     changeset
     |> validate_file_mime_type(:keyword_file, UploadParser.supported_mime_types())
     |> validate_file_size(:keyword_file, UploadParser.max_file_size_in_bytes())
+    |> validate_file_size_zero(:keyword_file)
   end
 end
