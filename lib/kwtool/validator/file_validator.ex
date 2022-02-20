@@ -26,6 +26,19 @@ defmodule Kwtool.FileValidator do
     end)
   end
 
+  def validate_file_size_zero(changeset, field) do
+    validate_change(changeset, field, fn field, value ->
+      %Plug.Upload{path: upload_file_path} = value
+      upload_file_size_in_bytes = get_file_size(upload_file_path)
+
+      if upload_file_size_in_bytes == 0 do
+        [{field, "has no content"}]
+      else
+        []
+      end
+    end)
+  end
+
   defp get_file_size(file_path) do
     {:ok, %{size: upload_file_size_in_bytes}} = File.stat(file_path)
 

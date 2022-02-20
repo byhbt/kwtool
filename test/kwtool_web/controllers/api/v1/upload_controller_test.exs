@@ -28,7 +28,7 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
 
     test "redirects to the upload page given an empty file", %{conn: conn} do
       created_user = insert(:user)
-      post_params = %{:keyword_file => fixture_file_upload("empty-keywords.csv")}
+      post_params = %{:keyword_file => fixture_file_upload("empty-file.csv")}
 
       conn =
         conn
@@ -38,9 +38,9 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
       assert %{
                "errors" => [
                  %{
-                   "code" => "internal_server_error",
-                   "detail" => %{},
-                   "message" => "Internal Server Error"
+                   "code" => "validation_error",
+                   "detail" => %{"keyword_file" => ["has no content"]},
+                   "message" => "Keyword file has no content"
                  }
                ]
              } = json_response(conn, 422)
