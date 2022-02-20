@@ -32,7 +32,7 @@ defmodule KwtoolWeb.UploadControllerTest do
     end
 
     test "redirects to the upload page given an empty file", %{conn: conn} do
-      example_file = fixture_file_upload("empty-keywords.csv")
+      example_file = fixture_file_upload("empty-file.csv")
 
       created_user = insert(:user)
       post_params = %{:keyword_file => example_file}
@@ -43,7 +43,7 @@ defmodule KwtoolWeb.UploadControllerTest do
         |> post(Routes.upload_path(conn, :create), post_params)
 
       assert redirected_to(conn) == Routes.upload_path(conn, :index)
-      assert get_flash(conn, :error) == "The keyword file is empty!"
+      assert get_flash(conn, :error) == "The keyword file is invalid!"
     end
 
     test "redirects to the upload page given an invalid file", %{conn: conn} do

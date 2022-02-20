@@ -12,7 +12,7 @@ defmodule UploadParserTest do
     end
 
     test "returns an error when given an empty CSV file" do
-      keyword_file = fixture_file_upload("empty-keywords.csv")
+      keyword_file = fixture_file_upload("empty-file.csv")
 
       assert UploadParser.parse(keyword_file) == {:error, :file_is_empty}
     end

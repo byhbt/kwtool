@@ -17,6 +17,7 @@ defmodule Kwtool.FileValidatorTest do
       |> cast(attrs, [:file])
       |> FileValidator.validate_file_mime_type(:file, ~w(text/csv))
       |> FileValidator.validate_file_size(:file, 5_000)
+      |> FileValidator.validate_file_size_zero(:file)
     end
   end
 
@@ -54,6 +55,15 @@ defmodule Kwtool.FileValidatorTest do
 
       assert changeset.valid? == false
       assert errors_on(changeset) == %{file: ["exceeds max file size limit (0.005 MB)"]}
+    end
+  end
+
+  describe "validate_file_size_zero/3" do
+    test "returns invalid changeset given the empty file" do
+      changeset = Document.changeset(%{file: fixture_file_upload("empty-file.csv")})
+
+      assert changeset.valid? == false
+      assert errors_on(changeset) == %{file: ["has no content"]}
     end
   end
 end
