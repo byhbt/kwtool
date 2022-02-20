@@ -15,7 +15,7 @@ defmodule Kwtool.Crawler.UploadParser do
     end
   end
 
-  def parse(_), do: {:error, :file_is_invalid}
+  def parse(_), do: raise("Uploaded keyword file is invalid")
 
   def parse_asset_type(%Plug.Upload{content_type: "csv" <> _}), do: {:ok, :csv}
   def parse_asset_type(_), do: {:error, :unsupported_asset_type}

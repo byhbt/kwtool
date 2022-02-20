@@ -16,9 +16,6 @@ defmodule Kwtool.Crawler.Keywords do
 
       {:error, :file_is_empty} ->
         {:error, :file_is_empty}
-
-      {:error, :file_is_invalid} ->
-        {:error, :file_is_invalid}
     end
   end
 
