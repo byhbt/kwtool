@@ -10,4 +10,11 @@ defmodule KwtoolWeb.Api.V1.FallbackController do
     |> put_view(ErrorView)
     |> render("error.json", %{code: :validation_error, changeset: changeset})
   end
+
+  def call(conn, {:error, :file_is_empty}) do
+    conn
+    |> put_status(:unprocessable_entity)
+    |> put_view(ErrorView)
+    |> render("error.json", %{code: :validation_error})
+  end
 end

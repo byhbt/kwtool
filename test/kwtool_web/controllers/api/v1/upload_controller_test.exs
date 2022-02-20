@@ -5,13 +5,8 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
 
   describe "post create/2" do
     test "redirects to the upload page when the import processed successfully", %{conn: conn} do
-      example_file = %Plug.Upload{
-        content_type: "text/csv",
-        path: "test/support/fixtures/3-keywords.csv"
-      }
-
       created_user = insert(:user)
-      post_params = %{:keyword_file => example_file}
+      post_params = %{:keyword_file => fixture_file_upload("3-keywords.csv")}
 
       conn =
         conn
@@ -21,24 +16,19 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
       assert %{
                "data" => %{
                  "attributes" => %{
-                   "message" => "The keyword file is processed successfully!"
+                   "message" => "file_is_processed"
                  },
                  "id" => _,
                  "relationships" => %{},
                  "type" => "keywords"
                },
                "included" => []
-             } = json_response(conn, 200)
+             } = json_response(conn, 201)
     end
 
     test "redirects to the upload page given an empty file", %{conn: conn} do
-      example_file = %Plug.Upload{
-        content_type: "text/csv",
-        path: "test/support/fixtures/empty-keywords.csv"
-      }
-
       created_user = insert(:user)
-      post_params = %{:keyword_file => example_file}
+      post_params = %{:keyword_file => fixture_file_upload("empty-keywords.csv")}
 
       conn =
         conn
@@ -46,26 +36,19 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
         |> post(Routes.api_upload_path(conn, :create), post_params)
 
       assert %{
-               "data" => %{
-                 "attributes" => %{
-                   "message" => "The keyword file is empty!"
-                 },
-                 "id" => _,
-                 "relationships" => %{},
-                 "type" => "keywords"
-               },
-               "included" => []
-             } = json_response(conn, 200)
+               "errors" => [
+                 %{
+                   "code" => "internal_server_error",
+                   "detail" => %{},
+                   "message" => "Internal Server Error"
+                 }
+               ]
+             } = json_response(conn, 422)
     end
 
     test "redirects to the upload page given an invalid file", %{conn: conn} do
-      example_file = %Plug.Upload{
-        content_type: "text/png",
-        path: "test/support/fixtures/invalid-file.png"
-      }
-
       created_user = insert(:user)
-      post_params = %{keyword_file: example_file}
+      post_params = %{keyword_file: fixture_file_upload("invalid-file.png")}
 
       conn =
         conn
@@ -73,16 +56,14 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
         |> post(Routes.api_upload_path(conn, :create), post_params)
 
       assert %{
-               "data" => %{
-                 "attributes" => %{
-                   "message" => "The keyword file is invalid!"
-                 },
-                 "id" => _,
-                 "relationships" => %{},
-                 "type" => "keywords"
-               },
-               "included" => []
-             } = json_response(conn, 200)
+               "errors" => [
+                 %{
+                   "code" => "validation_error",
+                   "detail" => %{"keyword_file" => ["is not in supported mime types (text/csv)"]},
+                   "message" => "Keyword file is not in supported mime types (text/csv)"
+                 }
+               ]
+             } = json_response(conn, 422)
     end
   end
 end
