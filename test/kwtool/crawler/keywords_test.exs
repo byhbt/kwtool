@@ -10,10 +10,7 @@ defmodule Kwtool.KeywordsTest do
     test "given a valid CSV file, inserts the uploaded keywords to the database" do
       created_user = insert(:user)
 
-      keyword_file = %Plug.Upload{
-        content_type: "text/csv",
-        path: "test/support/fixtures/3-keywords.csv"
-      }
+      keyword_file = fixture_file_upload("3-keywords.csv")
 
       assert {:ok, :file_is_processed} = Keywords.save_keywords_list(keyword_file, created_user)
       assert [keyword1, keyword2, keyword3] = Repo.all(Keyword)
@@ -38,10 +35,7 @@ defmodule Kwtool.KeywordsTest do
     test "given a valid empty CSV file, returns file is empty error" do
       created_user = insert(:user)
 
-      keyword_file = %Plug.Upload{
-        content_type: "text/csv",
-        path: "test/support/fixtures/empty-keywords.csv"
-      }
+      keyword_file = fixture_file_upload("empty-keywords.csv")
 
       assert {:error, :file_is_empty} = Keywords.save_keywords_list(keyword_file, created_user)
     end

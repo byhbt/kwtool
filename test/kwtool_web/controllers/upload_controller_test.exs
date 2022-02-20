@@ -18,11 +18,7 @@ defmodule KwtoolWeb.UploadControllerTest do
 
   describe "post create/2" do
     test "redirects to the upload page when the import processed successfully", %{conn: conn} do
-      example_file = %Plug.Upload{
-        content_type: "text/csv",
-        path: "test/support/fixtures/3-keywords.csv"
-      }
-
+      example_file = fixture_file_upload("3-keywords.csv")
       created_user = insert(:user)
       post_params = %{:keyword_file => example_file}
 
@@ -51,10 +47,7 @@ defmodule KwtoolWeb.UploadControllerTest do
     end
 
     test "redirects to the upload page given an invalid file", %{conn: conn} do
-      example_file = %Plug.Upload{
-        content_type: "text/png",
-        path: "test/support/fixtures/invalid-file.png"
-      }
+      example_file = fixture_file_upload("invalid-file.png")
 
       created_user = insert(:user)
       post_params = %{keyword_file: example_file}
