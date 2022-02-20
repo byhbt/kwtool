@@ -17,13 +17,14 @@ defmodule KwtoolWeb.UploadController do
       |> redirect(to: Routes.upload_path(conn, :index))
     else
       {:error, :file_is_empty} ->
-        {:error, :upload_error, "The keyword file is empty!"}
+        conn
+        |> put_flash(:error, "The keyword file is empty!")
+        |> redirect(to: Routes.upload_path(conn, :index))
 
-      {:error, :file_is_invalid} ->
-        {:error, :file_is_invalid, "The keyword file is empty!"}
-
-      error ->
-        error
+      {:error, :invalid_params, _changeset} ->
+        conn
+        |> put_flash(:error, "The keyword file is invalid!")
+        |> redirect(to: Routes.upload_path(conn, :index))
     end
   end
 end
