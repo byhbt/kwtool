@@ -44,17 +44,13 @@ defmodule Kwtool.FileValidatorTest do
 
   describe "validate_file_size/3" do
     test "returns valid changeset given valid upload file size" do
-      upload_file = fixture_file_upload("3-keywords.csv")
-
-      changeset = Document.changeset(%{file: upload_file})
+      changeset = Document.changeset(%{file: fixture_file_upload("3-keywords.csv")})
 
       assert changeset.valid? == true
     end
 
     test "returns invalid changeset given upload file size exceeds max file size limit" do
-      upload_file = fixture_file_upload("3-keywords.csv")
-
-      changeset = Document.changeset(%{file: upload_file})
+      changeset = Document.changeset(%{file: fixture_file_upload("big-keywords.csv")})
 
       assert changeset.valid? == false
       assert errors_on(changeset) == %{file: ["exceeds max file size limit (0.005 MB)"]}
