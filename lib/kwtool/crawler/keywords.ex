@@ -37,6 +37,12 @@ defmodule Kwtool.Crawler.Keywords do
     |> Repo.one()
   end
 
+  def get_keywords_by_user(%User{} = user) do
+    Keyword
+    |> where([k], k.user_id == ^user.id)
+    |> Repo.all()
+  end
+
   def find_by_id!(keyword_id) do
     Keyword
     |> where(id: ^keyword_id)
