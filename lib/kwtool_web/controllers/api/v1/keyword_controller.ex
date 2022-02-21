@@ -5,12 +5,13 @@ defmodule KwtoolWeb.Api.V1.KeywordController do
   alias KwtoolWeb.Api.V1.UploadParams
 
   def index(conn, params) do
-    {:ok, keywords} = conn
-                        |> Guardian.Plug.current_resource()
-                        |> Keywords.get_keywords_by_user()
+    keywords =
+      conn
+      |> Guardian.Plug.current_resource()
+      |> Keywords.get_keywords_by_user()
 
     conn
     |> put_status(:ok)
-    |> render("show.json", %{data: %{id: :os.system_time(:millisecond), keywords: keywords}})
+    |> render("show.json", %{data: keywords})
   end
 end
