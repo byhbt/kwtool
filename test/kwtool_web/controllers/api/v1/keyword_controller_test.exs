@@ -32,6 +32,49 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
              } = json_response(conn, 200)
     end
 
+    test "given the search phrase, returns the list of keywords contains it", %{conn: conn} do
+      created_user = insert(:user)
+      insert(:keyword, phrase: "cheap flights", status: "finished", user: created_user)
+      insert(:keyword, phrase: "private jet", status: "finished", user: created_user)
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> get(Routes.api_keyword_path(conn, :index, %{query: "jet"}))
+
+      assert %{
+               "data" => [
+                 %{
+                   "attributes" => %{
+                     "id" => _,
+                     "inserted_at" => _,
+                     "phrase" => "private jet",
+                     "status" => "finished",
+                     "updated_at" => _
+                   },
+                   "id" => _,
+                   "relationships" => %{},
+                   "type" => "keywords"
+                 }
+               ],
+               "included" => []
+             } = json_response(conn, 200)
+    end
+
+    test "given the not existing search phrase, returns the empty array", %{conn: conn} do
+      created_user = insert(:user)
+      insert(:keyword, phrase: "cheap flights", status: "finished", user: created_user)
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> get(
+          Routes.api_keyword_path(conn, :index, %{query: "Sed ut perspiciatis unde omnis iste"})
+        )
+
+      assert %{"data" => [], "included" => []} = json_response(conn, 200)
+    end
+
     test "returns an empty list given user does NOT has any keyword", %{conn: conn} do
       created_user = insert(:user)
 
