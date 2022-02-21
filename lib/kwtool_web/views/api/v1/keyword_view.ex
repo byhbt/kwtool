@@ -1,9 +1,13 @@
-defmodule KwtoolWeb.Api.V1.UploadView do
+defmodule KwtoolWeb.Api.V1.KeywordView do
   use JSONAPI.View, type: "keywords"
 
   def fields do
     [
-      :message
+      :id,
+      :phrase,
+      :status,
+      :inserted_at,
+      :updated_at
     ]
   end
 end
