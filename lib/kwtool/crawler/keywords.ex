@@ -37,12 +37,9 @@ defmodule Kwtool.Crawler.Keywords do
     |> Repo.one()
   end
 
-  def get_keywords_by_user(%User{} = user, search_phrase \\ "") do
-    wildcard_search = "%#{search_phrase}%"
-
+  def get_keywords_by_user(%User{} = user) do
     Keyword
     |> where([k], k.user_id == ^user.id)
-    |> where([k], ilike(k.phrase, ^wildcard_search))
     |> Repo.all()
   end
 
