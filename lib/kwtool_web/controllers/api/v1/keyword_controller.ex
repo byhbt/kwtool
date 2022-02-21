@@ -2,9 +2,8 @@ defmodule KwtoolWeb.Api.V1.KeywordController do
   use KwtoolWeb, :api_controller
 
   alias Kwtool.Crawler.Keywords
-  alias KwtoolWeb.Api.V1.UploadParams
 
-  def index(conn, params) do
+  def index(conn, _params) do
     keywords =
       conn
       |> Guardian.Plug.current_resource()
