@@ -58,8 +58,8 @@ defmodule Kwtool.FileValidatorTest do
     end
   end
 
-  describe "validate_file_size_zero/3" do
-    test "returns invalid changeset given the empty file" do
+  describe "validate_file_size_zero/2" do
+    test "returns invalid changeset given an empty file" do
       changeset = Document.changeset(%{file: fixture_file_upload("empty-file.csv")})
 
       assert changeset.valid? == false
