@@ -8,7 +8,7 @@ defmodule KwtoolWeb.CheckEmptyBodyParamsPlug do
 
   def init(opts), do: opts
 
-  def call(%{body_params: body_params} = conn, _opts) when body_params == %{} do
+  def call(%{body_params: body_params, method: "POST"} = conn, _opts) when body_params == %{} do
     conn
     |> put_status(:bad_request)
     |> put_view(ErrorView)
