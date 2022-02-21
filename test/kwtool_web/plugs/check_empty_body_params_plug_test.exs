@@ -16,6 +16,7 @@ defmodule KwtoolWeb.CheckEmptyBodyParamsPlugTest do
       conn =
         conn
         |> Map.put(:body_params, %{})
+        |> Map.put(:method, "POST")
         |> CheckEmptyBodyParamsPlug.call([])
 
       assert conn.halted == true
@@ -35,6 +36,7 @@ defmodule KwtoolWeb.CheckEmptyBodyParamsPlugTest do
       conn =
         conn
         |> Map.put(:body_params, %{name: "John Doe"})
+        |> Map.put(:method, "POST")
         |> CheckEmptyBodyParamsPlug.call([])
 
       assert conn.halted == false
