@@ -3,11 +3,11 @@ defmodule KwtoolWeb.Api.V1.KeywordController do
 
   alias Kwtool.Crawler.Keywords
 
-  def index(conn, _params) do
+  def index(conn, %{"query" => search_phrase}) do
     keywords =
       conn
       |> Guardian.Plug.current_resource()
-      |> Keywords.get_keywords_by_user()
+      |> Keywords.get_keywords_by_user(search_phrase)
 
     conn
     |> put_status(:ok)

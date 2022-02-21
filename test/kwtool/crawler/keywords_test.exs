@@ -134,6 +134,37 @@ defmodule Kwtool.KeywordsTest do
     end
   end
 
+  describe "get_keywords_by_user/2" do
+    test "given the user has the keyword and search phrase, returns a keyword" do
+      user = insert(:user)
+      keyword = insert(:keyword, user: user, phrase: "Macbook Pro M1")
+
+      [keyword_in_db] = Keywords.get_keywords_by_user(user, "Macbook")
+
+      assert keyword_in_db.id == keyword.id
+      assert keyword_in_db.phrase == keyword.phrase
+    end
+
+    test "given the user has the keyword and without search phrase, returns all keywords of the user" do
+      user = insert(:user)
+      keyword = insert(:keyword, user: user, phrase: "Macbook Pro M1")
+
+      assert [keyword_in_db] = Keywords.get_keywords_by_user(user, "Macbook")
+
+      assert keyword_in_db.id == keyword.id
+      assert keyword_in_db.phrase == keyword.phrase
+    end
+
+    test "given the keyword does not belong to the user, returns an empty array" do
+      user_1 = insert(:user)
+
+      user_2 = insert(:user)
+      user_2_keyword = insert(:keyword, user: user_2)
+
+      assert Keywords.get_keywords_by_user(user_1, user_2_keyword.id) == []
+    end
+  end
+
   describe "find_by_id!/1" do
     test "given the existing keyword Id, returns the keyword" do
       %{id: keyword_id} = insert(:keyword)
