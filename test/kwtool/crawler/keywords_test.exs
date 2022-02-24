@@ -135,7 +135,7 @@ defmodule Kwtool.KeywordsTest do
   end
 
   describe "get_keywords_by_user/1" do
-    test "given the user has the keyword, returns a list of keyword" do
+    test "given the user has the keyword, returns a list of keywords" do
       user = insert(:user)
       keyword = insert(:keyword, user: user)
 
@@ -145,7 +145,7 @@ defmodule Kwtool.KeywordsTest do
       assert keyword_in_db.phrase == keyword.phrase
     end
 
-    test "given the keyword does not belong to the user, returns an empty array" do
+    test "given the user does NOT have any keyword, returns an empty array" do
       user_1 = insert(:user)
 
       user_2 = insert(:user)
