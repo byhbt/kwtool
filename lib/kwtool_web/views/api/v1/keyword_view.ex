@@ -3,7 +3,6 @@ defmodule KwtoolWeb.Api.V1.KeywordView do
 
   def fields do
     [
-      :id,
       :phrase,
       :status,
       :inserted_at,
