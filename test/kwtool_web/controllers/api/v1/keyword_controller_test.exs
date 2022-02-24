@@ -17,7 +17,6 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
                "data" => [
                  %{
                    "attributes" => %{
-                     "id" => _,
                      "inserted_at" => _,
                      "phrase" => "cheap flights",
                      "status" => "finished",
