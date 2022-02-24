@@ -23,11 +23,11 @@ defmodule KwtoolWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       import Kwtool.Factory
+      import Kwtool.FixtureHelper
       import KwtoolWeb.ConnCase
       import KwtoolWeb.Support.ConnHelper
       import Phoenix.ConnTest
       import Plug.Conn
-      import Kwtool.FixtureHelper
 
       use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
       use Mimic
