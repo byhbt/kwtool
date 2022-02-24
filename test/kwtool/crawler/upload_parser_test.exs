@@ -20,7 +20,7 @@ defmodule UploadParserTest do
     test "returns an error when given an invalid CSV file" do
       keyword_file = %Plug.Upload{content_type: "text/jpeg"}
 
-      assert_raise RuntimeError, fn ->
+      assert_raise RuntimeError, "Uploaded keyword file is invalid", fn ->
         assert UploadParser.parse!(keyword_file)
       end
     end
