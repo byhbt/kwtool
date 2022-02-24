@@ -8,7 +8,7 @@ defmodule Kwtool.Crawler.Keywords do
   alias KwtoolWorker.Crawler.GoogleKeywordCrawler
 
   def save_keywords_list(keyword_file, %User{id: user_id}) do
-    case UploadParser.parse(keyword_file) do
+    case UploadParser.parse!(keyword_file) do
       {:ok, keyword_list} ->
         case process_keyword_list(keyword_list, user_id) do
           :ok -> {:ok, :file_is_processed}
