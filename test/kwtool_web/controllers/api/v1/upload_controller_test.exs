@@ -4,7 +4,9 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
   import KwtoolWeb.Support.ConnHelper
 
   describe "post create/2" do
-    test "redirects to the upload page when the import processed successfully", %{conn: conn} do
+    test "given the import processed successfully, return 201 status with success message", %{
+      conn: conn
+    } do
       created_user = insert(:user)
       post_params = %{:keyword_file => fixture_file_upload("3-keywords.csv")}
 
@@ -26,7 +28,18 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
              } = json_response(conn, 201)
     end
 
-    test "redirects to the upload page given an empty file", %{conn: conn} do
+    test "given unauthenticated request, return 401 status with error", %{conn: conn} do
+      post_params = %{:keyword_file => fixture_file_upload("3-keywords.csv")}
+      conn = post(conn, Routes.api_upload_path(conn, :create), post_params)
+
+      assert %{
+               "errors" => [
+                 %{"code" => "unauthorized", "detail" => %{}, "message" => "Unauthorized"}
+               ]
+             } = json_response(conn, 401)
+    end
+
+    test "given an empty file, returns 422 status with error", %{conn: conn} do
       created_user = insert(:user)
       post_params = %{:keyword_file => fixture_file_upload("empty-file.csv")}
 
@@ -46,7 +59,7 @@ defmodule KwtoolWeb.Api.V1.UploadControllerTest do
              } = json_response(conn, 422)
     end
 
-    test "redirects to the upload page given an invalid file", %{conn: conn} do
+    test "given an invalid file, returns 422 status with error", %{conn: conn} do
       created_user = insert(:user)
       post_params = %{keyword_file: fixture_file_upload("invalid-file.png")}
 
