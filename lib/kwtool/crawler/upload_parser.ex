@@ -1,7 +1,7 @@
 defmodule Kwtool.Crawler.UploadParser do
   alias NimbleCSV.RFC4180, as: CSV
 
-  def parse(%Plug.Upload{content_type: "text/csv"} = keyword_file) do
+  def parse!(%Plug.Upload{content_type: "text/csv"} = keyword_file) do
     keyword_list =
       keyword_file.path
       |> File.stream!()
@@ -15,7 +15,7 @@ defmodule Kwtool.Crawler.UploadParser do
     end
   end
 
-  def parse(_), do: raise("Uploaded keyword file is invalid")
+  def parse!(_), do: raise("Uploaded keyword file is invalid")
 
   def parse_asset_type(%Plug.Upload{content_type: "csv" <> _}), do: {:ok, :csv}
   def parse_asset_type(_), do: {:error, :unsupported_asset_type}
