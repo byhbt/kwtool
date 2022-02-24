@@ -32,25 +32,25 @@ defmodule KwtoolWeb.CheckEmptyBodyParamsPlugTest do
              }
     end
 
-    test "given the DELETE request, does NOT halt the conn", %{
-      conn: conn
-    } do
-      conn =
-        conn
-        |> Map.put(:body_params, %{})
-        |> Map.put(:method, "DELETE")
-        |> CheckEmptyBodyParamsPlug.call([])
-
-      assert conn.halted == false
-    end
-
-    test "given the GET request, does NOT halt the conn", %{
+    test "given the GET request with empty body param, does NOT halt the conn", %{
       conn: conn
     } do
       conn =
         conn
         |> Map.put(:body_params, %{})
         |> Map.put(:method, "GET")
+        |> CheckEmptyBodyParamsPlug.call([])
+
+      assert conn.halted == false
+    end
+
+    test "given the DELETE request with empty body param, does NOT halt the conn", %{
+      conn: conn
+    } do
+      conn =
+        conn
+        |> Map.put(:body_params, %{})
+        |> Map.put(:method, "DELETE")
         |> CheckEmptyBodyParamsPlug.call([])
 
       assert conn.halted == false
