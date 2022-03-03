@@ -26,6 +26,7 @@ defmodule KwtoolWeb.Router do
     plug Guardian.Plug.VerifyHeader, scheme: "Bearer"
     plug Guardian.Plug.EnsureAuthenticated
     plug Guardian.Plug.LoadResource
+    plug KwtoolWeb.Plugs.SetCurrentUser
   end
 
   # coveralls-ignore-start
