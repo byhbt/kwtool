@@ -19,8 +19,11 @@ defmodule KwtoolWeb.Api.V1.UploadParams do
 
   defp validate_file(changeset) do
     changeset
-    |> validate_file_mime_type(:keyword_file, UploadParser.supported_mime_types())
-    |> validate_file_size(:keyword_file, UploadParser.max_file_size_in_bytes())
+    |> validate_file_mime_type(:keyword_file, supported_mime_types())
+    |> validate_file_size(:keyword_file, max_file_size_in_bytes())
     |> validate_file_size_zero(:keyword_file)
   end
+
+  defp supported_mime_types, do: ~w(text/csv)
+  defp max_file_size_in_bytes, do: 3_000_000
 end
