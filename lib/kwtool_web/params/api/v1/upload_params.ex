@@ -4,8 +4,6 @@ defmodule KwtoolWeb.Api.V1.UploadParams do
   import Kwtool.FileValidator,
     only: [validate_file_mime_type: 3, validate_file_size: 3, validate_file_size_zero: 2]
 
-  alias Kwtool.Crawler.UploadParser
-
   embedded_schema do
     field :keyword_file, :map, virtual: true
   end
