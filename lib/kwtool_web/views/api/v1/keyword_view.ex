@@ -9,4 +9,10 @@ defmodule KwtoolWeb.Api.V1.KeywordView do
       :updated_at
     ]
   end
+
+  def relationships do
+    [
+      keyword_results: {KwtoolWeb.Api.V1.KeywordResultView, :include}
+    ]
+  end
 end
