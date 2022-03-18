@@ -2,7 +2,7 @@ defmodule Kwtool.Crawler.KeywordResults do
   import Ecto.Query, warn: false
 
   alias Kwtool.Account.Schemas.User
-  alias Kwtool.Crawler.Schemas.{Keyword, KeywordResult}
+  # alias Kwtool.Crawler.Schemas.{Keyword, KeywordResult}
   alias Kwtool.Repo
 
   def search(%User{} = user, params \\ %{}) do
