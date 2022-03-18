@@ -20,9 +20,6 @@ defmodule KwtoolWeb.Api.V1.KeywordController do
       |> Guardian.Plug.current_resource()
       |> Keywords.find_keyword_by_user(keyword_id)
 
-    require IEx
-    IEx.pry()
-
     case keyword do
       nil ->
         {:error, :not_found}
