@@ -13,4 +13,24 @@ defmodule KwtoolWeb.Api.V1.KeywordController do
     |> put_status(:ok)
     |> render("show.json", %{data: keywords})
   end
+
+  def show(conn, %{"id" => keyword_id} = _params) do
+    keyword =
+      conn
+      |> Guardian.Plug.current_resource()
+      |> Keywords.find_keyword_by_user(keyword_id)
+
+    require IEx
+    IEx.pry()
+
+    case keyword do
+      nil ->
+        {:error, :not_found}
+
+      keyword ->
+        conn
+        |> put_status(:ok)
+        |> render("show.json", %{data: keyword})
+    end
+  end
 end
