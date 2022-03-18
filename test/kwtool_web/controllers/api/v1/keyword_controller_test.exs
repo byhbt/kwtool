@@ -58,9 +58,10 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
   end
 
   describe "get show/2" do
-    test "given keyword with search result, returns relationship and included fields", %{
-      conn: conn
-    } do
+    test "given keyword with crawl result, returns crawl result in the relationship and included fields",
+         %{
+           conn: conn
+         } do
       created_user = insert(:user)
       keyword = insert(:keyword, phrase: "cheap flights", status: "added", user: created_user)
       insert(:keyword_result, keyword: keyword)
@@ -102,9 +103,10 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
              } = json_response(conn, 200)
     end
 
-    test "given keyword does NOT has any result, returns empty relationship and included fields", %{
-      conn: conn
-    } do
+    test "given keyword does NOT has any result, returns an empty relationship and included fields",
+         %{
+           conn: conn
+         } do
       created_user = insert(:user)
       keyword = insert(:keyword, phrase: "cheap flights", status: "added", user: created_user)
 
@@ -127,6 +129,27 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
                },
                "included" => []
              } = json_response(conn, 200)
+    end
+
+    test "given keyword does NOT exist, returns 404 error", %{
+      conn: conn
+    } do
+      created_user = insert(:user)
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> get(Routes.api_keyword_path(conn, :show, 999))
+
+      assert %{
+               "errors" => [
+                 %{
+                   "code" => "not_found",
+                   "detail" => %{},
+                   "message" => "Keyword cannot be found."
+                 }
+               ]
+             } = json_response(conn, 404)
     end
 
     test "given unauthorized request, returns unauthorized response", %{conn: conn} do
