@@ -58,31 +58,73 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
   end
 
   describe "get show/2" do
-    test "given keyword does NOT has any result, returns empty relationship and included fields", %{
+    test "given keyword with search result, returns relationship and included fields", %{
       conn: conn
     } do
       created_user = insert(:user)
-      insert(:keyword, phrase: "cheap flights", status: "added", user: created_user)
+      keyword = insert(:keyword, phrase: "cheap flights", status: "added", user: created_user)
+      insert(:keyword_result, keyword: keyword)
 
       conn =
         conn
         |> with_signed_in_user(created_user)
-        |> get(Routes.api_keyword_path(conn, :index))
+        |> get(Routes.api_keyword_path(conn, :show, keyword.id))
 
       assert %{
-               "data" => [
+               "data" => %{
+                 "attributes" => %{
+                   "inserted_at" => _,
+                   "phrase" => "cheap flights",
+                   "status" => "added",
+                   "updated_at" => _
+                 },
+                 "id" => _,
+                 "relationships" => %{
+                   "keyword_results" => %{"data" => [%{"id" => _, "type" => "keyword_result"}]}
+                 },
+                 "type" => "keywords"
+               },
+               "included" => [
                  %{
                    "attributes" => %{
-                     "inserted_at" => _,
-                     "phrase" => "cheap flights",
-                     "status" => "added",
-                     "updated_at" => _
+                     "all_ads_count" => 2,
+                     "all_links_count" => 2,
+                     "organic_result_count" => 2,
+                     "organic_result_urls" => ["https://google.com", "https://example.com"],
+                     "top_ads_count" => 2,
+                     "top_ads_urls" => ["https://google.com", "https://example.com"]
                    },
                    "id" => _,
                    "relationships" => %{},
-                   "type" => "keywords"
+                   "type" => "keyword_result"
                  }
-               ],
+               ]
+             } = json_response(conn, 200)
+    end
+
+    test "given keyword does NOT has any result, returns empty relationship and included fields", %{
+      conn: conn
+    } do
+      created_user = insert(:user)
+      keyword = insert(:keyword, phrase: "cheap flights", status: "added", user: created_user)
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> get(Routes.api_keyword_path(conn, :show, keyword.id))
+
+      assert %{
+               "data" => %{
+                 "attributes" => %{
+                   "inserted_at" => _,
+                   "phrase" => "cheap flights",
+                   "status" => "added",
+                   "updated_at" => _
+                 },
+                 "id" => _,
+                 "relationships" => %{"keyword_results" => %{"data" => []}},
+                 "type" => "keywords"
+               },
                "included" => []
              } = json_response(conn, 200)
     end
