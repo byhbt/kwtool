@@ -6,12 +6,13 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
   describe "get index/2" do
     test "given user has keyword, returns a list of keyword", %{conn: conn} do
       created_user = insert(:user)
-      insert(:keyword, phrase: "cheap flights", status: "finished", user: created_user)
+      keyword = insert(:keyword, phrase: "cheap flights", status: "finished", user: created_user)
+      insert(:keyword_result, keyword: keyword)
 
       conn =
         conn
         |> with_signed_in_user(created_user)
-        |> get(Routes.api_search_path(conn, :index))
+        |> get(Routes.api_search_path(conn, :index, %{"url" => "google.com"}))
 
       assert %{
                "data" => [
@@ -23,11 +24,27 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
                      "updated_at" => _
                    },
                    "id" => _,
-                   "relationships" => %{},
+                   "relationships" => %{
+                     "keyword_results" => %{"data" => [%{"id" => _, "type" => "keyword_result"}]}
+                   },
                    "type" => "keywords"
                  }
                ],
-               "included" => []
+               "included" => [
+                 %{
+                   "attributes" => %{
+                     "all_ads_count" => 2,
+                     "all_links_count" => 2,
+                     "organic_result_count" => 2,
+                     "organic_result_urls" => ["https://google.com", "https://example.com"],
+                     "top_ads_count" => 2,
+                     "top_ads_urls" => ["https://google.com", "https://example.com"]
+                   },
+                   "id" => _,
+                   "relationships" => %{},
+                   "type" => "keyword_result"
+                 }
+               ]
              } = json_response(conn, 200)
     end
 
