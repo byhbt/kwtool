@@ -51,7 +51,8 @@ defmodule KwtoolWeb.Router do
     ]
 
     post "/upload", UploadController, :create
-    get "/keywords", KeywordController, :index
+
+    resources "/keywords", KeywordController, only: [:index, :show]
   end
 
   scope "/", KwtoolWeb do
