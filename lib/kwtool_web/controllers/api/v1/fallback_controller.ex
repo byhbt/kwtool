@@ -11,10 +11,10 @@ defmodule KwtoolWeb.Api.V1.FallbackController do
     |> render("error.json", %{code: :validation_error, changeset: changeset})
   end
 
-  def call(conn, {:error, :not_found}) do
+  def call(conn, {:error, :not_found, resource}) do
     conn
     |> put_status(:not_found)
     |> put_view(ErrorView)
-    |> render("404.json", %{code: :not_found, message: "Keyword cannot be found."})
+    |> render("404.json", %{code: :not_found, message: "#{resource} cannot be found."})
   end
 end

@@ -22,7 +22,7 @@ defmodule KwtoolWeb.Api.V1.KeywordController do
 
     case keyword do
       nil ->
-        {:error, :not_found}
+        {:error, :not_found, "Keyword"}
 
       keyword ->
         conn
