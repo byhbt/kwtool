@@ -58,7 +58,7 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
   end
 
   describe "get show/2" do
-    test "given keyword with crawl result, returns crawl result in the relationship and included fields",
+    test "given keyword with crawl result, returns crawl result in the relationship and includes fields",
          %{
            conn: conn
          } do
@@ -103,7 +103,7 @@ defmodule KwtoolWeb.Api.V1.KeywordControllerTest do
              } = json_response(conn, 200)
     end
 
-    test "given keyword does NOT has any result, returns an empty relationship and included fields",
+    test "given keyword does NOT has any result, returns an empty relationship and includes fields",
          %{
            conn: conn
          } do
