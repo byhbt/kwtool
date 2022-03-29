@@ -19,8 +19,6 @@ defmodule Kwtool.Crawler.Queries.KeywordResultQuery do
     where(query, [k, _kr], ilike(k.phrase, ^keyword_wildcard))
   end
 
-  def maybe_search_by_keyword(query, _), do: query
-
   def maybe_search_by_url(query, %{url: url}) do
     url_wildcard = "%#{url}%"
 
