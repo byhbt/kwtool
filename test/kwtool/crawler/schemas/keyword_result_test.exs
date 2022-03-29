@@ -16,9 +16,9 @@ defmodule Kwtool.Crawler.Schemas.KeywordResultTest do
                all_ads_count: 2,
                all_links_count: 2,
                organic_result_count: 2,
-               organic_result_urls: ["https://google.com", "https://example.com"],
+               organic_result_urls: ["https://company-a.com", "https://company-b.com"],
                top_ads_count: 2,
-               top_ads_urls: ["https://google.com", "https://example.com"],
+               top_ads_urls: ["https://ads-product-a.com", "https://ads-product-b.com"],
                keyword_id: keyword.id,
                html: "<html><head><title>crawler</title></head><body>News sites</body></html>"
              }
