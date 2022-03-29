@@ -10,5 +10,6 @@ defmodule KwtoolWeb.Api.V1.SearchParams do
   def changeset(data \\ %__MODULE__{}, params) do
     data
     |> cast(params, [:url, :min_ads, :keyword])
+    |> validate_required([:keyword])
   end
 end
