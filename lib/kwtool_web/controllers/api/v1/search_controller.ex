@@ -5,9 +5,8 @@ defmodule KwtoolWeb.Api.V1.SearchController do
   alias KwtoolWeb.Api.V1.SearchParams
 
   def index(conn, params) do
-    # TODO, find a way to get current user
     with {:ok, validated_params} <- ParamsValidator.validate(params, for: SearchParams),
-          keywords <- KeywordResults.search(Guardian.Plug.current_resource(conn), validated_params) do
+         keywords <- KeywordResults.search(Guardian.Plug.current_resource(conn), validated_params) do
       conn
       |> put_status(:ok)
       |> render("show.json", %{data: keywords})
