@@ -101,6 +101,75 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
              } = json_response(conn, 200)
     end
 
+    test "given search with keyword has multiple crawl results by url params, returns keyword and results that matching given filters",
+         %{conn: conn} do
+      created_user = insert(:user)
+      keyword = insert(:keyword, phrase: "coffee", status: "finished", user: created_user)
+      insert(:keyword_result, keyword: keyword, organic_result_urls: ["https://star-coffee.com"])
+      insert(:keyword_result, keyword: keyword, organic_result_urls: ["https://milano-coffee.com"])
+
+      conn =
+        conn
+        |> with_signed_in_user(created_user)
+        |> get(
+          Routes.api_search_path(conn, :index, %{
+            "keyword" => "coffee",
+            "url" => "coffee"
+          })
+        )
+
+      assert %{
+               "data" => [
+                 %{
+                   "attributes" => %{
+                     "inserted_at" => _,
+                     "phrase" => "coffee",
+                     "status" => "finished",
+                     "updated_at" => _
+                   },
+                   "id" => _,
+                   "relationships" => %{
+                     "keyword_results" => %{
+                       "data" => [
+                         %{"id" => _, "type" => "keyword_result"},
+                         %{"id" => _, "type" => "keyword_result"}
+                       ]
+                     }
+                   },
+                   "type" => "keywords"
+                 }
+               ],
+               "included" => [
+                 %{
+                   "attributes" => %{
+                     "all_ads_count" => 2,
+                     "all_links_count" => 2,
+                     "organic_result_count" => 2,
+                     "organic_result_urls" => ["https://star-coffee.com"],
+                     "top_ads_count" => 2,
+                     "top_ads_urls" => ["https://ads-product-a.com", "https://ads-product-b.com"]
+                   },
+                   "id" => _,
+                   "relationships" => %{},
+                   "type" => "keyword_result"
+                 },
+                 %{
+                   "attributes" => %{
+                     "all_ads_count" => 2,
+                     "all_links_count" => 2,
+                     "organic_result_count" => 2,
+                     "organic_result_urls" => ["https://milano-coffee.com"],
+                     "top_ads_count" => 2,
+                     "top_ads_urls" => ["https://ads-product-a.com", "https://ads-product-b.com"]
+                   },
+                   "id" => _,
+                   "relationships" => %{},
+                   "type" => "keyword_result"
+                 }
+               ]
+             } = json_response(conn, 200)
+    end
+
     test "given search with keyword does not exist, returns an empty result",
          %{conn: conn} do
       created_user = insert(:user)

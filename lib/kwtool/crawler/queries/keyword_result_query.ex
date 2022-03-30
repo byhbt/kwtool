@@ -5,6 +5,7 @@ defmodule Kwtool.Crawler.Queries.KeywordResultQuery do
 
   def search_query(user_id, params) do
     Keyword
+    |> distinct(true)
     |> join(:inner, [k], kr in KeywordResult, on: kr.keyword_id == k.id)
     |> where([k, _], k.user_id == ^user_id)
     |> search_by_keyword(params)
