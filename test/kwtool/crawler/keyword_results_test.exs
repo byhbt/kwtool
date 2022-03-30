@@ -37,7 +37,7 @@ defmodule Kwtool.KeywordResultsTest do
       assert keyword.phrase == "coffee"
     end
 
-    test "given a keyword does NOT exist, returns the matching keyword result" do
+    test "given a keyword does NOT exist, returns an empty list" do
       user = insert(:user)
       keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
       insert(:keyword_result, keyword: keyword, all_ads_count: 12)

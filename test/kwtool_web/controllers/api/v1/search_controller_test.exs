@@ -50,7 +50,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
              } = json_response(conn, 200)
     end
 
-    test "given search with keyword, url, and min ads count params, returns keyword with matching conditions",
+    test "given search with keyword, url, and min ads count params, returns keyword that matching given filters",
          %{conn: conn} do
       created_user = insert(:user)
       keyword = insert(:keyword, phrase: "coffee", status: "finished", user: created_user)

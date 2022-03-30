@@ -22,7 +22,7 @@ defmodule KwtoolWeb.SearchParamsTest do
              }
     end
 
-    test "given invalid params, returns a valid changeset" do
+    test "given invalid params, returns an invalid changeset" do
       changeset = SearchParams.changeset(%{})
 
       assert changeset.valid? == false
