@@ -50,11 +50,18 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
              } = json_response(conn, 200)
     end
 
-    test "given search with keyword, url, and min ads count params, returns keywords that matching given filters",
+    test "given search with keyword, url in organic_result_urls, and min ads count params, returns keywords that matching given filters",
          %{conn: conn} do
       created_user = insert(:user)
       keyword = insert(:keyword, phrase: "coffee", status: "finished", user: created_user)
-      insert(:keyword_result, keyword: keyword, all_ads_count: 12)
+
+      insert(:keyword_result,
+        keyword: keyword,
+        all_ads_count: 12,
+        organic_result_urls: [
+          "https://company-a.com"
+        ]
+      )
 
       conn =
         conn
@@ -89,7 +96,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
                      "all_ads_count" => 12,
                      "all_links_count" => 2,
                      "organic_result_count" => 2,
-                     "organic_result_urls" => ["https://company-a.com", "https://company-b.com"],
+                     "organic_result_urls" => ["https://company-a.com"],
                      "top_ads_count" => 2,
                      "top_ads_urls" => ["https://ads-product-a.com", "https://ads-product-b.com"]
                    },
