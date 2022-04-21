@@ -12,20 +12,23 @@ defmodule Kwtool.KeywordResultsTest do
       [keyword_result] = KeywordResults.search(user, %{keyword: "coffee"})
 
       assert Enum.count(keyword_result.keyword_results) == 1
-      assert keyword.id == keyword_result.id
-      assert keyword.phrase == "coffee"
+      assert keyword_result.id == keyword.id
+      assert keyword_result.keyword.phrase == "coffee"
     end
 
-    test "given an existing keyword with Url, returns the matching keyword and url" do
+    test "given an existing keyword with url, returns the matching keyword and url" do
       user = insert(:user)
-      keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
-      insert(:keyword_result, keyword: keyword, organic_result_urls: ["https://star-coffee.com"])
+      keyword_1 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: keyword_1, organic_result_urls: ["https://star-coffee.com"])
+
+      keyword_2 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: keyword_2, organic_result_urls: ["https://starbuck.com"])
 
       [keyword_result] = KeywordResults.search(user, %{keyword: "coffee", url: "star-coffee.com"})
 
       assert Enum.count(keyword_result.keyword_results) == 1
-      assert keyword.id == keyword_result.id
-      assert keyword.phrase == "coffee"
+      assert keyword_1.id == keyword_result.id
+      assert keyword_1.phrase == "coffee"
     end
 
     test "given an existing keyword has multiple crawl results, returns the matching keyword and url" do
@@ -43,13 +46,16 @@ defmodule Kwtool.KeywordResultsTest do
 
     test "given an existing keyword with ads count, returns the matching keyword and ads count" do
       user = insert(:user)
-      keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
-      insert(:keyword_result, keyword: keyword, all_ads_count: 13)
+      keyword_1 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: keyword_1, all_ads_count: 13)
+
+      keyword_2 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: keyword_2, all_ads_count: 10)
 
       [keyword_result] = KeywordResults.search(user, %{keyword: "coffee", min_ads: 12})
 
-      assert keyword.id == keyword_result.id
-      assert keyword.phrase == "coffee"
+      assert keyword_1.id == keyword_result.id
+      assert keyword_1.phrase == "coffee"
     end
 
     test "given an empty param, returns an empty list" do

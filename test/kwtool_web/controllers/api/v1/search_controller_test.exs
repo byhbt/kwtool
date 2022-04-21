@@ -4,7 +4,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
   import KwtoolWeb.Support.ConnHelper
 
   describe "get index/2" do
-    test "given search with keyword param, returns a list of matching keyword", %{
+    test "given search with keyword param, returns a list of matching keywords", %{
       conn: conn
     } do
       created_user = insert(:user)
@@ -50,7 +50,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
              } = json_response(conn, 200)
     end
 
-    test "given search with keyword, url, and min ads count params, returns keyword that matching given filters",
+    test "given search with keyword, url, and min ads count params, returns keywords that matching given filters",
          %{conn: conn} do
       created_user = insert(:user)
       keyword = insert(:keyword, phrase: "coffee", status: "finished", user: created_user)
@@ -181,7 +181,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
         |> with_signed_in_user(created_user)
         |> get(Routes.api_search_path(conn, :index, %{"keyword" => "something else"}))
 
-      assert %{"data" => [], "included" => []} = json_response(conn, 200)
+      assert json_response(conn, 200) == %{"data" => [], "included" => []}
     end
 
     test "given missing keyword in search params, returns an error", %{conn: conn} do
