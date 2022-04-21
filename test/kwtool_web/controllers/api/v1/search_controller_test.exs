@@ -192,7 +192,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
         |> with_signed_in_user(created_user)
         |> get(Routes.api_search_path(conn, :index))
 
-      assert %{
+      assert json_response(conn, 422) == %{
                "errors" => [
                  %{
                    "code" => "validation_error",
@@ -200,13 +200,13 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
                    "message" => "Keyword can't be blank"
                  }
                ]
-             } = json_response(conn, 422)
+             }
     end
 
     test "given unauthorized request, returns unauthorized response", %{conn: conn} do
       conn = get(conn, Routes.api_search_path(conn, :index))
 
-      assert %{
+      assert json_response(conn, 401) == %{
                "errors" => [
                  %{
                    "code" => "unauthorized",
@@ -214,7 +214,7 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
                    "message" => "Unauthorized"
                  }
                ]
-             } = json_response(conn, 401)
+             }
     end
   end
 end
