@@ -63,6 +63,17 @@ defmodule KwtoolWeb.Api.V1.SearchControllerTest do
         ]
       )
 
+      not_included_keyword =
+        insert(:keyword, phrase: "cafe", status: "finished", user: created_user)
+
+      insert(:keyword_result,
+        keyword: not_included_keyword,
+        all_ads_count: 9,
+        organic_result_urls: [
+          "https://company-a.com"
+        ]
+      )
+
       conn =
         conn
         |> with_signed_in_user(created_user)
