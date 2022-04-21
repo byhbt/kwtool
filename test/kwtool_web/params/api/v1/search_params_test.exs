@@ -1,4 +1,4 @@
-defmodule KwtoolWeb.SearchParamsTest do
+defmodule KwtoolWeb.Api.V1.SearchParamsTest do
   use Kwtool.DataCase, async: true
 
   alias KwtoolWeb.Api.V1.SearchParams
