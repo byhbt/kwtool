@@ -9,26 +9,29 @@ defmodule Kwtool.KeywordResultsTest do
       keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
       insert(:keyword_result, keyword: keyword)
 
-      [keyword_result] = KeywordResults.search(user, %{keyword: "coffee"})
+      [expected_keyword] = KeywordResults.search(user, %{keyword: "coffee"})
 
-      assert Enum.count(keyword_result.keyword_results) == 1
-      assert keyword_result.id == keyword.id
-      assert keyword_result.keyword.phrase == "coffee"
+      assert Enum.count(expected_keyword.keyword_results) == 1
+      assert expected_keyword.id == keyword.id
+      assert expected_keyword.phrase == "coffee"
     end
 
     test "given an existing keyword with url, returns the matching keyword and url" do
       user = insert(:user)
-      keyword_1 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
-      insert(:keyword_result, keyword: keyword_1, organic_result_urls: ["https://star-coffee.com"])
+      keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: keyword, organic_result_urls: ["https://star-coffee.com"])
 
-      keyword_2 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
-      insert(:keyword_result, keyword: keyword_2, organic_result_urls: ["https://starbuck.com"])
+      not_included_keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
 
-      [keyword_result] = KeywordResults.search(user, %{keyword: "coffee", url: "star-coffee.com"})
+      insert(:keyword_result,
+        keyword: not_included_keyword,
+        organic_result_urls: ["https://starbuck.com"]
+      )
 
-      assert Enum.count(keyword_result.keyword_results) == 1
-      assert keyword_1.id == keyword_result.id
-      assert keyword_1.phrase == "coffee"
+      [expected_keyword] = KeywordResults.search(user, %{keyword: "coffee", url: "star-coffee.com"})
+
+      assert expected_keyword.id == keyword.id
+      assert expected_keyword.phrase == "coffee"
     end
 
     test "given an existing keyword has multiple crawl results, returns the matching keyword and url" do
@@ -37,25 +40,25 @@ defmodule Kwtool.KeywordResultsTest do
       insert(:keyword_result, keyword: keyword, organic_result_urls: ["https://star-coffee.com"])
       insert(:keyword_result, keyword: keyword, organic_result_urls: ["https://black-coffee.com"])
 
-      [keyword_result] = KeywordResults.search(user, %{keyword: "coffee", url: "coffee"})
+      [expected_keyword] = KeywordResults.search(user, %{keyword: "coffee", url: "coffee"})
 
-      assert Enum.count(keyword_result.keyword_results) == 2
-      assert keyword.id == keyword_result.id
-      assert keyword.phrase == "coffee"
+      assert Enum.count(expected_keyword.keyword_results) == 2
+      assert expected_keyword.id == keyword.id
+      assert expected_keyword.phrase == "coffee"
     end
 
     test "given an existing keyword with ads count, returns the matching keyword and ads count" do
       user = insert(:user)
-      keyword_1 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
-      insert(:keyword_result, keyword: keyword_1, all_ads_count: 13)
+      keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: keyword, all_ads_count: 13)
 
-      keyword_2 = insert(:keyword, phrase: "coffee", status: "finished", user: user)
-      insert(:keyword_result, keyword: keyword_2, all_ads_count: 10)
+      not_included_keyword = insert(:keyword, phrase: "coffee", status: "finished", user: user)
+      insert(:keyword_result, keyword: not_included_keyword, all_ads_count: 10)
 
-      [keyword_result] = KeywordResults.search(user, %{keyword: "coffee", min_ads: 12})
+      [expected_keyword] = KeywordResults.search(user, %{keyword: "coffee", min_ads: 12})
 
-      assert keyword_1.id == keyword_result.id
-      assert keyword_1.phrase == "coffee"
+      assert expected_keyword.id == keyword.id
+      assert expected_keyword.phrase == "coffee"
     end
 
     test "given an empty param, returns an empty list" do
